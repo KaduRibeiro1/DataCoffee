@@ -25,7 +25,7 @@ void loop() {
 
   Serial.print("Umidade do Solo: ");
   Serial.print(porcentagemUmidade);
-  Serial.println(" %");
+  Serial.println("%");
   //Tempo até a proxima leitura em ms(milisegundos).
   delay(3000);
 }
