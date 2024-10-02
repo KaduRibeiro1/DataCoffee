@@ -33,7 +33,7 @@
 
 </html>
 <script>
- function Nao() {
+    function Nao() {
         Resultado.innerHTML =
 
             `Informe a pontuação do café que deseja: <br><input type="number" id="qualidade_cafe"><br>
@@ -102,7 +102,7 @@
 
     function CalculoGanho() {
 
-       
+
 
         dados.innerHTML += `<br>qual pontuação que deseja alcançar? <br><input id="melhorar_grao">
          <br> 
@@ -121,22 +121,22 @@
 
         if (pontuacaoCafe <= 76.9) {
             precoAtual = 650.00
-             teste.innerHTML = `<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 9% a 13%  <br> E a temperatura deve estar entre 21° a 26° graus`
+            teste.innerHTML = `<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 9% a 13%  <br> E a temperatura deve estar entre 21° a 26° graus`
 
         } else if (pontuacaoCafe <= 84.9) {
             precoAtual = 860.00
             teste.innerHTML = `<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 10% a 13%  <br> E a temperatura deve estar entre 23° a 26° graus`
-         
+
 
 
         } else if (pontuacaoCafe <= 90.9) {
             precoAtual = 1500.00
             teste.innerHTML = `<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 11% a 13%  <br> E a temperatura deve estar entre 24° a 26° graus`
-           
+
         } else {
             precoAtual = 3200.00
             teste.innerHTML = `<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 11% a 13%  <br> E a temperatura deve estar entre 24° a 26° graus`
-             
+
         }
 
 
@@ -161,44 +161,44 @@
             teste2.innerHTML = `<br>A pontuação desejada é igual ou inferior à pontuação atual. Não há aumento de lucro.`
         }
     }
-    
+
 
     function pontuacao() {
-    var pontos = Number(qualidade_cafe.value);
-    var precoAlvo, lucroPercentual;
-    
-    
-    if (pontos <= 72) {
-        precoAlvo = 650.00; 
-        imagem.innerHTML = `<br><img src="https://wm.agripoint.com.br/imagens/banco/27265.gif"  width = "600">`;
-        Resultado.innerHTML = `<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 9% a 13%  <br> E a temperatura deve estar entre 21° a 26° graus`
-       
-    } else if (pontos <= 85) {
-        precoAlvo = 860.00; 
-        imagem.innerHTML = `<br><img src="https://wm.agripoint.com.br/imagens/banco/27265.gif" width = "600">`;
-        Resultado.innerHTML = `<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 10% a 13%  <br> E a temperatura deve estar entre 23° a 26° graus`
-        
-    } else if (pontos <= 90.9) {
-        precoAlvo = 1500.00; 
-        imagem.innerHTML = `<br><img src="https://wm.agripoint.com.br/imagens/banco/27265.gif" width = "600">`;
-        Resultado.innerHTML =`<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 11% a 13%  <br> E a temperatura deve estar entre 24° a 26° graus`
-       
-    
-    } else {
-        precoAlvo = 3200.00; 
-        imagem.innerHTML = `<br><img src="https://wm.agripoint.com.br/imagens/banco/27265.gif" width = "600">`;
-        Resultado.innerHTML = `<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 11% a 13%  <br> E a temperatura deve estar entre 24° a 26° graus`
-        
+        var pontos = Number(qualidade_cafe.value);
+        var precoAlvo, lucroPercentual;
+
+
+        if (pontos <= 72) {
+            precoAlvo = 650.00;
+            imagem.innerHTML = `<br><img src="https://wm.agripoint.com.br/imagens/banco/27265.gif"  width = "600">`;
+            Resultado.innerHTML = `<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 9% a 13%  <br> E a temperatura deve estar entre 21° a 26° graus`
+
+        } else if (pontos <= 85) {
+            precoAlvo = 860.00;
+            imagem.innerHTML = `<br><img src="https://wm.agripoint.com.br/imagens/banco/27265.gif" width = "600">`;
+            Resultado.innerHTML = `<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 10% a 13%  <br> E a temperatura deve estar entre 23° a 26° graus`
+
+        } else if (pontos <= 90.9) {
+            precoAlvo = 1500.00;
+            imagem.innerHTML = `<br><img src="https://wm.agripoint.com.br/imagens/banco/27265.gif" width = "600">`;
+            Resultado.innerHTML = `<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 11% a 13%  <br> E a temperatura deve estar entre 24° a 26° graus`
+
+
+        } else {
+            precoAlvo = 3200.00;
+            imagem.innerHTML = `<br><img src="https://wm.agripoint.com.br/imagens/banco/27265.gif" width = "600">`;
+            Resultado.innerHTML = `<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 11% a 13%  <br> E a temperatura deve estar entre 24° a 26° graus`
+
+        }
+
+
+        var precoMedioMercado = 1100.00;
+
+
+        if (precoAlvo > precoMedioMercado) {
+            lucroPercentual = ((precoAlvo - precoMedioMercado) / precoAlvo) * 100;
+            Resultado.innerHTML += `<br><br>Se atingir ${pontos} pontos, o valor da sua saca de café pode ser de R$${precoAlvo.toFixed(2)}, o que representa um lucro de ${lucroPercentual.toFixed(2)}% em relação ao preço médio de mercado de R$${precoMedioMercado.toFixed(2)}.`;
+        }
     }
-
-    
-    var precoMedioMercado = 1100.00; 
-
-    
-    if (precoAlvo > precoMedioMercado) {
-        lucroPercentual = ((precoAlvo - precoMedioMercado) / precoAlvo) * 100;
-        Resultado.innerHTML += `<br><br>Se atingir ${pontos} pontos, o valor da sua saca de café pode ser de R$${precoAlvo.toFixed(2)}, o que representa um lucro de ${lucroPercentual.toFixed(2)}% em relação ao preço médio de mercado de R$${precoMedioMercado.toFixed(2)}.`;
-    } 
-}   
 
 </script>
