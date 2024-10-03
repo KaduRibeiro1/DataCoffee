@@ -28,6 +28,7 @@
         <div id="mostrar"></div>
         <div id="teste"></div>
         <div id="teste2"></div>
+        <div id="valoresprocentagem"></div>
     </center>
 </body>
 
@@ -47,7 +48,9 @@
 
             `Informe a umidade do solo: <br><input type="number" id="Umidade_solo"><br>
               Informe a temperatura do solo:<br> <input type="number" id="Temperatura_solo"><br>
-              Informe a pontuação do seu café: <br><input type="number" id="Pontuacao_cafe">
+              Informe a pontuação do seu café: <br><input type="number" id="Pontuacao_cafe"> <br>
+              informe quantas sacas são vendidas: <br> <input type="number" id="quantas_sacas" <br>
+              
              <br><br>
               <button onclick="qualidade()">
                 Qualidade do café
@@ -60,9 +63,14 @@
         var umidade = Number(Umidade_solo.value)
         var temperatura = Number(Temperatura_solo.value)
         pontuacaoCafe = Number(Pontuacao_cafe.value)
+        const quantassacas = Number(quantas_sacas.value)
+
+         
+    
 
         // Umidade
         if (umidade >= 13) {
+            
             Resultado.innerHTML += `<br><br> acima de 13% de umidade compromete a qualidade do produto.<br> Com excesso de umidade no solo o café começa a produzir enzimas que adiantam o processo de crescimento do grão fazendo ele perder qualidade.`
         }
         else if (umidade < 12) {
@@ -82,11 +90,19 @@
             Resultado.innerHTML += ` <br><br>Temperatura acima de 26° o crescimento do café não terá uma boa produtividade devido ao ressecamento das raízes e dos grãos `
         }
         // pontuacao
-        if (pontuacaoCafe <= 72) {
-            Resultado.innerHTML += `<br><br>A pontuação é de um café do padrão brasileiro`
+    
+        
+        if (pontuacaoCafe <= 79) {
+            var valor79 = quantassacas * 643 
+            Resultado.innerHTML += `<br><br>A pontuação é de um café do padrão brasileiro<br><br> O seu lucro atual é de R$${valor79} `
         }
         else if (pontuacaoCafe <= 85) {
-            Resultado.innerHTML += `<br><br>A pontuação do Café é de alta qualidade, considerado café gourmet`
+            var valor85 = quantassacas * 858
+            Resultado.innerHTML += `<br><br>A pontuação do Café é de alta qualidade, considerado café superior<br><br> O seu lucro atual é de R${valor85}`
+        }
+        else if (pontuacaoCafe <= 88){
+            var valor88 = quantassacas * 1716
+            Resultado.innerHTML += `<br><br>A pontuação do café é de qualidade gourmet, <br><br> O seu lucro atual é de R$${valor88}`
         }
         else {
             Resultado.innerHTML += `<br><br>Pontuações acima de 86 são considerados os melhores cafés do mundo, o atual campeão de melhor qualidade do café é de 92 pontos.`
@@ -117,45 +133,56 @@
         var precoAtual
         var precoAlvo
         var lucroPercentual
+        pontuacaoCafe = Number(Pontuacao_cafe.value)
+        const valortotal =Number(quantas_sacas.value)
 
-
-        if (pontuacaoCafe <= 76.9) {
+        
+        if (pontuacaoCafe <= 79) {
             precoAtual = 650.00
             teste.innerHTML = `<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 9% a 13%  <br> E a temperatura deve estar entre 21° a 26° graus`
 
-        } else if (pontuacaoCafe <= 84.9) {
+        } else if (pontuacaoCafe <= 85) {
             precoAtual = 860.00
             teste.innerHTML = `<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 10% a 13%  <br> E a temperatura deve estar entre 23° a 26° graus`
 
 
 
-        } else if (pontuacaoCafe <= 90.9) {
-            precoAtual = 1500.00
+        } else if (pontuacaoCafe <= 88) {
+            precoAtual = 1700.00
             teste.innerHTML = `<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 11% a 13%  <br> E a temperatura deve estar entre 24° a 26° graus`
 
         } else {
-            precoAtual = 3200.00
+            precoAtual = 3400.00
             teste.innerHTML = `<br>Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 11% a 13%  <br> E a temperatura deve estar entre 24° a 26° graus`
 
         }
 
 
-        if (grao <= 76.9) {
+        if (grao <= 79) {
             precoAlvo = 650.00
+          
 
-        } else if (grao <= 84.9) {
+        } else if (grao <= 85) {
             precoAlvo = 860.00
+            
 
-        } else if (grao <= 90.9) {
+        } else if (grao <= 88) {
             precoAlvo = 1500.00
-
-        } else {
+                   
+          } else {
             precoAlvo = 3200.00
-
-        }
+             
+        } 
         if (precoAlvo > precoAtual) {
+ 
             lucroPercentual = ((precoAlvo - precoAtual) / precoAlvo) * 100;
-            teste2.innerHTML = `<br>Com o controle desses dados, você atingirá a pontuação de ${grao} pontos,com isso sua saca irá valorizar de R$${precoAtual.toFixed(2)} para R$${precoAlvo.toFixed(2)}. Isso representa um lucro de ${lucroPercentual.toFixed(2)}% por saca vendida.`
+            var valordelucro = valortotal * precoAlvo
+
+            teste2.innerHTML = `<br>Com o controle desses dados, você atingirá a
+             pontuação de ${grao} pontos,com isso sua saca irá valorizar de
+              R$${precoAtual.toFixed(2)} para R$${precoAlvo.toFixed(2)} com atualmente ${valordelucro} Isso representa
+               um lucro de ${lucroPercentual.toFixed(2)}% por saca vendida.`
+               
         }
         else {
             teste2.innerHTML = `<br>A pontuação desejada é igual ou inferior à pontuação atual. Não há aumento de lucro.`

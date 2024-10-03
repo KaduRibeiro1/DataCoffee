@@ -1,0 +1,17 @@
+*{
+    margin: 0px;
+    height: 0px;   
+   }
+   body{
+       background-color: #221518;
+       color: white;
+   }
+   .conteiner{
+       background-color: #A8715C;
+       justify-content: center;
+   }
+   input{
+       background-color: white;
+       color: black;
+       border-radius: 10px;
+   }    
