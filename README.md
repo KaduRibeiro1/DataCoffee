@@ -30,8 +30,13 @@ Este projeto visa desenvolver um sistema de monitoramento de temperatura e umida
 
 ## 🤝 Contribuidores
 
-- Harison Rios [https://github.com/HarisonRios]
+- Ali Kadri [https://github.com/AliKadri2]
 - Carlos Eduardo [https://github.com/KaduRibeiro1]
+- Felipe Lima [https://github.com/felipe-lim4]
+- Harison Rios [https://github.com/HarisonRios]
+- João Victor [https://github.com/JoaoGaldinoCunha]
+- Rodrigo Olivares [https://github.com/Olivaresss]
+
 
 ## 📝 Licença
 
