@@ -3,8 +3,8 @@ create database datacoffe;
 
 use datacoffe;
 
-create table cadastro(
-id INT PRIMARY KEY AUTO_INCREMENT,
+create table cliente(
+idCliente INT PRIMARY KEY AUTO_INCREMENT,
 Produtor varchar(100)NOT NULL,
 Propriedade  varchar(100)NOT NULL,
 CNPJ char(14) NOT NULL,
@@ -12,7 +12,7 @@ UF char(2) NOT NULL,
 Email varchar(100) NOT NULL,
 Senha varchar(100) NOT NULL
 );
-insert into cadastro (id, Produtor, Propriedade, CNPJ, UF, Email, Senha) values
+insert into cliente (id, Produtor, Propriedade, CNPJ, UF, Email, Senha) values
 	(default, 'Marcio luiz', 'sitio alvorada','48274682000101', 'SP', 'sitioalvorada@gmail.com', 'SitioAlvorada@101'),
     (default, 'Maria josé', 'são francisco','92381566000102', 'MG', 'mariajose@gmail.com', 'Saofrancisco@102'),
     (default, 'Agrifarma', 'Campo aberto','15794329000103', 'SP', 'campoaberto@gmail.com', 'CampoAberto@103'),
@@ -20,41 +20,53 @@ insert into cadastro (id, Produtor, Propriedade, CNPJ, UF, Email, Senha) values
     (default, 'Lessivan Marcos', 'Lagoa do morro','38627941000105', 'SP', 'lagoamorro@gmail.com', 'LagoadoMorro@105'),
     (default, 'Hilda Stein', 'sitio krohiling','61983457000106', 'MG', 'sitiokrohiling@gmail.com', 'SitioKrohiling@106');
     
-    select * from cadastro;
-    select Produtor, Propriedade from cadastro;
-	select Produtor, Senha from cadastro;
-    select Email FROM cadastro;
-	select* from cadastro where UF = 'SP';
-	select* from cadastro order by CNPJ;
-	select* from cadastro order by UF;
-	select* from cadastro where Produtor like '%a%';
-	select* from cadastro where Produtor like '%o';
-	select* from cadastro where Produtor like '%s';
-	select* from cadastro where Produtor like '%i_';
-	select* from cadastro where Produtor like 'M%';
+    select * from cliente;
+    select Produtor, Propriedade from cliente;
+	select Produtor, Senha from cliente;
+    select Email FROM cliente;
+	select* from cliente where UF = 'SP';
+	select* from cliente order by CNPJ;
+	select* from cliente order by UF;
+	select* from cliente where Produtor like '%a%';
+	select* from cliente where Produtor like '%o';
+	select* from cliente where Produtor like '%s';
+	select* from cliente where Produtor like '%i_';
+	select* from cliente where Produtor like 'M%';
 
     
 
 -- TABELA 2 SENSORES
-create database datacoffe;
 
-use datacoffe;
 
-create table sensores(
-id INT PRIMARY KEY AUTO_INCREMENT,
-sensor varchar(100) NOT NULL,
-Temperatura int NOT NULL,
-Umidade_do_solo int NOT NULL,
-Data_ datetime default current_timestamp
+create table plantacao(
+	idPlantacao int primary key	auto_increment,
+    hectares varchar(45),
+    qtdPes int,
+    fkCliente int,  constraint fkPlantacaoCliente foreign key (fkCliente) references cliente(idCliente)
+    );
+
+create table sensor(
+idSensor INT PRIMARY KEY AUTO_INCREMENT,
+modelo varchar(45),
+localizacao varchar(45),
+dtInstalacao date,
+fkPlantacao int,
+constraint fkSensorPlantacao foreign key (fkPlantacao) references plantacao(idPlantacao)
 );
 
-insert into sensores (id, sensor, Temperatura, Umidade_do_solo, Data_)values
-(default,'Temperatura01',30,0,now()),
-(default,'Umidade01',0,25,now()),
-(default,'Temperatura02',33,0,now()),
-(default,'Umidade02',0,20,now()),
-(default,'Temperatura03',20,0,now()),
-(default,'Umidade03',0,23,now());
+
+create table registro(
+idRegistro int primary key auto_increment,
+umidade float,
+temperatura float,
+dtRegistro datetime,
+fkSensor int,
+constraint fkRegistroSensor foreign key (fkSensor) references sensor(idSensor)
+);
+
+
+
+
 
 select * from sensores;
 select id, sensor from sensores;
