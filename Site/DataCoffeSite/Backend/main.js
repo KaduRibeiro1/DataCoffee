@@ -8,7 +8,7 @@ const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3300;
 
 // habilita ou desabilita a inserção de dados no banco de dados
-const HABILITAR_OPERACAO_INSERIR = false;
+const HABILITAR_OPERACAO_INSERIR = true;
 
 // função para comunicação serial
 const serial = async (
@@ -19,10 +19,10 @@ const serial = async (
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
-            host: 'HOST_DO_BANCO',
-            user: 'USUARIO_DO_BANCO',
-            password: 'SENHA_DO_BANCO',
-            database: 'DATABASE_DO_BANCO',
+            host: 'localhost',
+            user: 'DataCoffee',
+            password: 'urubu100',
+            database: 'dbdatacoffee',
             //porta padrao do mysql
             port: 3306
         }
@@ -64,7 +64,7 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO medida (sensor_analogico, sensor_digital) VALUES (?, ?)',
+                'INSERT INTO registro (umidade, temperatura) VALUES (?, ?)',
                 [sensorAnalogicoUmidadeSolo, sensorAnalogicoTemperatura]
             );
             console.log("valores inseridos no banco: ", sensorAnalogicoUmidadeSolo + ", " + sensorAnalogicoTemperatura);
