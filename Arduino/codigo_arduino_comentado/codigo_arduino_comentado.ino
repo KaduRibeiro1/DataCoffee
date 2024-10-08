@@ -33,5 +33,5 @@ void loop() {
   Serial.println(" ");
   
   //Tempo até a proxima leitura em ms(milisegundos).
-  delay(500);
+  delay(5000);
 }
