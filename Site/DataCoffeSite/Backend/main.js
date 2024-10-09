@@ -20,11 +20,11 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
-            user: 'DataCoffee',
-            password: 'urubu100',
-            database: 'dbdatacoffee',
+            user: 'DataCoffeInsert',
+            password: 'Urubu100#',
+            database: 'db_datacoffe',
             //porta padrao do mysql
-            port: 3306
+            port: 3307
         }
     ).promise();
 
@@ -49,15 +49,15 @@ const serial = async (
     });
 
     // processa os dados recebidos do Arduino
-    arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
-        console.log(data);
-        const valores = data.split(';');
-        const sensorAnalogicoTemperatura = parseFloat(valores[0]);
-        const sensorAnalogicoUmidadeSolo = parseFloat(valores[1]);
+        arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
+            console.log(data);
+            const valores = data.split(';');
+            const sensorAnalogicoTemperatura = parseFloat(valores[0]);
+            const sensorAnalogicoUmidadeSolo = parseFloat(valores[1]);
 
-        // armazena os valores dos sensores nos arrays correspondentes
-        valoresSensorUmidadeSolo.push(sensorAnalogicoUmidadeSolo);
-        valoresSensorTemperatura.push(sensorAnalogicoTemperatura);
+            // armazena os valores dos sensores nos arrays correspondentes
+            valoresSensorUmidadeSolo.push(sensorAnalogicoUmidadeSolo);
+            valoresSensorTemperatura.push(sensorAnalogicoTemperatura);
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
