@@ -30,6 +30,7 @@ section {
     width: 450px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 3px 6px 22px rgba(245, 244, 244, 0.3);
 }
 
 .container .logo{
@@ -112,11 +113,10 @@ button {
 
   h5{
     color: #F7E1BC;
-    margin-top: 15px;
+    margin-top: 20px;
 
   }
   
- 
 
 .social-login {
     display: flex;
@@ -162,5 +162,25 @@ button {
     color: #ffffff;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 
                  4px 4px 10px rgba(62, 40, 31, 0.5);
+}
+
+.link2 {
+  margin-top: 5px;
+}
+
+.link2 a {
+  color: #F7E1BC;
+  opacity: 0.8;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 0.8rem;
+}
+
+.link2 a:hover {
+  opacity: 5;
+  color: #ffffff;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 
+               4px 4px 10px rgba(62, 40, 31, 0.5);
 
 }
+

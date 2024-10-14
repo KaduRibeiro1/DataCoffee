@@ -21,9 +21,10 @@ html {
 }
 
 .container {
-  background-color: rgba(62, 40, 31, 0.8);
+  background-color: #3e281f94;
   border-radius: 20px;
-  width: 70%;
+  width: 58%;
+  height: 82%;
   box-shadow: 3px 6px 22px rgba(245, 244, 244, 0.3);
   text-align: center;
 }
@@ -39,12 +40,9 @@ html {
 
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2em;
   color: white;
   margin: 6px;
-  margin-bottom: 50px;
-  font-family: "Dancing Script", cursive;
-
 }
 
 form {
@@ -68,17 +66,20 @@ form {
 .input {
   width: 400px;
   height: 50px;
-  background-color: transparent;
-  border-radius: .3rem;
   padding: 0 1rem;
-  border: white solid 1px;
-  transition: border-color .3s cubic-bezier(.25, .01, .25, 1) 0s, color .3s cubic-bezier(.25, .01, .25, 1) 0s, background .2s cubic-bezier(.25, .01, .25, 1) 0s;
-  color: gray; 
+  background-color: #f7e1bc8a;
+  border-radius: .5rem;
+  border: 2px solid transparent;
+  transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;
 }
 
-.input:hover,
-.input:focus {
+.input:hover, .input:focus, .input-group:hover .input {
+  outline: none;
   border-color: #3e281f;
+}
+
+.input-group:hover .label, .input:focus {
+  color: #F7E1BC;
 }
 
 .input option {
@@ -86,9 +87,7 @@ form {
   color: #F7E1BC; 
 }
 
-.input option:disabled {
-  color: gray; 
-}
+
 
 .label {
   display: flex;
@@ -114,7 +113,7 @@ form {
 button {
   padding: 15px 30px;
   margin-top: 25px;
-  border-radius: .3rem;
+  border-radius: 15px;
   cursor: pointer;
   border: 0;
   background-color: #F7E1BC;
@@ -124,7 +123,6 @@ button {
   text-transform: uppercase;
   font-size: 15px;
   transition: all 0.5s ease;
-  width: 400px;
 }
 
 button:hover {
@@ -178,11 +176,10 @@ h5 {
   color: #F7E1BC;
 }
 
-.link {
-  margin-top: 20px;
-}
 
-.link a {
+.link  {
+  cursor: pointer;
+  margin-top: 15px;
   color: #F7E1BC;
   opacity: 0.8;
   text-decoration: none;
@@ -190,10 +187,9 @@ h5 {
   font-size: 0.8rem;
 }
 
-.link a:hover {
+.link:hover {
   opacity: 5;
   color: #ffffff;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3),
-    4px 4px 10px rgba(62, 40, 31, 0.5);
-
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 
+               4px 4px 10px rgba(62, 40, 31, 0.5);
 }
