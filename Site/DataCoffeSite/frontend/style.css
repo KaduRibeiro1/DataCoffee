@@ -458,8 +458,8 @@ text-align: center;
 .conteiner_company_contact h1{
     font-size: 40px;
     font-family: "Dancing Script", cursive;
-    font-optical-sizing: auto;
     font-weight: bolder;
+    font-optical-sizing: auto;
     font-style: normal;
     font-size: 72px;
     background: -webkit-linear-gradient(#F8E4BE, #DFC39D);
