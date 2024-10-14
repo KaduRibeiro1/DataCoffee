@@ -31,8 +31,8 @@
                 </li>
             </div>
             <div class="conteiner_login_and_register">
-                <button class="btn_login_and_register"><a href="login/index.html">Entre</a></button>
-                <button class="btn_login_and_register"><a href="cadastro/index.html"></a>Registre-se</button>
+                <button id="login" onclick="window.location.href='login/index.html'" class="btn_login_and_register">Entre</button>
+                <button class="btn_login_and_register" onclick="window.location.href='cadastro/index.html'">Registre-se</button>
 
             </div>
         </ul>
@@ -95,7 +95,7 @@
         <section class="conteiner_company_mission">
             <h1>Nossos Objetivos</h1>
             <div class="conteiner_company_mission_main">
-                <img src="./assets/img/meninatomandocafe.png" alt="">
+                <img src="./assets/img/menina_cafe_objetivo.svg" alt="">
                 <div class="conteiner_company_mission_main_text">
                     <h3>Missão:</h3>
                     <p>
@@ -186,7 +186,7 @@
                         <h1>Rodrigo</h1>
                         <h2>Back-End Developer</h2>
                         <a href="https://github.com/Olivaresss"><img src="./assets/img/github.png" alt=""
-                            class="card_github_logo"></a>
+                                class="card_github_logo"></a>
                     </div>
                 </div>
             </div>
@@ -200,22 +200,28 @@
                     <img class="person_review" src="./assets/img/pessoa(1).svg" alt="">
                     <p class="review_name">Isabela Santos</p>
                     <p class="review_description"></p>
-                    <img  class="sentence_review" src="./assets/img/virgula_comentario.svg" alt="">
-                    <p class="review_description_left">A tecnologia DataCoffee foi uma virada de jogo para nossa fazenda. Com os sensores de umidade e temperatura, conseguimos melhorar a qualidade do café e aumentar a produtividade. Simplesmente revolucionário! </p>
+                    <img class="sentence_review" src="./assets/img/virgula_comentario.svg" alt="">
+                    <p class="review_description_left">A tecnologia DataCoffee foi uma virada de jogo para nossa
+                        fazenda. Com os sensores de umidade e temperatura, conseguimos melhorar a qualidade do café e
+                        aumentar a produtividade. Simplesmente revolucionário! </p>
                 </div>
                 <div class="box_review box_review_mid">
                     <img class="person_review" src="./assets/img/pessoa(2).svg" alt="">
                     <p class="review_name">Mariana Oliveira</p>
                     <p class="review_description"></p>
-                    <img  class="sentence_review" src="./assets/img/virgula_comentario.svg" alt="">
-                    <p class="review_description_mid">Graças ao monitoramento preciso do DataCoffee, nossas safras alcançaram uma qualidade superior e conseguimos atingir uma maior valorização no mercado. Uma solução essencial para qualquer cafeicultor.</p>
+                    <img class="sentence_review" src="./assets/img/virgula_comentario.svg" alt="">
+                    <p class="review_description_mid">Graças ao monitoramento preciso do DataCoffee, nossas safras
+                        alcançaram uma qualidade superior e conseguimos atingir uma maior valorização no mercado. Uma
+                        solução essencial para qualquer cafeicultor.</p>
                 </div>
                 <div class="box_review box_review_right">
                     <img src="./assets/img/pessoa(3).svg" alt="">
                     <p class="review_name">Ana Souza</p>
                     <p class="review_description"></p>
-                    <img  class="sentence_review" src="./assets/img/virgula_comentario.svg" alt="">
-                    <p class="review_description_right">O sistema DataCoffee nos proporcionou dados valiosos sobre nossas plantações. Com os dashboards intuitivos, tomamos decisões mais rápidas e eficientes, melhorando significativamente o retorno financeiro.</p>
+                    <img class="sentence_review" src="./assets/img/virgula_comentario.svg" alt="">
+                    <p class="review_description_right">O sistema DataCoffee nos proporcionou dados valiosos sobre
+                        nossas plantações. Com os dashboards intuitivos, tomamos decisões mais rápidas e eficientes,
+                        melhorando significativamente o retorno financeiro.</p>
                 </div>
             </div>
         </section>
@@ -244,11 +250,61 @@
 
 
                     <textarea class="message_area" name="" id="" cols="30" rows="10" placeholder="Mensagem"></textarea>
+                    <button class="btn_post">ENVIAR</button>
                 </div>
             </div>
         </section>
+
+
+
+
+
+        <section class="container_localization">
+            <div class="container_localization_main" id="mapa">
+                <h1 class="conteiner_company_team_title">Onde estamos localizados?</h1>
+                <p class="conteiner_company_team_title">Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP,01414-001</p>
+            </div>
+
+        </section>
+
+        <footer >
+            <div class="footer_logo">
+                <img src="./assets/img/logoSemFundo 2.svg" alt="">
+            </div>
+
+
+            <div class="footer_mid">
+                <div class="footer_mid_cookies">
+                    <a href="">Termos de Serviço</a>
+                    <a href="">Configurações de Cookies</a>
+                    <a href="">Política de Privacidade</a>
+                </div>
+                <div class="footer_mid_service_rights">
+                    <p>© 2024 dataCoffee. Todos os direitos reservados - SPTECH</p>
+                </div>
+            </div>
+
+
+            <div class="footer_icons">
+                <img src="./assets/img/icon-linkedin.svg" alt="">
+                <img src="./assets/img/icon-instragram.svg" alt="">
+            </div>
+        </footer>
+
+
 
     </main>
 </body>
 
 </html>
+
+<script>
+    document.getElementById('mapa').addEventListener("click",function(){
+        window.location.href="https://www.google.com.br/maps/place/Rua+Haddock+Lobo,+595+-+Cerqueira+C%C3%A9sar,+S%C3%A3o+Paulo+-+SP,+01414-001/@-23.558092,-46.6616751,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce59d2a5270055:0x3c7ea4f4c7d51fb6!8m2!3d-23.558092!4d-46.6616751!16s%2Fg%2F11b8v86f6p?entry=ttu&g_ep=EgoyMDI0MTAwOS4wIKXMDSoASAFQAw%3D%3D"
+    })
+
+    document.getElementById('login').addEventListener('click'),function(){
+        window.location.href='login/index.html'
+    }
+    
+</script>
