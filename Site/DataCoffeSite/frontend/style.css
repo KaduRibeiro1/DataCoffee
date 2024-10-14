@@ -60,13 +60,29 @@ body {
 }
 
 .navbar li a:hover {
-  background-image: url('./assets/img/botao_fundo.png');
-  background-size: cover;
-  background-position: center;
-  border-radius: 0px 0px 40px 40px;
-  background-repeat: no-repeat;
-  z-index: 3;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+
+.navbar li a:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-25%) scale(0);
+  top: 50%;
+  width: 300%;
+  height: 300%;
+  background-color: rgba(124, 87, 60, 0.2);
+  border-radius: 50%;
+  transition: all 0.5s ease;
+  z-index: -1;
+}
+
+
+
+
 
 .conteiner_login_and_register {
   display: flex;
@@ -75,10 +91,9 @@ body {
 
 
 .button {
+  border: 1px solid transparent;
   margin: 10px;
   text-decoration: none;
-  color: black;
-  display: inline-block;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -104,7 +119,6 @@ body {
   top: 100%;
   width: 140%;
   height: 180%;
-  background-color: rgba(0, 0, 0, 0.05);
   border-radius: 50%;
   display: block;
   transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
@@ -188,17 +202,69 @@ body {
 }
 
 .btn_see_more {
-    cursor: pointer;
-    font-size: 15px;
-    border-radius: 30px;
-    position: relative;
-    padding: 20px;
-    padding-inline: 40px;
-    background-color: #F7E1BC;
-    border-style: none;
-    color: black;
-    font-weight: bolder;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 30px;
+  position: relative;
+  padding: 20px;
+  padding-inline: 40px;
+  background-color: #F7E1BC;
+  border-style: none;
+  color: black;
+  font-weight: bolder;
+  display: inline-block;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 3px 3px 6px #DFC39D, -3px -3px 6px #DFC39D;
 }
+
+.btn_see_more:active {
+  color: #000000;
+  box-shadow: inset 2px 2px 6px #DFC39D, inset -2px -2px 6px #DFC39D;
+}
+
+.btn_see_more:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.25);
+  top: 100%;
+  width: 140%;
+  height: 180%;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.btn_see_more:after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.45);
+  top: 180%;
+  width: 160%;
+  height: 190%;
+  background-color: #7C573C;
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.btn_see_more:hover {
+  color: #ffffff;
+}
+
+.btn_see_more:hover:before {
+  top: -35%;
+  background-color: #7C573C;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+
+
 
 .conteiner_img {
     display: flex;
@@ -441,6 +507,7 @@ body {
     padding: 40px;
     width: 410px;
     background-color: #54372B;
+    border: 3px solid rgba(255, 255, 255, 0.247);
     border-radius: 20px;
     padding: 16px;
 }
@@ -536,18 +603,74 @@ text-align: center;
     border-radius: 12px;
   }
 
-  .btn_post{
+  .btn_post {
     cursor: pointer;
+    font-size: 15px;
+    border-radius: 30px;
+    position: relative;
     width: 200px;
     height: 50px;
     margin-top: 20px;
-    font-size: 15px;
-    border-radius: 30px;
     background-color: #F7E1BC;
     border-style: none;
     color: black;
     font-weight: bolder;
-  }
+    display: inline-block;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 3px 3px 6px #DFC39D, -3px -3px 6px #DFC39D;
+}
+
+.btn_post:active {
+    color: #000000;
+    box-shadow: inset 2px 2px 6px #DFC39D, inset -2px -2px 6px #DFC39D;
+}
+
+.btn_post:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.25);
+    top: 100%;
+    width: 140%;
+    height: 180%;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.btn_post:after {
+    content: "";
+    position: absolute;
+    left: 55%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.45);
+    top: 180%;
+    width: 160%;
+    height: 190%;
+    background-color: #7C573C;
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.btn_post:hover {
+    color: #ffffff;
+}
+
+.btn_post:hover:before {
+    top: -35%;
+    background-color: #7C573C;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.btn_post:hover:after {
+    top: -45%;
+    background-color: #7C573C;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
 
 
   .labelforsearch {
@@ -669,6 +792,7 @@ text-align: center;
 .card_purpose {
     margin-top: 10px;
     background-color: RGBA(173, 113, 74, 0.35);
+    border: 2px solid #7c573c6c;
     border-radius: 20px;
     padding: 40px;
     padding-left: 5px;
@@ -698,6 +822,7 @@ text-align: center;
 
 .card_values {
     background-color: #FFEED8;
+    border: 4px solid #7c573c9a;
     border-radius: 10px;
     width: 300px;
     height: 270px;
