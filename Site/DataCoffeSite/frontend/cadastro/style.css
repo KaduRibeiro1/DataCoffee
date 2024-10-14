@@ -78,9 +78,14 @@ form {
   border-color: #3e281f;
 }
 
-.input-group:hover .label, .input:focus {
+
+
+.label {
   color: #F7E1BC;
 }
+
+
+
 
 .input option {
   background-color: #3e281f; 
