@@ -63,6 +63,7 @@ form {
 
 }
 
+<<<<<<< HEAD
 .input {
   width: 400px;
   height: 50px;
@@ -93,6 +94,8 @@ form {
 
 
 
+=======
+>>>>>>> 01108fb195e1b86bf72e90c35dbbb1b2fbb68d50
 .label {
   display: flex;
   margin-top: 15px;
@@ -103,16 +106,35 @@ form {
   transition: color .3s cubic-bezier(.25, .01, .25, 1) 0s;
 }
 
-.input:hover,
-.input:focus {
+.input {
+  width: 400px;
+  height: 50px;
+  padding: 0 1rem;
+  background-color: #f7e1bc8a;
+  border-radius: .5rem;
+  border: 2px solid transparent;
+  transition: border-color .3s cubic-bezier(.25,.01,.25,1), color .3s cubic-bezier(.25,.01,.25,1), background .2s cubic-bezier(.25,.01,.25,1);
+}
+
+.input:hover, .input:focus {
   outline: none;
   border-color: #3e281f;
+}
+
+.input option {
+  background-color: #3e281f; 
+  color: #F7E1BC; 
+}
+
+.label {
+  transition: color .3s;
 }
 
 .input:hover + .label,
 .input:focus + .label {
   color: #F7E1BC; 
 }
+
 
 button {
   padding: 15px 30px;
