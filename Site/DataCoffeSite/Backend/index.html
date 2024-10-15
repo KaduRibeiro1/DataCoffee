@@ -11,46 +11,6 @@
 
 <body>
 
-    
-  <div id="nav-bar">
-    <input id="nav-toggle" type="checkbox" />
-    <div id="nav-header"><a id="nav-title" href="../frontend/index.html" target="_blank"><img src="../frontend/assets/img/logoSemFundo.png" alt="Logo DataCoffee"></a>
-      <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
-    </div>
-
-
-    <div id="nav-content">
-        <hr />
-        <div class="nav-button"><i class="fas fa-home"></i><span>Home</span></div>
-        <div class="nav-button"><i class="fas fa-thermometer-half"></i><span>Sensores</span></div>
-        <div class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span></div>
-        <div class="nav-button"><i class="fas fa-chart-bar"></i><span>Gráficos</span></div>
-        <div class="nav-button"><i class="fas fa-chart-pie"></i><span>KPI'S Detalhados</span></div>
-        
-        
-
-      <div id="nav-content-highlight"></div>
-    </div>
-
-    <input id="nav-footer-toggle" type="checkbox" />
-
-    <div id="nav-footer">
-      <div id="nav-footer-heading">
-        <div id="nav-footer-avatar"><img src="../frontend/assets/img/icon.png" /></div>
-        <div id="nav-footer-titlebox">DataCoffee<span id="nav-footer-subtitle">Administrador</span></div>
-        <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
-      </div>
-
-
-      <div id="nav-footer-content">
-          <div class="nav-button"><i class="fas fa-user-circle"></i><span>Perfil</span></div>
-        <div class="nav-button"><i class="fas fa-user-plus"></i><span>Logar com outro Usuário</span></div>
-        <div class="nav-button"><i class="fas fa-sign-out-alt"></i><span>Sair</span></div>
-      </div>
-    </div>
-
-  </div>
-
   <h1>DashBoard - DataCoffee</h1>
   <div class="container">
       <div class="kpi-container">
@@ -84,6 +44,49 @@
           </div>
       </div>
   </div>
+
+  
+
+
+    
+  <div id="nav-bar">
+    <input id="nav-toggle" type="checkbox" />
+    <div id="nav-header"><a id="nav-title" href="../frontend/index.html" target="_blank"><img src="../frontend/assets/img/logoSemFundo.png" alt="Logo DataCoffee"></a>
+      <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+    </div>
+
+
+    <div id="nav-content">
+        <hr />
+        <div class="nav-button"><i class="fas fa-home"></i><a href="../frontend/index.html">Home</a></div>
+        <div class="nav-button"><i class="fas fa-thermometer-half"></i><span>Sensores</span></div>
+        <div class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span></div>
+        <div class="nav-button"><i class="fas fa-chart-bar"></i><span>Gráficos</span></div>
+        <div class="nav-button"><i class="fas fa-chart-pie"></i><span>KPI'S Detalhados</span></div>
+        
+        
+
+      <div id="nav-content-highlight"></div>
+    </div>
+
+    <input id="nav-footer-toggle" type="checkbox" />
+
+    <div id="nav-footer">
+      <div id="nav-footer-heading">
+        <div id="nav-footer-avatar"><img src="../frontend/assets/img/icon.png" /></div>
+        <div id="nav-footer-titlebox">DataCoffee<span id="nav-footer-subtitle">Administrador</span></div>
+        <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
+      </div>
+
+
+      <div id="nav-footer-content">
+          <div class="nav-button"><i class="fas fa-user-circle"></i><span>Perfil</span></div>
+        <div class="nav-button"><i class="fas fa-user-plus"></i><span>Logar com outro Usuário</span></div>
+        <div class="nav-button"><i class="fas fa-sign-out-alt"></i><span>Sair</span></div>
+      </div>
+    </div>
+  </div>
+
 
     <script>
  var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
