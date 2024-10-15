@@ -22,9 +22,11 @@
     <div id="nav-content">
         <hr />
         <div class="nav-button"><i class="fas fa-home"></i><span>Home</span></div>
-        <div class="nav-button"><i class="fas fa-user"></i><span>Cadastrar Usuário</span></div>
+        <div class="nav-button"><i class="fas fa-thermometer-half"></i><span>Sensores</span></div>
+        <div class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span></div>
         <div class="nav-button"><i class="fas fa-chart-bar"></i><span>Gráficos</span></div>
-        <div class="nav-button"><i class="fas fa-chart-pie"></i><span>KPI'S</span></div>
+        <div class="nav-button"><i class="fas fa-chart-pie"></i><span>KPI'S Detalhados</span></div>
+        
         
 
       <div id="nav-content-highlight"></div>
@@ -35,14 +37,15 @@
     <div id="nav-footer">
       <div id="nav-footer-heading">
         <div id="nav-footer-avatar"><img src="../frontend/assets/img/icon.png" /></div>
-        <div id="nav-footer-titlebox"><a id="nav-footer-title" href="https://codepen.io/uahnbu/pens/public"
-            target="_blank">DataCoffee</a><span id="nav-footer-subtitle">Administrador</span></div>
+        <div id="nav-footer-titlebox">DataCoffee<span id="nav-footer-subtitle">Administrador</span></div>
         <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
       </div>
 
 
       <div id="nav-footer-content">
-        <Lorem>Sistema de Monitoramento de Temperatura e Umidade do Solo em Plantações de Café - DataCoffee 2024</Lorem>
+          <div class="nav-button"><i class="fas fa-user-circle"></i><span>Perfil</span></div>
+        <div class="nav-button"><i class="fas fa-user-plus"></i><span>Logar com outro Usuário</span></div>
+        <div class="nav-button"><i class="fas fa-sign-out-alt"></i><span>Sair</span></div>
       </div>
     </div>
 
@@ -83,55 +86,126 @@
   </div>
 
     <script>
-        var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
-            type: 'line',
-            data: {
-                datasets: [{
-                    label: 'Analogico',
-                    borderColor: '#63B1BC',
-                    backgroundColor: '#ED145B'
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        beginAtZero: true
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: '(%)'
-                        },
-                        beginAtZero: true,
-                    },
-                },
-            }
-        });
-
-        var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
-            type: 'line',
-            data: {
-                datasets: [{
-                    label: 'Digital',
-                    borderColor: '#63B1BC',
-                    backgroundColor: '#0762C8'
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        beginAtZero: true
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: '(0-1)'
-                        },
-                        beginAtZero: true
+ var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
+    type: 'line',
+    data: {
+        datasets: [{
+            label: 'Sensor Analógico',
+            borderColor: 'rgba(255, 0, 0, 0.8)',
+            backgroundColor: 'rgba(255, 0, 0, 0.288)',
+            pointBackgroundColor: 'rgba(255, 0, 0, 0.8)',
+            borderWidth: 2,
+            pointBorderColor: 'rgba(0, 0, 0, 0.8)',
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            tension: 0.4
+        }]
+    },
+    options: {
+        plugins: {
+            legend: {
+                display: true,
+                labels: {
+                    color: 'rgba(0, 0, 0, 1)',
+                    font: {
+                        size: 16
                     }
                 }
             }
-        });
+        },
+        elements: {
+            line: {
+                borderJoinStyle: 'round'
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    display: false
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: '(%)',
+                    color: 'rgba(0, 0, 0, 1)',
+                    font: {
+                        size: 14
+                    }
+                },
+                ticks: {
+                    color: 'rgba(0, 0, 0, 1)',
+                    font: {
+                        size: 12
+                    }
+                },
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+
+var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
+    type: 'line',
+    data: {
+        datasets: [{
+            label: 'Sensor Digital',
+            borderColor: 'rgba(0, 123, 255, 0.8)',
+            backgroundColor: 'rgba(0, 123, 255, 0.1)',
+            borderWidth: 2,
+            pointBackgroundColor: 'rgba(0, 123, 255, 0.8)',
+            pointBorderColor: 'rgba(0, 0, 0, 0.8)',
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            tension: 0.4
+        }]
+    },
+    options: {
+        plugins: {
+            legend: {
+                display: true,
+                labels: {
+                    color: 'rgba(0, 0, 0, 1)',
+                    font: {
+                        size: 16
+                    }
+                }
+            }
+        },
+        elements: {
+            line: {
+                borderJoinStyle: 'round'
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    display: false
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: '(0-1)',
+                    color: 'rgba(0, 0, 0, 1)',
+                    font: {
+                        size: 14
+                    }
+                },
+                ticks: {
+                    color: 'rgba(0, 0, 0, 1)',
+                    font: {
+                        size: 12
+                    }
+                },
+                beginAtZero: true
+            }
+        }
+    }
+});
+
 
         var paginacao = {};
         var tempo = {};
