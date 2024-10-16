@@ -10,6 +10,7 @@
 
 <body>
     <div class="conteiner_calculator" id="retorno">
+        <img class="logo" src="assets/logoSemFundo.png" alt="">
         <h1 class="title_calculator">Calculadora DataCoffee</h1> <br>
         <h1 class="subtitle_calculator">Você sabe a pontuação do seu café?</h1>
 
@@ -25,7 +26,9 @@
 <script>
 
     function CasoSim() {
-        retorno.innerHTML = ` <h1 class="title_calculator">Calculadora DataCoffee</h1>
+        retorno.innerHTML = ` 
+        <img class="logo" src="assets/logoSemFundo.png" alt="">
+        <h1 class="title_calculator">Calculadora DataCoffee</h1>
         <div class="inputs_calculator">
             <h1 class="tittle_input">Informe a umidade do solo:</h1>
             <input type="text" class="input_calculator" id="Umidade_solo">
@@ -52,25 +55,28 @@
         // Umidade
         if (umidade >= 13) {
             retorno.innerHTML += `
+            <img class="logo" src="assets/logoSemFundo.png" alt="">
             <h1 class="title_calculator">Calculadora DataCoffee</h1>
             <h1 class="mensagemResposta">Acima de 13% de umidade, a qualidade do produto será comprometida. Com o excesso de umidade no solo, o café começará a produzir enzimas que aceleram o crescimento do grão, fazendo-o perder qualidade.</h1>
             `
         }
         else if (umidade < 12) {
             retorno.innerHTML += `
+            <img class="logo" src="assets/logoSemFundo.png" alt="">
             <h1 class="title_calculator">Calculadora DataCoffee</h1>
             <h1 class="mensagemResposta">O mínimo para manter uma boa qualidade é 9%. Com 12% de umidade, o café está dentro de um parâmetro de ótima qualidade.</h1>
             `
         }
         else {
             retorno.innerHTML += `
+            <img class="logo" src="assets/logoSemFundo.png" alt="">
             <br><br> <h1 class="mensagemResposta">Até 8% de umidade, o café consegue se desenvolver, mas isso pode afetar a qualidade</h1>
             `
         }
         // Temperatura
         if (temperatura <= 17) {
             retorno.innerHTML += `
-            <br> <h1 class="mensagemResposta">A temperatura está abaixo da média, o que compromete a qualidade do seu grão</h1>
+            <h1 class="mensagemResposta">A temperatura está abaixo da média, o que compromete a qualidade do seu grão</h1>
             `
         }
         else if (temperatura <= 26) {
@@ -80,14 +86,14 @@
         }
         else {
             retorno.innerHTML += `
-            <br> <h1 class="mensagemResposta">Com temperaturas acima de 26°C, o crescimento do café não terá boa produtividade devido ao ressecamento das raízes e dos grãos</h1>
+            <h1 class="mensagemResposta">Com temperaturas acima de 26°C, o crescimento do café não terá boa produtividade devido ao ressecamento das raízes e dos grãos</h1>
             `
         }
         // pontuacao
         if (pontuacaoCafe <= 72) {
             precoAtual = 650.00
             retorno.innerHTML += `
-            <br> <h1 class="mensagemResposta">A pontuação é de um café do padrão brasileiro</h1>
+            <h1 class="mensagemResposta">A pontuação é de um café do padrão brasileiro</h1>
             <button class="btn_calculator" onclick="pontuacaoDesejada()">Simulação</button>
             `
         }
@@ -111,6 +117,7 @@
     function pontuacaoDesejada() {
 
         retorno.innerHTML = `
+        <img class="logo" src="assets/logoSemFundo.png" alt="">
         <h1 class="title_calculator">Calculadora DataCoffee</h1>
         <div class="inputs_calculator">
             <h1 class="tittle_input">Informe a pontuação que deseja alcançar:</h1>
@@ -131,6 +138,7 @@
         if (pontos <= 72) {
             precoAlvo = 650.00;
             retorno.innerHTML += `
+            <img class="logo" src="assets/logoSemFundo.png" alt="">
             <br> <h1 class="mensagemResposta">Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 9% a 13%.
             <br>E a temperatura deve estar entre 21° a 26° graus</h1>`
             retorno.innerHTML += `
@@ -141,6 +149,7 @@
         } else if (pontos <= 85) {
             precoAlvo = 860.00;
             retorno.innerHTML += `
+            <img class="logo" src="assets/logoSemFundo.png" alt="">
             <br> <h1 class="mensagemResposta">Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 10% a 13%  <br> E a temperatura deve estar entre 23° a 26° graus</h1>`
             retorno.innerHTML += `<br><img src="https://wm.agripoint.com.br/imagens/banco/27265.gif" width = "600">`;
 
@@ -148,24 +157,24 @@
         } else if (pontos <= 90.9) {
             precoAlvo = 1500.00;
             retorno.innerHTML += `
+            <img class="logo" src="assets/logoSemFundo.png" alt="">
             <br> <h1 class="mensagemResposta">Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 11% a 13%  <br> E a temperatura deve estar entre 24° a 26° graus</h1>`
             retorno.innerHTML += `<br><img src="https://wm.agripoint.com.br/imagens/banco/27265.gif" width = "600">`;
 
         } else {
             precoAlvo = 3200.00;
             retorno.innerHTML += `
+            <img class="logo" src="assets/logoSemFundo.png" alt="">
             <br> <h1 class="mensagemResposta">Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 11% a 13%  <br> E a temperatura deve estar entre 24° a 26° graus</h1>`
             retorno.innerHTML += `
             <br><img src="https://wm.agripoint.com.br/imagens/banco/27265.gif" width = "600">`;
         }
 
-        if (precoAlvo > precoAtual) {
+        if (precoAlvo > precoAtual && precoAtual != 0) {
 
             lucroPercentual += ((precoAlvo - precoAtual) / precoAtual) * 100;
 
-            retorno.innerHTML += `<br><br> <h1 class="mensagemResposta">Se atingir ${pontos} pontos, o valor da sua saca de café pode ser de R$${precoAlvo.toFixed(2)}, o que representa um lucro de ${lucroPercentual.toFixed(2)}% em relação ao preço medio de sua saca conforme a classificação de R$${precoAtual.toFixed(2)}.</h1>`
+            retorno.innerHTML += `<br><br> <h1 class="mensagemResposta">Ao atingir ${pontos} pontos, o valor da sua saca de café pode ser de R$${precoAlvo.toFixed(2)}, o que representa um lucro de ${lucroPercentual.toFixed(2)}% em relação ao preço medio de sua saca conforme a classificação de R$${precoAtual.toFixed(2)}.</h1>`
         }
     }
-
-
 </script>
