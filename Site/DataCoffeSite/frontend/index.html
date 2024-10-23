@@ -39,13 +39,18 @@
     <main>
         <section class="conteiner_home">
             <div class="conteiner_main_text">
+<<<<<<< HEAD
                 <h1>Data Coffe</h1>
                 <h2>Transformando Grãos em Obras-Primas: <br> Precisão térmica para o <span>Café Perfeito</span></h2>
                 <button class="btn_see_more">CONFIRA MAIS</button>
+=======
+                <h1>Data Coffee</h1>
+                <h2>Transformando Grãos em Obras-Primas: Precisão térmica para o <span>Café Perfeito</span></h2>
+                <button onclick="window.location.href = '../calculadora/indexCoffe2.0.html'" class="btn_see_more">FAÇA SEU CALCULO!</button>
+>>>>>>> d431430ca641900c9457e6c092ae8fb88478f787
             </div>
             <div class="conteiner_img">
                 <img src="assets/img/coffee-landing-transformed copy 1.png" class="conteiner_img_machine_coffe">
-
             </div>
         </section>
         <section class="conteiner_purpose">
@@ -128,7 +133,7 @@
                         <h2>Back-End Developer</h2>
 
                         <a href="https://github.com/AliKadri2"  target="_blank"><i class="bi bi-github" class="card_github_logo"></i></a>
-                        <a href=""  target="_blank"><i class="bi bi-linkedin" class="card_github_logo"></i></a>
+                        <a href="https://www.linkedin.com/in/ali-kadri-5b7b05266/"  target="_blank"><i class="bi bi-linkedin" class="card_github_logo"></i></a>
                     </div>
                 </div>
                 <div class="card">
@@ -152,7 +157,7 @@
                         <h2>Back-End Developer</h2>
                         <a href="https://github.com/felipe-lim4" target="_blank"><i class="bi bi-github"
                                 class="card_github_logo"></i></a>
-                        <a href="" target="_blank"><i class="bi bi-linkedin" class="card_github_logo"></i></a>
+                        <a href="https://www.linkedin.com/in/felipe-acbb/" target="_blank"><i class="bi bi-linkedin" class="card_github_logo"></i></a>
                     </div>
                 </div>
             </div>
@@ -180,7 +185,7 @@
                         <h2>Full-Stack Developer</h2>
                         <a href="https://github.com/JoaoGaldinoCunha" target="_blank"><i class="bi bi-github"
                                 class="card_github_logo"></i></a>
-                        <a href="" target="_blank"><i class="bi bi-linkedin" class="card_github_logo"></i></a>
+                        <a href="https://www.linkedin.com/in/jo%C3%A3o-victor-galdino-cunha-47a0a32a9/" target="_blank"><i class="bi bi-linkedin" class="card_github_logo"></i></a>
 
                     </div>
                 </div>
@@ -191,10 +196,10 @@
 
                     <div class="text_card">
                         <h1>Rodrigo</h1>
-                        <h2>Back-End Developer</h2>
+                        <h2>Front-End Developer</h2>
                         <a href="https://github.com/Olivaresss" target="_blank"><i class="bi bi-github"
                                 class="card_github_logo"></i></a>
-                        <a href="" target="_blank"><i class="bi bi-linkedin" class="card_github_logo"></i></a>
+                        <a href="https://www.linkedin.com/in/rodrigo-olivares-421a83265/" target="_blank"><i class="bi bi-linkedin" class="card_github_logo"></i></a>
 
                     </div>
                 </div>
@@ -317,6 +322,21 @@
     document.getElementById('mapa').addEventListener("click", function () {
         window.location.href = "https://www.google.com.br/maps/place/Rua+Haddock+Lobo,+595+-+Cerqueira+C%C3%A9sar,+S%C3%A3o+Paulo+-+SP,+01414-001/@-23.558092,-46.6616751,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce59d2a5270055:0x3c7ea4f4c7d51fb6!8m2!3d-23.558092!4d-46.6616751!16s%2Fg%2F11b8v86f6p?entry=ttu&g_ep=EgoyMDI0MTAwOS4wIKXMDSoASAFQAw%3D%3D"
     })
+
+    let lastScrollTop = 0;
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", function() {
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  if (scrollTop > lastScrollTop) {
+
+    navbar.style.top = "-80px";
+  } else {
+
+    navbar.style.top = "0";
+  }
+  lastScrollTop = scrollTop;
+});
 
 
 

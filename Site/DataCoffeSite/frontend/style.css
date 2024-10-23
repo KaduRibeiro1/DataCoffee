@@ -16,6 +16,7 @@ body {
     display: flex;
     overflow-x: hidden;
     color: white;
+    scroll-behavior: smooth;
 }
 
 .logo {
@@ -28,14 +29,25 @@ body {
   padding-inline: 15px;
   display: flex;
   justify-content: space-between;
-  position: absolute;
+  position: fixed;
+  top: 0;
   width: 100%;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.081);
   font-family: "Poppins", system-ui;
-  font-weight: 400;
+  font-weight: bold;
   font-style: normal;
   align-items: center;
   z-index: 10;
+  backdrop-filter: blur(10px);
+  border-bottom: solid 1px #221518;
+  transition: top 0.3s;
+}
+
+
+.content {
+  padding: 100px;
+  height: 2000px;
+  background-color: #f4f4f4;
 }
 
 .navbar li a {
@@ -95,9 +107,11 @@ body {
   color: #4A2721;
   background: transparent;
   cursor: pointer;
+  background-color: #F7E1BC;
   transition: ease-out 0.5s;
-  border: 2px solid #F7E1BC;
+  border: 2px solid #4A2721;
   border-radius: 10px;
+<<<<<<< HEAD
   background-color: #F7E1BC;
   box-shadow: inset 0 0 0 0 #F7E1BC;;
 }
@@ -106,6 +120,14 @@ body {
   border: 2px solid #F7E1BC;
   color: #F7E1BC;
   box-shadow: inset 0 -100px 0 0 #4A2721;
+=======
+  box-shadow: inset 0 0 0 0 #4A2721;;
+}
+
+.button:hover {
+  color: #F7E1BC;
+  box-shadow: inset 0 -100px 0 0 #4A2721;;
+>>>>>>> d431430ca641900c9457e6c092ae8fb88478f787
 }
 
 .button:active {

@@ -8,7 +8,15 @@ body {
   display: flex;
   align-items: center;
   margin: 40px;
+
 }
+
+.logo {
+  width: 75px;
+  position: relative;
+  top: -2.2rem; 
+}
+
 
 .conteiner_calculator {
   justify-content: center;
