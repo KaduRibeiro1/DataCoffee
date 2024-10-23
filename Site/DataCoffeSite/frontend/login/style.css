@@ -57,7 +57,7 @@ h1 {
     transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;
   }
   .input::placeholder {
-    color: rgba(0, 0, 0, 0.799); /* Placeholder branco com 50% de opacidade */
+    color: rgba(0, 0, 0, 0.799);
   }
   .label {
     display: flex;
@@ -78,7 +78,7 @@ h1 {
   }
   
   .input-group:hover .label, .input:focus {
-    color: #ea990d;
+    color: #ffffff
   }
 
 button {
