@@ -317,6 +317,21 @@
         window.location.href = "https://www.google.com.br/maps/place/Rua+Haddock+Lobo,+595+-+Cerqueira+C%C3%A9sar,+S%C3%A3o+Paulo+-+SP,+01414-001/@-23.558092,-46.6616751,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce59d2a5270055:0x3c7ea4f4c7d51fb6!8m2!3d-23.558092!4d-46.6616751!16s%2Fg%2F11b8v86f6p?entry=ttu&g_ep=EgoyMDI0MTAwOS4wIKXMDSoASAFQAw%3D%3D"
     })
 
+    let lastScrollTop = 0;
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", function() {
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  if (scrollTop > lastScrollTop) {
+
+    navbar.style.top = "-80px";
+  } else {
+
+    navbar.style.top = "0";
+  }
+  lastScrollTop = scrollTop;
+});
+
 
 
 </script>
