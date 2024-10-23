@@ -24,7 +24,7 @@ html {
   background-color: #3e281f94;
   border-radius: 20px;
   width: 58%;
-  height: 82%;
+  height: 84%;
   box-shadow: 3px 6px 22px rgba(245, 244, 244, 0.3);
   text-align: center;
 }
@@ -68,12 +68,12 @@ form {
   background-color: #f7e1bc8a;
   border-radius: .5rem;
   border: 2px solid transparent;
-  color: #ffffff; 
+  color: #000000; 
   transition: border-color .3s cubic-bezier(.25, .01, .25, 1), color .3s cubic-bezier(.25, .01, .25, 1), background .2s cubic-bezier(.25, .01, .25, 1);
 }
 
 .input::placeholder {
-  color: rgba(255, 255, 255, 0.799); /* Placeholder branco com 50% de opacidade */
+  color: rgba(0, 0, 0, 0.799); /* Placeholder branco com 50% de opacidade */
 }
 
 .input:hover, .input:focus {
@@ -83,7 +83,7 @@ form {
 
 .input:hover + .label,
 .input:focus + .label {
-  color: #ffffff; 
+  color: #000000; 
 }
 
 .input-group:hover .input:hover {
@@ -97,17 +97,17 @@ form {
 
 .input option:disabled {
   background-color: #3e281f;
-  color: #ffffff;
+  color: #000000;
   opacity: 0.5; 
 }
 
 .input option[value="selecione"] {
-  color: #ffffff;
+  color: #000000;
 }
 
 .input:disabled,
 .input option:disabled[selected] {
-  color: rgba(255, 255, 255, 0.799); /* Placeholder branco com 50% de opacidade */
+  color: rgba(0, 0, 0, 0.799); /* Placeholder branco com 50% de opacidade */
 
 }
 
