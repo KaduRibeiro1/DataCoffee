@@ -61,6 +61,16 @@ h1 {
   gap: 20px; 
 }
 
+#temperaturaMaxima, #temperaturaMedia, #temperaturaMinima {
+  font-size: 20px;
+  position: relative;
+  bottom: 25px;
+  font-weight : bold;
+}
+
+
+
+
 .kpi {
   background-color: var(--primario);
   border: 3px solid #2c1d13;
@@ -72,7 +82,14 @@ h1 {
   flex: 1;
   margin: 0 10px;
   transition: transform 0.3s;
+
+  span {
+    font-weight : bold;
+    font-size: 10px;
+  }
 }
+
+
 
 .kpi canvas{
   width: 20px; 
@@ -84,6 +101,8 @@ h1 {
 .kpi:hover {
   transform: translateY(-5px);
 }
+
+
 
 .chart-container {
   display: flex;

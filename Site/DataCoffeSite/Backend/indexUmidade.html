@@ -15,19 +15,15 @@
       <div class="kpi-container">
           <div class="kpi">
             <canvas id="gaugeMaximo" height="1%" width="1%"></canvas>
-            <div id="temperaturaMaxima"></div>
         </div>
         <div class="kpi">
             <canvas id="gaugeMedia" height="1%" width="1%"></canvas>
-            <div id="temperaturaMedia"></div>
         </div>
         <div class="kpi">
-            <canvas id="gaugeMinimo" height="1%" width="1%"></canvas>
-            <div id="temperaturaMinima"></div>
+              <canvas id="gaugeMinimo" height="1%" width="1%"></canvas>
           </div>
           <div class="kpi">
-              <span>Médias em Gráfico de Barra</span>
-              <canvas id="barChart" height="1%" width="1%"></canvas>
+            <canvas id="barChart" height="1%" width="1%"></canvas>
         </div>
       </div>
       <div class="chart-container">
@@ -44,7 +40,7 @@
 
 
     
-  <div id="nav-bar"> 
+  <div id="nav-bar">
     <input id="nav-toggle" type="checkbox" />
     <div id="nav-header"><a id="nav-title" href="../frontend/index.html" target="_blank"><img src="../frontend/assets/img/logoSemFundo.png" alt="Logo DataCoffee"></a>
       <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
@@ -83,118 +79,106 @@
 
 
     <script>
+
  // Gráfico de Máxima Temperatura
-var ctxMaximo = document.getElementById('gaugeMaximo').getContext('2d');
-var valorMaximo = 45; // Valor da temperatura máxima
-var optionsMaximo = {
-    type: 'doughnut',
-    data: {
-        labels: ["Máxima Temperatura"],
-        datasets: [{
-            label: 'Máxima Temperatura',
-            data: [valorMaximo],
-            backgroundColor: ["red"] // Cor representativa
-        }]
-    },
-    options: {
-        rotation: 270,
-        circumference: 180,
-        cutout: '70%',
-        plugins: {
-            legend: {
-                display: true,
-                position: 'top',
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(tooltipItem) {
-                        return `Máxima Temperatura: ${tooltipItem.raw}°C`;
+ var ctxMaximo = document.getElementById('gaugeMaximo').getContext('2d');
+    var optionsMaximo = {
+        type: 'doughnut',
+        data: {
+            labels: ["Máxima Temperatura"],
+            datasets: [{
+                label: 'Máxima Temperatura',
+                data: [45], // Valor da temperatura máxima
+                backgroundColor: ["red"] // Cor representativa
+            }]
+        },
+        options: {
+            rotation: 270,
+            circumference: 180,
+            cutout: '70%',
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return `Máxima Temperatura: ${tooltipItem.raw}°C`;
+                        }
                     }
                 }
             }
         }
-    }
-};
-temperaturaMaxima.innerHTML = `${valorMaximo}°C`
-var gaugeMaximo = new Chart(ctxMaximo, optionsMaximo)
+    };
+    var gaugeMaximo = new Chart(ctxMaximo, optionsMaximo);
 
-
-
-
-
-// Gráfico de Média Temperatura
-var ctxMedia = document.getElementById('gaugeMedia').getContext('2d');
-var valorMedia = 25; // Valor da temperatura média
-var optionsMedia = {
-    type: 'doughnut',
-    data: {
-        labels: ["Média Temperatura"],
-        datasets: [{
-            label: 'Média Temperatura',
-            data: [valorMedia],
-            backgroundColor: ["orange"] // Cor representativa
-        }]
-    },
-    options: {
-        rotation: 270,
-        circumference: 180,
-        cutout: '70%',
-        plugins: {
-            legend: {
-                display: true,
-                position: 'top',
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(tooltipItem) {
-                        return `Média Temperatura: ${tooltipItem.raw}°C`;
+    // Gráfico de Média Temperatura
+    var ctxMedia = document.getElementById('gaugeMedia').getContext('2d');
+    var optionsMedia = {
+        type: 'doughnut',
+        data: {
+            labels: ["Média Temperatura "],
+            datasets: [{
+                label: 'Média Temperatura',
+                data: [25], // Valor da temperatura média
+                backgroundColor: ["orange"] // Cor representativa
+            }]
+        },
+        options: {
+            rotation: 270,
+            circumference: 180,
+            cutout: '70%',
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return `Média Temperatura: ${tooltipItem.raw}°C`;
+                        }
                     }
                 }
             }
         }
-    }
-};
-var gaugeMedia = new Chart(ctxMedia, optionsMedia);
+    };
+    var gaugeMedia = new Chart(ctxMedia, optionsMedia);
 
-temperaturaMedia.innerHTML = `${valorMedia}°C`;
-
-
-
-// Gráfico de Mínima Temperatura
-var ctxMinimo = document.getElementById('gaugeMinimo').getContext('2d');
-var valorMinimo = 15; // Valor da temperatura mínima
-var optionsMinimo = {
-    type: 'doughnut',
-    data: {
-        labels: ["Mínima Temperatura"],
-        datasets: [{
-            label: 'Mínima Temperatura',
-            data: [valorMinimo],
-            backgroundColor: ["blue"] // Cor representativa
-        }]
-    },
-    options: {
-        rotation: 270,
-        circumference: 180,
-        cutout: '70%',
-        plugins: {
-            legend: {
-                display: true,
-                position: 'top',
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(tooltipItem) {
-                        return `Mínima Temperatura: ${tooltipItem.raw}°C`;
+    // Gráfico de Mínima Temperatura
+    var ctxMinimo = document.getElementById('gaugeMinimo').getContext('2d');
+    var optionsMinimo = {
+        type: 'doughnut',
+        data: {
+            labels: ["Mínima Temperatura"],
+            datasets: [{
+                label: 'Mínima Temperatura',
+                data: [15], // Valor da temperatura mínima
+                backgroundColor: ["blue"] // Cor representativa
+            }]
+        },
+        options: {
+            rotation: 270,
+            circumference: 180,
+            cutout: '70%',
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return `Mínima Temperatura: ${tooltipItem.raw}°C`;
+                        }
                     }
                 }
             }
         }
-    }
-};
-var gaugeMinimo = new Chart(ctxMinimo, optionsMinimo);
+    };
+    var gaugeMinimo = new Chart(ctxMinimo, optionsMinimo);
 
-temperaturaMinima.innerHTML = `${valorMinimo}°C`;
 
 
 
