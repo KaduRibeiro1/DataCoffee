@@ -59,15 +59,13 @@ h1 {
   width: 80%;
   margin-bottom: 300px;
   gap: 20px; 
-  
 }
-
 
 .kpi {
   background-color: var(--primario);
   border: 3px solid #2c1d13;
   color: var(--corSecundaria);
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -75,6 +73,13 @@ h1 {
   margin: 0 10px;
   transition: transform 0.3s;
 }
+
+.kpi canvas{
+  width: 20px; 
+  height: 20px;
+  border-radius: 10px;
+}
+
 
 .kpi:hover {
   transform: translateY(-5px);
@@ -87,7 +92,7 @@ h1 {
   margin-top: 20px;
 }
 
-canvas {
+.chart-container canvas {
   position: relative;
   bottom: 250px;
   display: flex;
@@ -101,7 +106,7 @@ canvas {
   transition: transform 0.3s;
 }
 
-canvas:hover {
+.chart-container canvas:hover {
   transform: translateY(-5px);
 }
 
@@ -168,7 +173,7 @@ canvas:hover {
 #nav-bar {
   position: absolute;
   left: 1vw;
-  top: 1vw;
+  top: 2vw;
   height: calc(100% - 2vw);
   background: var(--primario);
   border-radius: 16px;

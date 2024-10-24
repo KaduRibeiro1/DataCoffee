@@ -8,32 +8,23 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
 
   <h1>DashBoard - DataCoffee</h1>
   <div class="container">
       <div class="kpi-container">
           <div class="kpi">
-              <i class="fas fa-tachometer-alt fa-2x"></i>
-              <h3>KPI 1</h3>
-              <p>Valor: 75%</p>
+            <canvas id="gaugeMaximo" height="1%" width="1%"></canvas>
+        </div>
+        <div class="kpi">
+            <canvas id="gaugeMedia" height="1%" width="1%"></canvas>
+        </div>
+        <div class="kpi">
+              <canvas id="gaugeMinimo" height="1%" width="1%"></canvas>
           </div>
           <div class="kpi">
-              <i class="fas fa-chart-line fa-2x"></i>
-              <h3>KPI 2</h3>
-              <p>Valor: 85%</p>
-          </div>
-          <div class="kpi">
-              <i class="fas fa-chart-bar fa-2x"></i>
-              <h3>KPI 3</h3>
-              <p>Valor: 65%</p>
-          </div>
-          <div class="kpi">
-              <i class="fas fa-chart-pie fa-2x"></i>
-              <h3>KPI 4</h3>
-              <p>Valor: 90%</p>
-          </div>
+            <canvas id="barChart" height="1%" width="1%"></canvas>
+        </div>
       </div>
       <div class="chart-container">
           <div style="width: 50%;">
@@ -57,8 +48,7 @@
 
 
     <div id="nav-content">
-        <hr />
-        <div class="nav-button"><i class="fas fa-home"></i><a href="../frontend/index.html"><span>Home</span></a></div>
+        <div class="nav-button"><i class="fas fa-home"></i><span><a href="../frontend/index.html">Home</a></span></div>
         <div class="nav-button"><i class="fas fa-thermometer-half"></i><span>Sensores</span></div>
         <div class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span></div>
         <div class="nav-button"><i class="fas fa-chart-bar"></i><span>Gráficos</span></div>
@@ -89,6 +79,160 @@
 
 
     <script>
+
+ // Gráfico de Máxima Temperatura
+ var ctxMaximo = document.getElementById('gaugeMaximo').getContext('2d');
+    var optionsMaximo = {
+        type: 'doughnut',
+        data: {
+            labels: ["Máxima Temperatura"],
+            datasets: [{
+                label: 'Máxima Temperatura',
+                data: [45], // Valor da temperatura máxima
+                backgroundColor: ["red"] // Cor representativa
+            }]
+        },
+        options: {
+            rotation: 270,
+            circumference: 180,
+            cutout: '70%',
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return `Máxima Temperatura: ${tooltipItem.raw}°C`;
+                        }
+                    }
+                }
+            }
+        }
+    };
+    var gaugeMaximo = new Chart(ctxMaximo, optionsMaximo);
+
+    // Gráfico de Média Temperatura
+    var ctxMedia = document.getElementById('gaugeMedia').getContext('2d');
+    var optionsMedia = {
+        type: 'doughnut',
+        data: {
+            labels: ["Média Temperatura "],
+            datasets: [{
+                label: 'Média Temperatura',
+                data: [25], // Valor da temperatura média
+                backgroundColor: ["orange"] // Cor representativa
+            }]
+        },
+        options: {
+            rotation: 270,
+            circumference: 180,
+            cutout: '70%',
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return `Média Temperatura: ${tooltipItem.raw}°C`;
+                        }
+                    }
+                }
+            }
+        }
+    };
+    var gaugeMedia = new Chart(ctxMedia, optionsMedia);
+
+    // Gráfico de Mínima Temperatura
+    var ctxMinimo = document.getElementById('gaugeMinimo').getContext('2d');
+    var optionsMinimo = {
+        type: 'doughnut',
+        data: {
+            labels: ["Mínima Temperatura"],
+            datasets: [{
+                label: 'Mínima Temperatura',
+                data: [15], // Valor da temperatura mínima
+                backgroundColor: ["blue"] // Cor representativa
+            }]
+        },
+        options: {
+            rotation: 270,
+            circumference: 180,
+            cutout: '70%',
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return `Mínima Temperatura: ${tooltipItem.raw}°C`;
+                        }
+                    }
+                }
+            }
+        }
+    };
+    var gaugeMinimo = new Chart(ctxMinimo, optionsMinimo);
+
+
+
+
+    // Gráfico de Barras para Temperaturas
+var ctxBar = document.getElementById('barChart').getContext('2d');
+var barOptions = {
+    type: 'bar',
+    data: {
+        labels: ["Máxima", "Média", "Mínima"],
+        datasets: [{
+            label: 'Temperaturas (°C)',
+            data: [45, 25, 15], // Valores de temperatura
+            backgroundColor: ['red', 'orange', 'blue'], // Cores para cada barra
+            borderColor: ['darkred', 'darkorange', 'darkblue'], // Bordas das barras
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    stepSize: 5, // Tamanho do passo para as marcas no eixo Y
+                }
+            },
+            x: {
+                grid: {
+                    display: false // Oculta as linhas de grade do eixo X
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: false // Oculta a legenda
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(tooltipItem) {
+                        return `${tooltipItem.label}: ${tooltipItem.raw}°C`; // Formato do tooltip
+                    }
+                }
+            }
+        }
+    }
+};
+
+var barChart = new Chart(ctxBar, barOptions);
+
+
+
+
+
+
  var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
     type: 'line',
     data: {
