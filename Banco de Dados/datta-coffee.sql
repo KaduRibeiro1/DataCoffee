@@ -14,6 +14,8 @@ Email varchar(100) NOT NULL,
 Senha varchar(100) NOT NULL
 );
 
+	select * from Cliente;
+    
 insert into cliente values
 (default,'José da Silva', 'Fazenda Boa Vista', '12345678000123', 'SP', 'jose.silva@example.com', 'senha123'),
 (default,'Maria de Souza', 'Sítio das Flores', '98765432000189', 'MG', 'maria.souza@example.com', 'senha456'),
@@ -32,6 +34,9 @@ create table usuario(
     constraint fksupervisorusuario foreign key (fksupervisor) references usuario(idUsuario), 
     constraint fkClienteUsuario foreign key (fkCliente) references cliente(idCliente)
     );
+    
+    select * from usuario;
+    
 	insert into usuario values
 (default,'Supervisor José', 'senhaJose', 1, NULL),
 (default,'Supervisor Maria', 'senhaMaria', 2, NULL);
@@ -41,7 +46,7 @@ insert into usuario values
 (default,'Usuario Ana', 'senhaAna', 4, 2),   
 (default,'Usuario Carlos', 'senhaCarlos', 5, 1);
 
-select * from usuario;
+
 
 create table plantacao(
 	idPlantacao int auto_increment not null,
@@ -52,6 +57,8 @@ create table plantacao(
     constraint fkClientePlantacao foreign key (fkCliente)
     references cliente(idCliente)
     );
+    
+    select * from plantacao;
     
 insert into plantacao values
 (default,1, 150.5, 12000),  
@@ -69,6 +76,7 @@ fkPlantacao int,
 constraint fkPlantacaoSensor foreign key (fkPlantacao) references plantacao(idPlantacao)
 );
 
+	select * from sensor;
 
 insert into sensor (modelo, localizacao, dtInstalacao, fkPlantacao)
 values 
@@ -87,6 +95,9 @@ dtRegistro datetime,
 fkSensor int,
 constraint fkSensorRegistro foreign key (fkSensor) references sensor(idSensor)
 );
+
+	select * from registro;
+	
 insert into registro values 
 (default,65.2, 28.5, '2023-09-01 08:30:00', 1),
 (default,70.1, 30.2, '2023-09-01 09:00:00', 2),
