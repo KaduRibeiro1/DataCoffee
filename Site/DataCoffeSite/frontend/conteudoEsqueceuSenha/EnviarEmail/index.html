@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,22 +8,24 @@
     <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <title>Login - Data Coffe</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
     <section>
         <div class="container">
-            <a href="../index.html"><img src="../../assets/img/logoSemFundo 2.svg" alt="Logo - DataCoffe" class="logo"></a>
+            <a href="../index.html"><img src="../../assets/img/logoSemFundo 2.svg" alt="Logo - DataCoffe"
+                    class="logo"></a>
             <h1>Esqueceu Senha?</h1>
             <form action="#">
                 <div class="input-group">
                     <label class="label">Insira seu Email</label>
-                    <input autocomplete="off" placeholder="usuario@datacoffe" class="input" type="email">
+                    <input autocomplete="off" placeholder="usuario@datacoffe" class="input" type="email" id="email_user">
                 </div>
             </form>
-            
+
             <div class="conteudo">
-                <button type="submit" id="btn_eviar_email">Enviar link de recuperação</button>
+                <button type="submit" id="btn_eviar_email" onclick="SendRecoveryLink()">Enviar link de recuperação</button>
             </div>
             <div class="link">
                 <a href="../../cadastro/index.html">Ainda não tem uma conta? Cadastre-se gratuitamente</a>
@@ -33,8 +36,27 @@
 
 </html>
 <script>
-    document.getElementById('btn_eviar_email').addEventListener("click",function(){
-        window.location.href="../PageCodVerificação/index.html"
-    })
+    function SendRecoveryLink() {
+        var email = email_user.value;
+        if (email == "" || password == "") {
+            return Swal.fire({
+                text: "Há campos vazios! Preencha-os para prosseguir.",
+            });
+        } else if (email.indexOf("@") == -1) {
+            return Swal.fire({
+                text: "É necessário inserir o @. Preencha-o para prosseguir.",
+            });
+        } else if (containsInvalidCharacters(email)) {
+            return Swal.fire({
+                text: "Caracteres inválidos. Remova-os para prosseguir",
+            });
+        } else {
+            document.getElementById('btn_eviar_email').addEventListener("click", function () {
+                window.location.href = "../PageCodVerificação/index.html"
+            })
+        }
+    }
+
+
 
 </script>
