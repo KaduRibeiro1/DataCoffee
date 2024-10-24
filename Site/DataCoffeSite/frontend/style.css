@@ -6,17 +6,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-
-body {
+  }
+  
+  
+  body {
     background: #221518;
     background-size: cover;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     overflow-x: hidden;
     color: white;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth;  
 }
 
 .logo {
@@ -39,7 +39,7 @@ body {
   align-items: center;
   z-index: 10;
   backdrop-filter: blur(10px);
-  border-bottom: solid 1px #221518;
+  border-bottom: solid 1px #dfc49d5b;
   transition: top 0.3s;
 }
 
@@ -111,7 +111,6 @@ body {
   transition: ease-out 0.5s;
   border: 2px solid #4A2721;
   border-radius: 10px;
-<<<<<<< HEAD
   background-color: #F7E1BC;
   box-shadow: inset 0 0 0 0 #F7E1BC;;
 }
@@ -120,14 +119,6 @@ body {
   border: 2px solid #F7E1BC;
   color: #F7E1BC;
   box-shadow: inset 0 -100px 0 0 #4A2721;
-=======
-  box-shadow: inset 0 0 0 0 #4A2721;;
-}
-
-.button:hover {
-  color: #F7E1BC;
-  box-shadow: inset 0 -100px 0 0 #4A2721;;
->>>>>>> d431430ca641900c9457e6c092ae8fb88478f787
 }
 
 .button:active {
