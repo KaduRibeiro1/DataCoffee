@@ -72,47 +72,52 @@
 
 </html>
 <script>
+function containsInvalidCharacters(str) {
 
-    function containsInvalidCharacters(str) {
+const invalidChars = "#%&*!(){}[]<>/\\|^~`";
 
-        const invalidChars = "#%&*!(){}[]<>/\\|^~`";
-
-        for (let i = 0; i < str.length; i++) {
-            if (invalidChars.indexOf(str[i]) !== -1) {
-                return true;
-            }
-        }
-        return false;
-
+for (let i = 0; i < str.length; i++) {
+    if (invalidChars.indexOf(str[i]) !== -1) {
+        return true;
     }
+}
+return false;
+}
 
-    function Entry() {
+function Entry() {
 
-        var email = email_user.value;
-        var password = password_user.value;
-        if (email == "" || password == "") {
-            return Swal.fire({
-                text: "Há campos vazios! Preencha-os para prosseguir.",
-            });
-        }else if (email.indexOf("@") == -1) {
-            return Swal.fire({
-                text: "É necessário inserir o @. Preencha-o para prosseguir.",
-            });
-        }else if (containsInvalidCharacters(email)) {
-            return Swal.fire({
-                text: "Caracteres inválidos. Remova-os para prosseguir",
-            });
+var email = email_user.value;
+var password = password_user.value;
+
+
+const customSwal = (message) => {
+    return Swal.fire({
+        text: message,
+        background: '#F7E1BC',  
+        color: '#4A2721',       
+        confirmButtonColor: '#4A2721',  
+        customClass: {
+            popup: 'sweetalert-custom-popup',
         }
+    });
+};
 
-        if (password.length > 45) {
-            return Swal.fire({
-                text: "Permitido apenas 45 caracteres.",
-            });
-        }
+if (email == "" || password == "") {
+    return customSwal("Há campos vazios! Preencha-os para prosseguir.");
+} else if (email.indexOf("@") == -1) {
+    return customSwal("É necessário inserir o @. Preencha-o para prosseguir.");
+} else if (containsInvalidCharacters(email)) {
+    return customSwal("Caracteres inválidos. Remova-os para prosseguir.");
+}
 
-        return
-        document.getElementById('btn_eviar_email').addEventListener("click", function () {
-            window.location.href = "../../Backend/index.html"
-        })
-    }
+if (password.length > 45) {
+    return customSwal("Permitido apenas 45 caracteres.");
+}
+
+return
+document.getElementById('btn_eviar_email').addEventListener("click", function () {
+    window.location.href = "../../Backend/index.html";
+});
+}
+
 </script>

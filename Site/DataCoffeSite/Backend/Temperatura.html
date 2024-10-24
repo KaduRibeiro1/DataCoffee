@@ -7,10 +7,27 @@
     <link rel="shortcut icon" href="../frontend/assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
 </head>
 <body>
+    
+    <h1>DashBoard - Temperatura</h1>
 
-  <h1>DashBoard - DataCoffee</h1>
+
+    <div class="sensor-choice">
+        <div id="temperatureDiv" class="sensor-option">
+            <i class="fas fa-thermometer-half"></i> 
+        </div>
+        <a href="Umidade.html"> 
+        <div id="humidityDiv" class="sensor-option">
+            <i class="fas fa-tint"></i> 
+        </div>
+     </a>
+    </div>
+
+ 
+
+  
   <div class="container">
       <div class="kpi-container">
           <div class="kpi">
@@ -40,7 +57,9 @@
       </div>
   </div>
 
-  
+
+
+
 
 
     
@@ -83,17 +102,18 @@
 
 
     <script>
- // Gráfico de Máxima Temperatura
+
+// Gráfico de Máxima Temperatura
 var ctxMaximo = document.getElementById('gaugeMaximo').getContext('2d');
-var valorMaximo = 45; // Valor da temperatura máxima
+var valorMaximo = 26; 
 var optionsMaximo = {
     type: 'doughnut',
     data: {
-        labels: ["Máxima Temperatura"],
+        labels: ["Temperatura Máxima ⚠️"],
         datasets: [{
-            label: 'Máxima Temperatura',
+            label: 'Temperatura Máxima Atingida',
             data: [valorMaximo],
-            backgroundColor: ["red"] // Cor representativa
+            backgroundColor: ["red"] 
         }]
     },
     options: {
@@ -108,31 +128,29 @@ var optionsMaximo = {
             tooltip: {
                 callbacks: {
                     label: function(tooltipItem) {
-                        return `Máxima Temperatura: ${tooltipItem.raw}°C`;
+                        return `Temperatura Máxima:${tooltipItem.raw}°C`;
                     }
                 }
             }
         }
     }
 };
-temperaturaMaxima.innerHTML = `${valorMaximo}°C`
-var gaugeMaximo = new Chart(ctxMaximo, optionsMaximo)
-
-
+temperaturaMaxima.innerHTML = `${valorMaximo}°C`;
+var gaugeMaximo = new Chart(ctxMaximo, optionsMaximo);
 
 
 
 // Gráfico de Média Temperatura
 var ctxMedia = document.getElementById('gaugeMedia').getContext('2d');
-var valorMedia = 25; // Valor da temperatura média
+var valorMedia = 17.5; 
 var optionsMedia = {
     type: 'doughnut',
     data: {
-        labels: ["Média Temperatura"],
+        labels: ["Média Temperatura 🟰"],
         datasets: [{
             label: 'Média Temperatura',
             data: [valorMedia],
-            backgroundColor: ["orange"] // Cor representativa
+            backgroundColor: ["orange"] 
         }]
     },
     options: {
@@ -155,22 +173,21 @@ var optionsMedia = {
     }
 };
 var gaugeMedia = new Chart(ctxMedia, optionsMedia);
-
 temperaturaMedia.innerHTML = `${valorMedia}°C`;
 
 
 
 // Gráfico de Mínima Temperatura
 var ctxMinimo = document.getElementById('gaugeMinimo').getContext('2d');
-var valorMinimo = 15; // Valor da temperatura mínima
+var valorMinimo = 15; 
 var optionsMinimo = {
     type: 'doughnut',
     data: {
-        labels: ["Mínima Temperatura"],
+        labels: ["Mínima Temperatura ➖"],
         datasets: [{
             label: 'Mínima Temperatura',
             data: [valorMinimo],
-            backgroundColor: ["blue"] // Cor representativa
+            backgroundColor: ["yellow"] 
         }]
     },
     options: {
@@ -193,22 +210,21 @@ var optionsMinimo = {
     }
 };
 var gaugeMinimo = new Chart(ctxMinimo, optionsMinimo);
-
 temperaturaMinima.innerHTML = `${valorMinimo}°C`;
 
 
 
-    // Gráfico de Barras para Temperaturas
+// Gráfico de Barras para Temperatura
 var ctxBar = document.getElementById('barChart').getContext('2d');
 var barOptions = {
     type: 'bar',
     data: {
         labels: ["Máxima", "Média", "Mínima"],
         datasets: [{
-            label: 'Temperaturas (°C)',
-            data: [45, 25, 15], // Valores de temperatura
-            backgroundColor: ['red', 'orange', 'blue'], // Cores para cada barra
-            borderColor: ['darkred', 'darkorange', 'darkblue'], // Bordas das barras
+            label: 'Temperatura (°C)',
+            data: [35, 25, 15], 
+            backgroundColor: ['red', 'orange', 'yellow'], 
+            borderColor: ['dark', 'dark', 'dark'], 
             borderWidth: 1
         }]
     },
@@ -218,42 +234,39 @@ var barOptions = {
             y: {
                 beginAtZero: true,
                 ticks: {
-                    stepSize: 5, // Tamanho do passo para as marcas no eixo Y
+                    stepSize: 5, 
                 }
             },
             x: {
                 grid: {
-                    display: false // Oculta as linhas de grade do eixo X
+                    display: false 
                 }
             }
         },
         plugins: {
             legend: {
-                display: false // Oculta a legenda
+                display: false 
             },
             tooltip: {
                 callbacks: {
                     label: function(tooltipItem) {
-                        return `${tooltipItem.label}: ${tooltipItem.raw}°C`; // Formato do tooltip
+                        return `${tooltipItem.label}: ${tooltipItem.raw}°C`;
                     }
                 }
             }
         }
     }
 };
-
 var barChart = new Chart(ctxBar, barOptions);
 
+    
 
 
-
-
-
- var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
+    var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
     type: 'line',
     data: {
         datasets: [{
-            label: 'Sensor Analógico',
+            label: 'Temperatura', 
             borderColor: 'rgba(255, 0, 0, 0.8)',
             backgroundColor: 'rgba(255, 0, 0, 0.288)',
             pointBackgroundColor: 'rgba(255, 0, 0, 0.8)',
@@ -272,6 +285,34 @@ var barChart = new Chart(ctxBar, barOptions);
                     color: 'rgba(0, 0, 0, 1)',
                     font: {
                         size: 16
+                    }
+                }
+            },
+            annotation: {
+                annotations: {
+                    lineMin: {
+                        type: 'line',
+                        yMin: 20,
+                        yMax: 20,
+                        borderColor: '#0030d6',
+                        borderWidth: 2,
+                        label: {
+                            content: 'Mínimo 20',
+                            enabled: true,
+                            position: 'top'
+                        }
+                    },
+                    lineMax: {
+                        type: 'line',
+                        yMin: 25,
+                        yMax: 25,
+                        borderColor: 'red',
+                        borderWidth: 2,
+                        label: {
+                            content: 'Máximo 25',
+                            enabled: true,
+                            position: 'top'
+                        }
                     }
                 }
             }
@@ -309,12 +350,11 @@ var barChart = new Chart(ctxBar, barOptions);
 });
 
 
-
 var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
     type: 'line',
     data: {
         datasets: [{
-            label: 'Sensor Digital',
+            label: 'Umidade do Solo',
             borderColor: 'rgba(0, 123, 255, 0.8)',
             backgroundColor: 'rgba(0, 123, 255, 0.1)',
             borderWidth: 2,
@@ -333,6 +373,34 @@ var sensorDigital = new Chart(document.getElementById('sensorDigital').getContex
                     color: 'rgba(0, 0, 0, 1)',
                     font: {
                         size: 16
+                    }
+                }
+            },
+            annotation: {
+                annotations: {
+                    lineMin: {
+                        type: 'line',
+                        yMin: 11,
+                        yMax: 11,
+                        borderColor: '#0030d6',
+                        borderWidth: 2,
+                        label: {
+                            content: 'Mínimo 11',
+                            enabled: true,
+                            position: 'top'
+                        }
+                    },
+                    lineMax: {
+                        type: 'line',
+                        yMin: 13,
+                        yMax: 13,
+                        borderColor: 'red',
+                        borderWidth: 2,
+                        label: {
+                            content: 'Máximo 13',
+                            enabled: true,
+                            position: 'top'
+                        }
                     }
                 }
             }
@@ -370,7 +438,11 @@ var sensorDigital = new Chart(document.getElementById('sensorDigital').getContex
 });
 
 
-        var paginacao = {};
+
+
+
+
+var paginacao = {};
         var tempo = {};
 
         function obterDados(grafico, endpoint) {
