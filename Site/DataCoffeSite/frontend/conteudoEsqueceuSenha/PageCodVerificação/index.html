@@ -26,7 +26,8 @@
             </form>
 
             <div class="conteudo">
-                <button type="submit" id="btn_eviar_email" onclick="VerifySecurityCode()">Verificar código de segurança</button>
+                <button type="submit" id="btn_eviar_email" onclick="VerifySecurityCode()">Verificar código de
+                    segurança</button>
             </div>
             <div class="link">
                 <a href="../../cadastro/index.html">Ainda não tem uma conta? Cadastre-se gratuitamente</a>
@@ -39,20 +40,30 @@
 <script>
     function VerifySecurityCode() {
         var codSeguranca = cod_seguranca.value
-        if (!isNaN(codSeguranca)) {
+        if (isNaN(codSeguranca)) {
             return Swal.fire({
                 icon: "error",
                 text: "Codigio não pode possuir nada além de números!!",
+            });
+        }
+
+        if (codSeguranca == "") {
+            return Swal.fire({
+                icon: "error",
+                text: "Campo vazio! Insira o código de segurança para prosseguir",
+            });
+        }
+        if (codSeguranca.length < 4) {
+            return Swal.fire({
+                icon: "error",
+                text: "É necessario digitar os quatro do códgio de segurança!",
             });
         } else {
             document.getElementById('btn_eviar_email').addEventListener("click", function () {
                 window.location.href = "../PageNovaSenha/index.html"
             })
-
-        }
-        if(codSeguranca.lenght<7){
-
         }
     }
+
 
 </script>
