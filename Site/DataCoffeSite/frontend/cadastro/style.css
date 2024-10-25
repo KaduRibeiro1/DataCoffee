@@ -27,6 +27,7 @@ html {
   height: 84%;
   box-shadow: 3px 6px 22px rgba(245, 244, 244, 0.3);
   text-align: center;
+  position: absolute;
 }
 
 .container .logo {

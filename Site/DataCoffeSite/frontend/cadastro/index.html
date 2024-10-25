@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Cadastro - Data Coffe</title>
 </head>
 
@@ -20,23 +20,25 @@
             <div class="input-group">
                 <div>
                     <label class="label">Nome</label>
-                    <input autocomplete="off" placeholder="Nome Completo" class="input" type="text">
+                    <input autocomplete="off" placeholder="Nome Completo" class="input" type="text" id="input_name">
                 </div>
                 <div>
                     <label class="label">Propiedade</label>
-                    <input autocomplete="off" placeholder=" Exemplo: Fazenda Monte Verde" class="input" type="text">
+                    <input autocomplete="off" placeholder=" Exemplo: Fazenda Monte Verde" class="input" type="text"
+                        id="input_property">
                 </div>
             </div>
 
             <div class="input-group">
                 <div>
                     <label class="label">CNPJ</label>
-                    <input autocomplete="off" placeholder="00.000.000/0000-00" class="input" type="text">
+                    <input autocomplete="off" placeholder="00.000.000/0000-00" class="input" type="text" id="input_cnpj"
+                        onkeyup="MaskCNPJ()">
                 </div>
                 <div>
                     <label class="label">UF</label>
-                    <select class="input" >
-                        <option value="selecione" selected disabled>SELECIONE</option>
+                    <select class="input" id="select_uf">
+                        <option value="selecione" selected disabled>Selecione</option>
                         <option value="AC">Acre (AC)</option>
                         <option value="AL">Alagoas (AL)</option>
                         <option value="AP">Amapá (AP)</option>
@@ -71,24 +73,25 @@
             <div class="input-group">
                 <div>
                     <label class="label">Email</label>
-                    <input autocomplete="off" placeholder="user@email.com" class="input" type="email">
+                    <input autocomplete="off" placeholder="user@email.com" class="input" type="text" id="input_email">
 
                 </div>
                 <div>
                     <label class="label">Senha</label>
-                    <input autocomplete="off" placeholder="********" class="input" type="password">
+                    <input autocomplete="off" placeholder="********" class="input" type="password" id="input_password">
                 </div>
             </div>
 
             <div class="input-group">
                 <div>
                     <label class="label">Confirmar senha</label>
-                    <input autocomplete="off" placeholder="********" class="input" type="password">
+                    <input autocomplete="off" placeholder="********" class="input" type="password"
+                        id="input_confirmPassword">
                 </div>
             </div>
 
             <div class="conteudo">
-                <button type="submit">Continuar</button>
+                <button type="submit" onclick="Register()">Continuar</button>
             </div>
 
 
@@ -101,3 +104,73 @@
 </body>
 
 </html>
+<script>
+    function MaskCNPJ() {
+        cnpj = input_cnpj.value
+        if (cnpj.length == 2 || cnpj.length == 6) {
+            input_cnpj.value = cnpj + "."
+        } else if (cnpj.length == 10) {
+            input_cnpj.value = cnpj + "/"
+        } else if (cnpj.length == 15) {
+            input_cnpj.value = cnpj + "-"
+        }
+    }
+
+    function Register() {
+        var name = input_name.value
+        var property = input_property.value
+        var cnpj = input_cnpj.value
+        cnpj=cnpj.replace(/\D/g,'')
+        var uf = select_uf.value
+        var email = input_email.value
+        var password = input_password.value
+        var confirmPassword = input_confirmPassword.value
+
+        if (name == "" || property == "" || cnpj == "" || uf == "selecione" || email == "" || password == "" || confirmPassword == "") {
+            return Swal.fire({
+                text: "há campos vazios! Preencha-os para prosseguir.",
+            });
+
+        }
+
+        if (cnpj.length < 14 || cnpj.length > 14) {
+            return Swal.fire({
+                text: "O número de caracteres no CNPJ deve ser 14 "
+            });
+        }
+
+        if (email.indexOf("@") == -1) {
+            return Swal.fire({
+                text: "É necessario inserir o @. Preencha-o para prosseguir.",
+            });
+        }
+        if (containsInvalidCharacters(email)) {
+            return Swal.fire({
+                text: "Caracteres invalidos. Remova-os para prosseguir",
+            });
+        }
+
+        if (password.length > 45) {
+            return Swal.fire({
+                text: "O valor maximo de caracteres é 45",
+            });
+        }
+        if (password.length < 7) {
+            return Swal.fire({
+                text: "O valor minimo de caracteres na senha é 7",
+            });
+        }
+        if (confirmPassword !== password) {
+            return Swal.fire({
+                text: "As senhas nãoo coincidem. Por favor, verifique e tente novamente."
+            })
+        }
+
+        return
+        document.getElementById('btn_eviar_email').addEventListener("click", function () {
+            window.location.href = "../../Backend/index.html"
+        })
+    }
+
+
+</script>
