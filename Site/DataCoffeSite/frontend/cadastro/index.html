@@ -105,16 +105,7 @@
 
 </html>
 <script>
-    function MaskCNPJ() {
-        cnpj = input_cnpj.value
-        if (cnpj.length == 2 || cnpj.length == 6) {
-            input_cnpj.value = cnpj + "."
-        } else if (cnpj.length == 10) {
-            input_cnpj.value = cnpj + "/"
-        } else if (cnpj.length == 15) {
-            input_cnpj.value = cnpj + "-"
-        }
-    }
+    
 
     function Register() {
         var name = input_name.value
