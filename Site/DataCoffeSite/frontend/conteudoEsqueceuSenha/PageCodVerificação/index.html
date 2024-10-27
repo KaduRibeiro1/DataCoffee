@@ -38,6 +38,20 @@
 
 </html>
 <script>
+
+const customSwal = (message) => {
+    return Swal.fire({
+        text: message,
+        background: '#F7E1BC',  
+        color: '#4A2721',       
+        confirmButtonColor: '#4A2721',  
+        customClass: {
+            popup: 'sweetalert-custom-popup',
+        }
+    });
+};
+
+
     function VerifySecurityCode() {
         var codSeguranca = cod_seguranca.value
         if (isNaN(codSeguranca)) {

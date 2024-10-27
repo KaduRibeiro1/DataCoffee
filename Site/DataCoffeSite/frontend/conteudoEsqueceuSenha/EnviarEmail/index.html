@@ -36,26 +36,34 @@
 
 </html>
 <script>
-    function SendRecoveryLink() {
-        var email = email_user.value;
-        if (email == "" || password == "") {
-            return Swal.fire({
-                text: "Há campos vazios! Preencha-os para prosseguir.",
-            });
-        } else if (email.indexOf("@") == -1) {
-            return Swal.fire({
-                text: "É necessário inserir o @. Preencha-o para prosseguir.",
-            });
-        } else if (containsInvalidCharacters(email)) {
-            return Swal.fire({
-                text: "Caracteres inválidos. Remova-os para prosseguir",
-            });
-        } else {
-            document.getElementById('btn_eviar_email').addEventListener("click", function () {
-                window.location.href = "../PageCodVerificação/index.html"
-            })
-        }
+
+function SendRecoveryLink() {
+    var email = email_user.value;
+    if (email == "") {
+        return customSwal("Há campos vazios! Preencha-os para prosseguir.");
+    } else if (email.indexOf("@") == -1) {
+        return customSwal("É necessário inserir o @. Preencha-o para prosseguir.");
+    } else if (containsInvalidCharacters(email)) {
+        return customSwal("Caracteres inválidos. Remova-os para prosseguir");
+    } else {
+        document.getElementById('btn_eviar_email').addEventListener("click", function () {
+            window.location.href = "../PageCodVerificação/index.html"
+        });
     }
+}
+
+const customSwal = (message) => {
+    return Swal.fire({
+        text: message,
+        background: '#F7E1BC',  
+        color: '#4A2721',       
+        confirmButtonColor: '#4A2721',  
+        customClass: {
+            popup: 'sweetalert-custom-popup',
+        }
+    });
+};
+
 
 
 
