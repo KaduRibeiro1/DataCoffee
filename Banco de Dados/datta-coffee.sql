@@ -14,7 +14,6 @@ Email varchar(100) NOT NULL,
 Senha varchar(100) NOT NULL
 );
 
-	select * from Cliente;
     
 insert into cliente values
 (default,'José da Silva', 'Fazenda Boa Vista', '12345678000123', 'SP', 'jose.silva@example.com', 'senha123'),
@@ -35,9 +34,9 @@ create table usuario(
     constraint fkClienteUsuario foreign key (fkCliente) references cliente(idCliente)
     );
     
-    select * from usuario;
+select * from usuario;
     
-	insert into usuario values
+insert into usuario values
 (default,'Supervisor José', 'senhaJose', 1, NULL),
 (default,'Supervisor Maria', 'senhaMaria', 2, NULL);
 
@@ -49,16 +48,13 @@ insert into usuario values
 
 
 create table plantacao(
-	idPlantacao int auto_increment not null,
-    fkCliente int not null,
-    constraint primary key (idPlantacao, fkCliente),
+	idPlantacao int primary key auto_increment not null,
     hectares float,
     qtdPes int,
+    fkCliente int not null,
     constraint fkClientePlantacao foreign key (fkCliente)
     references cliente(idCliente)
     );
-    
-    select * from plantacao;
     
 insert into plantacao values
 (default,1, 150.5, 12000),  
@@ -66,6 +62,8 @@ insert into plantacao values
 (default,3, 75.8, 9000),    
 (default,4, 300.3, 25000),  
 (default,5, 125.6, 15000);
+
+select * from plantacao;
 
 create table sensor(
 idSensor INT PRIMARY KEY AUTO_INCREMENT,
@@ -76,7 +74,6 @@ fkPlantacao int,
 constraint fkPlantacaoSensor foreign key (fkPlantacao) references plantacao(idPlantacao)
 );
 
-	select * from sensor;
 
 insert into sensor (modelo, localizacao, dtInstalacao, fkPlantacao)
 values 
@@ -88,15 +85,18 @@ values
 
 
 create table registro(
-idRegistro int primary key auto_increment,
+idRegistro int auto_increment,
+fkSensor int,
+constraint pkRegistro primary key (idRegistro, fkSensor),
 umidade float,
 temperatura float,
 dtRegistro datetime,
-fkSensor int,
+fkKPI int,
+constraint fkKPIRegistro foreign key (fkKPI) references KPI(idKPI),
 constraint fkSensorRegistro foreign key (fkSensor) references sensor(idSensor)
 );
 
-	select * from registro;
+select * from registro;
 	
 insert into registro values 
 (default,65.2, 28.5, '2023-09-01 08:30:00', 1),
@@ -105,6 +105,23 @@ insert into registro values
 (default,72.0, 31.1, '2023-09-01 10:00:00', 4),
 (default,66.5, 27.9, '2023-09-01 10:30:00', 5);
 
+
+create table KPI(
+	idKPI int primary key auto_increment not null,
+	tipo varchar(45),
+    minimo decimal,
+    maximo decimal,
+	media decimal
+    );
+
+insert into KPI (tipo, minimo, maximo, media) values
+('Umidade Ideal', 60.0, 80.0, 70.0),
+('Temperatura Ideal', 25.0, 30.0, 27.5),
+('Umidade Crítica', 40.0, 59.9, 50.0),
+('Temperatura Crítica', 30.1, 35.0, 32.5),
+('Umidade Alta', 80.1, 100.0, 90.0);
+
+select * from KPI;
 
 -- Mostrar dados das plantações e seus respectivos clientes:
 select 
