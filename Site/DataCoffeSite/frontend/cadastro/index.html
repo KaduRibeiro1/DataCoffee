@@ -1,163 +1,175 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+    <!DOCTYPE html>
+    <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Cadastro - Data Coffe</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <title>Cadastro - Data Coffe</title>
+    </head>
 
-<body>
-    <section class="container">
-        <img src="../assets/img/logoSemFundo.png" alt="Logo - DataCoffe" onclick="window.location.href='../index.html'"
-            class="logo">
-        <h1>Cadastre-se</h1>
-        <form action="#">
-            <div class="input-group">
-                <div>
-                    <label class="label">Nome</label>
-                    <input autocomplete="off" placeholder="Nome Completo" class="input" type="text" id="input_name">
-                </div>
-                <div>
-                    <label class="label">Propiedade</label>
-                    <input autocomplete="off" placeholder=" Exemplo: Fazenda Monte Verde" class="input" type="text"
-                        id="input_property">
-                </div>
-            </div>
-
-            <div class="input-group">
-                <div>
-                    <label class="label">CNPJ</label>
-                    <input autocomplete="off" placeholder="00.000.000/0000-00" class="input" type="text" id="input_cnpj"
-                        onkeyup="MaskCNPJ()">
-                </div>
-                <div>
-                    <label class="label">UF</label>
-                    <select class="input" id="select_uf">
-                        <option value="selecione" selected disabled>Selecione</option>
-                        <option value="AC">Acre (AC)</option>
-                        <option value="AL">Alagoas (AL)</option>
-                        <option value="AP">Amapá (AP)</option>
-                        <option value="AM">Amazonas (AM)</option>
-                        <option value="BA">Bahia (BA)</option>
-                        <option value="CE">Ceará (CE)</option>
-                        <option value="DF">Distrito Federal (DF)</option>
-                        <option value="ES">Espírito Santo (ES)</option>
-                        <option value="GO">Goiás (GO)</option>
-                        <option value="MA">Maranhão (MA)</option>
-                        <option value="MT">Mato Grosso (MT)</option>
-                        <option value="MS">Mato Grosso do Sul (MS)</option>
-                        <option value="MG">Minas Gerais (MG)</option>
-                        <option value="PA">Pará (PA)</option>
-                        <option value="PB">Paraíba (PB)</option>
-                        <option value="PR">Paraná (PR)</option>
-                        <option value="PE">Pernambuco (PE)</option>
-                        <option value="PI">Piauí (PI)</option>
-                        <option value="RJ">Rio de Janeiro (RJ)</option>
-                        <option value="RN">Rio Grande do Norte (RN)</option>
-                        <option value="RS">Rio Grande do Sul (RS)</option>
-                        <option value="RO">Rondônia (RO)</option>
-                        <option value="RR">Roraima (RR)</option>
-                        <option value="SC">Santa Catarina (SC)</option>
-                        <option value="SP">São Paulo (SP)</option>
-                        <option value="SE">Sergipe (SE)</option>
-                        <option value="TO">Tocantins (TO)</option>
-                    </select>
+    <body>
+        <section class="container">
+            <img src="../assets/img/logoSemFundo.png" alt="Logo - DataCoffe" onclick="window.location.href='../index.html'"
+                class="logo">
+            <h1>Cadastre-se</h1>
+            <form action="#">
+                <div class="input-group">
+                    <div>
+                        <label class="label">Nome</label>
+                        <input autocomplete="off" placeholder="Nome Completo" class="input" type="text" id="input_name">
+                    </div>
+                    <div>
+                        <label class="label">Propiedade</label>
+                        <input autocomplete="off" placeholder=" Exemplo: Fazenda Monte Verde" class="input" type="text"
+                            id="input_property">
+                    </div>
                 </div>
 
-            </div>
-            <div class="input-group">
-                <div>
-                    <label class="label">Email</label>
-                    <input autocomplete="off" placeholder="user@email.com" class="input" type="text" id="input_email">
+                <div class="input-group">
+                    <div>
+                        <label class="label">CNPJ</label>
+                        <input autocomplete="off" placeholder="00.000.000/0000-00" class="input" type="text" id="input_cnpj"
+                            onkeyup="MaskCNPJ()">
+                    </div>
+                    <div>
+                        <label class="label">UF</label>
+                        <select class="input" id="select_uf">
+                            <option value="selecione" selected disabled>Selecione</option>
+                            <option value="AC">Acre (AC)</option>
+                            <option value="AL">Alagoas (AL)</option>
+                            <option value="AP">Amapá (AP)</option>
+                            <option value="AM">Amazonas (AM)</option>
+                            <option value="BA">Bahia (BA)</option>
+                            <option value="CE">Ceará (CE)</option>
+                            <option value="DF">Distrito Federal (DF)</option>
+                            <option value="ES">Espírito Santo (ES)</option>
+                            <option value="GO">Goiás (GO)</option>
+                            <option value="MA">Maranhão (MA)</option>
+                            <option value="MT">Mato Grosso (MT)</option>
+                            <option value="MS">Mato Grosso do Sul (MS)</option>
+                            <option value="MG">Minas Gerais (MG)</option>
+                            <option value="PA">Pará (PA)</option>
+                            <option value="PB">Paraíba (PB)</option>
+                            <option value="PR">Paraná (PR)</option>
+                            <option value="PE">Pernambuco (PE)</option>
+                            <option value="PI">Piauí (PI)</option>
+                            <option value="RJ">Rio de Janeiro (RJ)</option>
+                            <option value="RN">Rio Grande do Norte (RN)</option>
+                            <option value="RS">Rio Grande do Sul (RS)</option>
+                            <option value="RO">Rondônia (RO)</option>
+                            <option value="RR">Roraima (RR)</option>
+                            <option value="SC">Santa Catarina (SC)</option>
+                            <option value="SP">São Paulo (SP)</option>
+                            <option value="SE">Sergipe (SE)</option>
+                            <option value="TO">Tocantins (TO)</option>
+                        </select>
+                    </div>
 
                 </div>
-                <div>
-                    <label class="label">Senha</label>
-                    <input autocomplete="off" placeholder="********" class="input" type="password" id="input_password">
+                <div class="input-group">
+                    <div>
+                        <label class="label">Email</label>
+                        <input autocomplete="off" placeholder="user@email.com" class="input" type="text" id="input_email">
+
+                    </div>
+                    <div>
+                        <label class="label">Senha</label>
+                        <input autocomplete="off" placeholder="********" class="input" type="password" id="input_password">
+                    </div>
                 </div>
-            </div>
 
-            <div class="input-group">
-                <div>
-                    <label class="label">Confirmar senha</label>
-                    <input autocomplete="off" placeholder="********" class="input" type="password"
-                        id="input_confirmPassword">
+                <div class="input-group">
+                    <div>
+                        <label class="label">Confirmar senha</label>
+                        <input autocomplete="off" placeholder="********" class="input" type="password"
+                            id="input_confirmPassword">
+                    </div>
                 </div>
-            </div>
 
-            <div class="conteudo">
-                <button type="submit" onclick="Register()">Continuar</button>
-            </div>
+                <div class="conteudo">
+                    <button type="submit" onclick="Register()">Continuar</button>
+                </div>
 
 
-            <div class="link">
-                <a onclick="window.location.href='../login/index.html'">Já tem uma conta?</a>
-            </div>
+                <div class="link">
+                    <a onclick="window.location.href='../login/index.html'">Já tem uma conta?</a>
+                </div>
 
-        </form>
-    </section>
-</body>
+            </form>
+        </section>
+    </body>
 
-</html>
-<script>
-    function Register() {
-    var name = input_name.value;
-    var property = input_property.value;
-    var cnpj = input_cnpj.value.replace(/\D/g, '');
-    var uf = select_uf.value;
-    var email = input_email.value;
-    var password = input_password.value;
-    var confirmPassword = input_confirmPassword.value;
-
-    if (name == "" || property == "" || cnpj == "" || uf == "selecione" || email == "" || password == "" || confirmPassword == "") {
-        return customSwal("Há campos vazios! Preencha-os para prosseguir.");
-    }
-
-    if (cnpj.length != 14) {
-        return customSwal("O número de caracteres no CNPJ deve ser 14.");
-    }
-
-    if (email.indexOf("@") == -1) {
-        return customSwal("É necessário inserir o @. Preencha-o para prosseguir.");
-    }
-
-    if (containsInvalidCharacters(email)) {
-        return customSwal("Caracteres inválidos. Remova-os para prosseguir.");
-    }
-
-    if (password.length > 45) {
-        return customSwal("O valor máximo de caracteres é 45.");
-    }
-
-    if (password.length < 7) {
-        return customSwal("O valor mínimo de caracteres na senha é 7.");
-    }
-
-    if (confirmPassword !== password) {
-        return customSwal("As senhas não coincidem. Por favor, verifique e tente novamente.");
-    }
-
-    // Aqui você pode colocar o código para realizar o cadastro
-    window.location.href = "../../Backend/index.html";
-}
-
-const customSwal = (message) => {
-    return Swal.fire({
-        text: message,
-        background: '#F7E1BC',
-        color: '#4A2721',
-        confirmButtonColor: '#4A2721',
-        customClass: {
-            popup: 'sweetalert-custom-popup',
+    </html>
+    <script>
+        const customSwal = (message) => {
+            return Swal.fire({
+                text: message,
+                background: '#F7E1BC',  
+                color: '#4A2721',       
+                confirmButtonColor: '#4A2721',  
+                customClass: {
+                    popup: 'sweetalert-custom-popup',
+                }
+            });
+        };
+    
+        function MaskCNPJ() {
+            let cnpj = input_cnpj.value;
+            if (cnpj.length === 2 || cnpj.length === 6) {
+                input_cnpj.value = cnpj + ".";
+            } else if (cnpj.length === 10) {
+                input_cnpj.value = cnpj + "/";
+            } else if (cnpj.length === 15) {
+                input_cnpj.value = cnpj + "-";
+            }
         }
-    });
-};
+    
+        function Register() {
+            var name = input_name.value;
+            var property = input_property.value;
+            var cnpj = input_cnpj.value.replace(/\D/g, '');
+            var uf = select_uf.value;
+            var email = input_email.value;
+            var password = input_password.value;
+            var confirmPassword = input_confirmPassword.value;
+    
+            if (name === "" || property === "" || cnpj === "" || uf === "selecione" || email === "" || password === "" || confirmPassword === "") {
+                return customSwal("Há campos vazios! Preencha-os para prosseguir.");
+            }
+    
+            if (cnpj.length !== 14) {
+                return customSwal("O número de caracteres no CNPJ deve ser 14.");
+            }
+    
+            if (email.indexOf("@") === -1) {
+                return customSwal("É necessário inserir o @. Preencha-o para prosseguir.");
+            }
+    
+            if (containsInvalidCharacters(email)) {
+                return customSwal("Caracteres inválidos. Remova-os para prosseguir.");
+            }
+    
+            if (password.length > 45) {
+                return customSwal("O valor máximo de caracteres é 45.");
+            }
+    
+            if (password.length < 7) {
+                return customSwal("O valor mínimo de caracteres na senha é 7.");
+            }
+    
+            if (confirmPassword !== password) {
+                return customSwal("As senhas não coincidem. Por favor, verifique e tente novamente.");
+            }
+
+            return
+            document.getElementById('btn_eviar_email').addEventListener("click", function () {
+                window.location.href = "../../Backend/index.html"
+            })
+        }
 
 
-
-</script>
+    </script>
