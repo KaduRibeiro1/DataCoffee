@@ -108,7 +108,7 @@
 
     // Gráfico de Máxima Umidade do Solo
     var ctxMaximo = document.getElementById('gaugeMaximo').getContext('2d');
-    var valorMaximo = 90; // Valor da umidade máxima
+    var valorMaximo = 15; // Valor da umidade máxima
     var optionsMaximo = {
         type: 'doughnut',
         data: {
@@ -143,7 +143,7 @@
     
     // Gráfico de Média Umidade do Solo
     var ctxMedia = document.getElementById('gaugeMedia').getContext('2d');
-    var valorMedia = 65; // Valor da umidade média
+    var valorMedia = 13; // Valor da umidade média
     var optionsMedia = {
         type: 'doughnut',
         data: {
@@ -178,7 +178,7 @@
     
     // Gráfico de Mínima Umidade do Solo
     var ctxMinimo = document.getElementById('gaugeMinimo').getContext('2d');
-    var valorMinimo = 30; 
+    var valorMinimo = 8; 
     var optionsMinimo = {
         type: 'doughnut',
         data: {
@@ -219,7 +219,7 @@
             labels: ["Máxima", "Média", "Mínima"],
             datasets: [{
                 label: 'Umidade do Solo (%)',
-                data: [90, 65, 30], 
+                data: [15, 13, 8], 
                 backgroundColor: ['blue', '#5353ec', '#00ced1'], 
                 borderColor: ['dark', 'dark', 'dark'], 
                 borderWidth: 1
