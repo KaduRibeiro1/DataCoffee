@@ -14,17 +14,20 @@
     <h1>DashBoard - Umidade</h1>
 
     <div class="sensor-choice">
-    <a href="Temperatura.html">
+        
+        <a href="Temperatura.html">
         <div id="temperatureDiv" class="sensor-option">
             <i class="fas fa-thermometer-half"></i> 
+        </div>
     </a>
-    </div>
-    <div id="humidityDiv" class="sensor-option">
-    <a href="Umidade.html"> 
+
+        <a href="Umidade.html"> 
+        <div id="humidityDiv" class="sensor-option">
             <i class="fas fa-tint"></i> 
         </div>
      </a>
     </div>
+
 
  
 
@@ -72,9 +75,8 @@
 
 
     <div id="nav-content">
-        <div class="nav-button"><i class="fas fa-home"></i><span><a href="../frontend/index.html">Home</a></span></div>
-        <div class="nav-button"><i class="fas fa-thermometer-half"></i><span>Sensores</span></div>
-        <div class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span></div>
+        <div onclick="home()" class="nav-button"><i class="fas fa-home"></i><span>Home</span></div>
+        <div onclick="plantacao()" class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span></div>
         <div class="nav-button"><i class="fas fa-chart-bar"></i><span>Gráficos</span></div>
         <div class="nav-button"><i class="fas fa-chart-pie"></i><span>KPI'S Detalhados</span></div>
         
@@ -103,7 +105,7 @@
 
 
   <script>
-    
+
     // Gráfico de Máxima Umidade do Solo
     var ctxMaximo = document.getElementById('gaugeMaximo').getContext('2d');
     var valorMaximo = 90; // Valor da umidade máxima
@@ -470,6 +472,13 @@ var paginacao = {};
             obterDados(sensorDigital, 'digital');
         }, 1000);
 
+        function plantacao(){
+            window.location.href = "../Backend/Plantacao.html"
+        }
+
+        function home(){
+            window.location.href = "../frontend/index.html"
+        }
     </script>
 </body>
 

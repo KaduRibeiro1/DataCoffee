@@ -18,6 +18,7 @@ body {
   background: var(--background);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
+
 }
 
 
@@ -51,6 +52,45 @@ h1 {
   margin-left: var(--navbar-width); 
   width: calc(100% - var(--navbar-width)); 
   min-height: 100vh; 
+}
+
+.plantacao-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin-bottom: 90px;
+  gap: 20px; 
+}
+
+.plantacao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primario);
+  border: 3px solid #2c1d13;
+  color: var(--corSecundaria);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  flex: 1;
+  margin: 0 10px;
+  transition: transform 0.3s;
+  height: 150px;
+  gap: 5px;
+
+  span {
+    font-weight : bold;
+    font-size: 20px;
+  }
+}
+
+
+
+.plantacao:hover {
+  transform: translateY(-5px);
 }
 
 .kpi-container {
@@ -127,11 +167,6 @@ h1 {
 .chart-container canvas:hover {
   transform: translateY(-5px);
 }
-
-
-
-
-
 
 
 .sensor-choice {

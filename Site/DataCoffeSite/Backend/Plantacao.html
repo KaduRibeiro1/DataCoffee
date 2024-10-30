@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - DataCoffee</title>
+    <link rel="shortcut icon" href="../frontend/assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
+</head>
+<body>
+    
+    <h1>Plantações</h1>
+  
+  <div class="container">
+      <div class="plantacao-container">
+          <div onclick="dashboard()" class="plantacao">
+            <i class="fas fa-seedling"></i><span>Plantação 1</span>
+        </div>
+        <div onclick="dashboard()" class="plantacao">
+          <i class="fas fa-seedling"></i> <span>Plantação 2</span>
+        </div>
+        <div onclick="dashboard()" class="plantacao">
+          <i class="fas fa-seedling"></i><span>Plantação 3</span>
+          </div>
+          <div onclick="dashboard()" class="plantacao">
+            <i class="fas fa-seedling"></i><span>Plantação 4</span>
+        </div>
+      </div>
+
+      <div class="plantacao-container">
+        <div onclick="dashboard()" class="plantacao">
+          <i class="fas fa-seedling"></i><span>Plantação 5</span>
+      </div>
+      <div onclick="dashboard()" class="plantacao">
+        <i class="fas fa-seedling"></i><span>Plantação 6</span>
+      </div>
+      <div onclick="dashboard()" class="plantacao">
+        <i class="fas fa-seedling"></i><span>Plantação 7</span>
+        </div>
+        <div onclick="dashboard()" class="plantacao">
+          <i class="fas fa-seedling"></i><span>Plantação 8</span>
+      </div>
+    </div>
+  </div>
+
+
+    
+  <div id="nav-bar"> 
+    <input id="nav-toggle" type="checkbox" />
+    <div id="nav-header"><a id="nav-title" href="../frontend/index.html" target="_blank"><img src="../frontend/assets/img/logoSemFundo.png" alt="Logo DataCoffee"></a>
+      <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+    </div>
+
+
+    <div id="nav-content">
+        <div onclick="home()" class="nav-button"><i class="fas fa-home"></i><span>Home</span></div>
+        
+        
+
+      <div id="nav-content-highlight"></div>
+    </div>
+
+    <input id="nav-footer-toggle" type="checkbox" />
+
+    <div id="nav-footer">
+      <div id="nav-footer-heading">
+        <div id="nav-footer-avatar"><img src="../frontend/assets/img/icon.png" /></div>
+        <div id="nav-footer-titlebox">DataCoffee<span id="nav-footer-subtitle">Administrador</span></div>
+        <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
+      </div>
+
+
+      <div id="nav-footer-content">
+          <div class="nav-button"><i class="fas fa-user-circle"></i><span>Perfil</span></div>
+        <div class="nav-button"><i class="fas fa-user-plus"></i><span>Logar com outro Usuário</span></div>
+        <div class="nav-button"><i class="fas fa-sign-out-alt"></i><span>Sair</span></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+
+
+<script>
+
+    function dashboard(){
+        window.location.href = "../Backend/Temperatura.html"
+    }
+
+    function home(){
+            window.location.href = "../frontend/index.html"
+    }
+</script>

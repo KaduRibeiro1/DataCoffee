@@ -59,9 +59,6 @@
 
 
 
-
-
-
     
   <div id="nav-bar"> 
     <input id="nav-toggle" type="checkbox" />
@@ -71,9 +68,8 @@
 
 
     <div id="nav-content">
-        <div class="nav-button"><i class="fas fa-home"></i><span><a href="../frontend/index.html">Home</a></span></div>
-        <div class="nav-button"><i class="fas fa-thermometer-half"></i><span>Sensores</span></div>
-        <div class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span></div>
+        <div onclick="home()" class="nav-button"><i class="fas fa-home"></i><span><a href="../frontend/index.html">Home</a></span></div>
+        <div onclick="plantacao()" class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span></div>
         <div class="nav-button"><i class="fas fa-chart-bar"></i><span>Gráficos</span></div>
         <div class="nav-button"><i class="fas fa-chart-pie"></i><span>KPI'S Detalhados</span></div>
         
@@ -331,7 +327,7 @@ var barChart = new Chart(ctxBar, barOptions);
             y: {
                 title: {
                     display: true,
-                    text: '(%)',
+                    text: '(°C)',
                     color: 'rgba(0, 0, 0, 1)',
                     font: {
                         size: 14
@@ -419,7 +415,7 @@ var sensorDigital = new Chart(document.getElementById('sensorDigital').getContex
             y: {
                 title: {
                     display: true,
-                    text: '(0-1)',
+                    text: '(%)',
                     color: 'rgba(0, 0, 0, 1)',
                     font: {
                         size: 14
@@ -479,6 +475,13 @@ var paginacao = {};
             obterDados(sensorDigital, 'digital');
         }, 1000);
 
+        function plantacao(){
+            window.location.href = "../Backend/Plantacao.html"
+        }
+
+        function home(){
+            window.location.href = "../frontend/index.html"
+        }
     </script>
 </body>
 
