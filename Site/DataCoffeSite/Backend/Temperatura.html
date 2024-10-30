@@ -70,8 +70,8 @@
     <div id="nav-content">
         <div onclick="home()" class="nav-button"><i class="fas fa-home"></i><span><a href="../frontend/index.html">Home</a></span></div>
         <div onclick="plantacao()" class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span></div>
-        <div class="nav-button"><i class="fas fa-chart-bar"></i><span>Gráficos</span></div>
-        <div class="nav-button"><i class="fas fa-chart-pie"></i><span>KPI'S Detalhados</span></div>
+        <div onclick="grafico()"class="nav-button"><i class="fas fa-chart-bar"></i><span>Gráficos</span></div>
+        <div onclick="kpí()" class="nav-button"><i class="fas fa-chart-pie"></i><span>KPI'S Detalhados</span></div>
         
         
 
@@ -481,6 +481,14 @@ var paginacao = {};
 
         function home(){
             window.location.href = "../frontend/index.html"
+        }
+
+        function grafico(){
+            window.location.href = "../Backend/Grafico.html"
+        }
+
+        function kpi(){
+            window.location.href = "../Backend/Kpis.html"
         }
     </script>
 </body>

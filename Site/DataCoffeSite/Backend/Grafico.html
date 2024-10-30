@@ -11,16 +11,13 @@
 </head>
 <body>
     
-    <h1>DashBoard - Umidade</h1>
+    <h1>DashBoard - Apenas Graficos</h1>
+
 
     <div class="sensor-choice">
-        
-        <a href="Temperatura.html">
         <div id="temperatureDiv" class="sensor-option">
             <i class="fas fa-thermometer-half"></i> 
         </div>
-    </a>
-
         <a href="Umidade.html"> 
         <div id="humidityDiv" class="sensor-option">
             <i class="fas fa-tint"></i> 
@@ -28,40 +25,20 @@
      </a>
     </div>
 
-
  
 
   
-    <div class="container">
-        <div class="kpi-container">
-            <div class="kpi">
-                <canvas id="gaugeMaximo" height="1%" width="1%"></canvas>
-                <div id="umidadeMaxima"></div>
-            </div>
-            <div class="kpi">
-                <canvas id="gaugeMedia" height="1%" width="1%"></canvas>
-                <div id="umidadeMedia"></div>
-            </div>
-            <div class="kpi">
-                <canvas id="gaugeMinimo" height="1%" width="1%"></canvas>
-                <div id="umidadeMinima"></div>
-            </div>
-            <div class="kpi">
-                <span>Médias em Gráfico de Barra</span>
-                <canvas id="barChart" height="1%" width="1%"></canvas>
-            </div>
-        </div>
-        <div class="chart-container">
-            <div style="width: 50%;">
+    <div class="container_talz">
+        <div class="char_container">
+            <div style="width: 100%; margin-bottom: 20px;">
                 <canvas id="sensorAnalogico"></canvas>
             </div>
-            <div style="width: 50%;">
+            <div style="width: 100%;">
                 <canvas id="sensorDigital"></canvas>
             </div>
         </div>
     </div>
-
-
+    
 
 
 
@@ -75,10 +52,10 @@
 
 
     <div id="nav-content">
-        <div onclick="home()" class="nav-button"><i class="fas fa-home"></i><span>Home</span></div>
+        <div onclick="home()" class="nav-button"><i class="fas fa-home"></i><span><a href="../frontend/index.html">Home</a></span></div>
         <div onclick="plantacao()" class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span></div>
-        <div onclick="grafico()" class="nav-button"><i class="fas fa-chart-bar"></i><span>Gráficos</span></div>
-        <div onclick="kpi()" class="nav-button"><i class="fas fa-chart-pie"></i><span>KPI'S Detalhados</span></div>
+        <div class="nav-button"><i class="fas fa-chart-bar"></i><span>Gráficos</span></div>
+        <div class="nav-button"><i class="fas fa-chart-pie"></i><span>KPI'S Detalhados</span></div>
         
         
 
@@ -104,157 +81,7 @@
   </div>
 
 
-  <script>
-
-    // Gráfico de Máxima Umidade do Solo
-    var ctxMaximo = document.getElementById('gaugeMaximo').getContext('2d');
-    var valorMaximo = 90; // Valor da umidade máxima
-    var optionsMaximo = {
-        type: 'doughnut',
-        data: {
-            labels: ["Máxima Umidade do Solo ⚠️"],
-            datasets: [{
-                label: 'Máxima Umidade do Solo',
-                data: [valorMaximo],
-                backgroundColor: ["blue"] // Cor representativa
-            }]
-        },
-        options: {
-            rotation: 270,
-            circumference: 180,
-            cutout: '70%',
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'top',
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            return `Máxima Umidade do Solo: ${tooltipItem.raw}%`;
-                        }
-                    }
-                }
-            }
-        }
-    };
-    umidadeMaxima.innerHTML = `${valorMaximo}%`;
-    var gaugeMaximo = new Chart(ctxMaximo, optionsMaximo);
-    
-    // Gráfico de Média Umidade do Solo
-    var ctxMedia = document.getElementById('gaugeMedia').getContext('2d');
-    var valorMedia = 65; // Valor da umidade média
-    var optionsMedia = {
-        type: 'doughnut',
-        data: {
-            labels: ["Média Umidade do Solo 🟰"],
-            datasets: [{
-                label: 'Média Umidade do Solo',
-                data: [valorMedia],
-                backgroundColor: ["#5353ec"]
-            }]
-        },
-        options: {
-            rotation: 270,
-            circumference: 180,
-            cutout: '70%',
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'top',
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            return `Média Umidade do Solo: ${tooltipItem.raw}%`;
-                        }
-                    }
-                }
-            }
-        }
-    };
-    var gaugeMedia = new Chart(ctxMedia, optionsMedia);
-    umidadeMedia.innerHTML = `${valorMedia}%`;
-    
-    // Gráfico de Mínima Umidade do Solo
-    var ctxMinimo = document.getElementById('gaugeMinimo').getContext('2d');
-    var valorMinimo = 30; 
-    var optionsMinimo = {
-        type: 'doughnut',
-        data: {
-            labels: ["Mínima Umidade do Solo ➖"],
-            datasets: [{
-                label: 'Mínima Umidade do Solo',
-                data: [valorMinimo],
-                backgroundColor: ["#00ced1"] 
-            }]
-        },
-        options: {
-            rotation: 270,
-            circumference: 180,
-            cutout: '70%',
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'top',
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            return `Mínima Umidade do Solo: ${tooltipItem.raw}%`;
-                        }
-                    }
-                }
-            }
-        }
-    };
-    var gaugeMinimo = new Chart(ctxMinimo, optionsMinimo);
-    umidadeMinima.innerHTML = `${valorMinimo}%`;
-    
-    // Gráfico de Barras para Umidade do Solo
-    var ctxBar = document.getElementById('barChart').getContext('2d');
-    var barOptions = {
-        type: 'bar',
-        data: {
-            labels: ["Máxima", "Média", "Mínima"],
-            datasets: [{
-                label: 'Umidade do Solo (%)',
-                data: [90, 65, 30], 
-                backgroundColor: ['blue', '#5353ec', '#00ced1'], 
-                borderColor: ['dark', 'dark', 'dark'], 
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        stepSize: 10, 
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false 
-                    }
-                }
-            },
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            return `${tooltipItem.label}: ${tooltipItem.raw}%`; // Formato do tooltip
-                        }
-                    }
-                }
-            }
-        }
-    };
-    var barChart = new Chart(ctxBar, barOptions);
-    
-
-
+    <script>
     var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
     type: 'line',
     data: {
@@ -324,7 +151,7 @@
             y: {
                 title: {
                     display: true,
-                    text: '(%)',
+                    text: '(°C)',
                     color: 'rgba(0, 0, 0, 1)',
                     font: {
                         size: 14
@@ -341,7 +168,6 @@
         }
     }
 });
-
 
 
 var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
@@ -413,7 +239,7 @@ var sensorDigital = new Chart(document.getElementById('sensorDigital').getContex
             y: {
                 title: {
                     display: true,
-                    text: '(0-1)',
+                    text: '(%)',
                     color: 'rgba(0, 0, 0, 1)',
                     font: {
                         size: 14
@@ -430,6 +256,7 @@ var sensorDigital = new Chart(document.getElementById('sensorDigital').getContex
         }
     }
 });
+
 
 
 
@@ -478,14 +305,6 @@ var paginacao = {};
 
         function home(){
             window.location.href = "../frontend/index.html"
-        }
-
-        function grafico(){
-            window.location.href = "../Backend/Grafico.html"
-        }
-
-        function kpi(){
-            window.location.href = "../Backend/Kpis.html"
         }
     </script>
 </body>
