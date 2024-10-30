@@ -113,6 +113,9 @@ if (email == "" || password == "") {
 if (password.length > 45) {
     return customSwal("Permitido apenas 45 caracteres.");
 }
+if(password.length<7){
+    return customSwal("Permitido 7 caracteres mínimos.");
+}
 
 return
 document.getElementById('btn_eviar_email').addEventListener("click", function () {
