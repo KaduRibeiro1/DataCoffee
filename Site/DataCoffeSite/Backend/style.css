@@ -175,7 +175,7 @@ h1 {
 
 .chart-container canvas {
   position: relative;
-  bottom: 290px;
+  bottom: 300px;
   display: flex;
   margin: 0 auto;
   width: 90% !important;
@@ -660,7 +660,7 @@ label[for=nav-footer-toggle] {
   width: 70%;
   position: relative;
   left: 350px;
-  bottom: 25px;
+
 }
 
 .char_container canvas {
