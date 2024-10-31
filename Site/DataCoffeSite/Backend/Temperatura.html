@@ -30,28 +30,41 @@
   
   <div class="container">
       <div class="kpi-container">
-          <div class="kpi">
-            <canvas id="gaugeMaximo" height="1%" width="1%"></canvas>
-            <div id="temperaturaMaxima"></div>
+          <div class="kpi" id="maximo">
+            <i class="fas fa-temperature-high" style="color: #FF4500;"></i> 
+            <p>26°C</p>
+            <h3>Temperatura Máxima</h3>
+            <span></span>
+            <span>Temperatura Recomendada : 22,5°C</span>
         </div>
-        <div class="kpi">
-            <canvas id="gaugeMedia" height="1%" width="1%"></canvas>
-            <div id="temperaturaMedia"></div>
+        <div class="kpi" id="media">
+            <i class="fas fa-sun" style="color: #FFD700;"></i>
+            <p>17.5°C</p>
+            <h3>Temperatura Média</h3>
+            <span></span>
+            <span></span>
+
+
         </div>
-        <div class="kpi">
-            <canvas id="gaugeMinimo" height="1%" width="1%"></canvas>
-            <div id="temperaturaMinima"></div>
+        <div class="kpi" id="minima">
+            <i class="fas fa-temperature-low" style="color: #1E90FF;"></i> 
+           <p>15°C</p>
+           <h3>Temperatura Mínima</h2>
+            <span></span>
+            <span></span>
+
           </div>
           <div class="kpi">
-              <span>Médias em Gráfico de Barra</span>
-              <canvas id="barChart" height="1%" width="1%"></canvas>
+              <canvas id="barChart" height="2%" width="2%"></canvas>
         </div>
       </div>
       <div class="chart-container">
-          <div style="width: 50%;">
+          <div style="width: 50%;" class="h2Temperatura">
+              <h2>Grafico de Temperatura</h2>
               <canvas id="sensorAnalogico"></canvas>
           </div>
-          <div style="width: 50%;">
+          <div style="width: 50%;" class="h2Umidade">
+               <h2>Grafico de Umidade do Solo</h2>
               <canvas id="sensorDigital"></canvas>
           </div>
       </div>
@@ -99,118 +112,6 @@
 
     <script>
 
-// Gráfico de Máxima Temperatura
-var ctxMaximo = document.getElementById('gaugeMaximo').getContext('2d');
-var valorMaximo = 26; 
-var optionsMaximo = {
-    type: 'doughnut',
-    data: {
-        labels: ["Temperatura Máxima ⚠️"],
-        datasets: [{
-            label: 'Temperatura Máxima Atingida',
-            data: [valorMaximo],
-            backgroundColor: ["red"] 
-        }]
-    },
-    options: {
-        rotation: 270,
-        circumference: 180,
-        cutout: '70%',
-        plugins: {
-            legend: {
-                display: true,
-                position: 'top',
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(tooltipItem) {
-                        return `Temperatura Máxima:${tooltipItem.raw}°C`;
-                    }
-                }
-            }
-        }
-    }
-};
-temperaturaMaxima.innerHTML = `${valorMaximo}°C`;
-var gaugeMaximo = new Chart(ctxMaximo, optionsMaximo);
-
-
-
-// Gráfico de Média Temperatura
-var ctxMedia = document.getElementById('gaugeMedia').getContext('2d');
-var valorMedia = 17.5; 
-var optionsMedia = {
-    type: 'doughnut',
-    data: {
-        labels: ["Média Temperatura 🟰"],
-        datasets: [{
-            label: 'Média Temperatura',
-            data: [valorMedia],
-            backgroundColor: ["orange"] 
-        }]
-    },
-    options: {
-        rotation: 270,
-        circumference: 180,
-        cutout: '70%',
-        plugins: {
-            legend: {
-                display: true,
-                position: 'top',
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(tooltipItem) {
-                        return `Média Temperatura: ${tooltipItem.raw}°C`;
-                    }
-                }
-            }
-        }
-    }
-};
-var gaugeMedia = new Chart(ctxMedia, optionsMedia);
-temperaturaMedia.innerHTML = `${valorMedia}°C`;
-
-
-
-// Gráfico de Mínima Temperatura
-var ctxMinimo = document.getElementById('gaugeMinimo').getContext('2d');
-var valorMinimo = 15; 
-var optionsMinimo = {
-    type: 'doughnut',
-    data: {
-        labels: ["Mínima Temperatura ➖"],
-        datasets: [{
-            label: 'Mínima Temperatura',
-            data: [valorMinimo],
-            backgroundColor: ["yellow"] 
-        }]
-    },
-    options: {
-        rotation: 270,
-        circumference: 190,
-        cutout: '70%',
-        plugins: {
-            legend: {
-                display: true,
-                position: 'top',
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(tooltipItem) {
-                        return `Mínima Temperatura: ${tooltipItem.raw}°C`;
-                    }
-                }
-            }
-        }
-    }
-};
-var gaugeMinimo = new Chart(ctxMinimo, optionsMinimo);
-temperaturaMinima.innerHTML = `${valorMinimo}°C`;
-
-
-
-// Gráfico de Barras para Temperatura
 var ctxBar = document.getElementById('barChart').getContext('2d');
 var barOptions = {
     type: 'bar',
@@ -219,7 +120,7 @@ var barOptions = {
         datasets: [{
             label: 'Temperatura (°C)',
             data: [26, 17.5, 15], 
-            backgroundColor: ['red', 'orange', 'yellow'], 
+            backgroundColor: ['#FF4500', '#FFD700', '#1E90FF'], 
             borderColor: ['dark', 'dark', 'dark'], 
             borderWidth: 1
         }]
@@ -243,6 +144,15 @@ var barOptions = {
             legend: {
                 display: false 
             },
+            title: {
+                display: true,
+                text: 'Média das Temperaturas',
+                font: {
+                    size: 12, 
+                },
+                color: 'black',
+                align: 'center'
+            },
             tooltip: {
                 callbacks: {
                     label: function(tooltipItem) {
@@ -255,7 +165,7 @@ var barOptions = {
 };
 var barChart = new Chart(ctxBar, barOptions);
 
-    
+
 
 
     var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
