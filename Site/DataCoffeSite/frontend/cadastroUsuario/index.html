@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Cadastro de Usuário | Data Coffee</title>
+</head>
+
+<body>
+    <section class="container">
+        <img src="../assets/img/logoSemFundo.png" alt="Logo - DataCoffe" onclick="window.location.href='../index.html'"
+            class="logo">
+        <h1>Cadastre-se</h1>
+        <form action="#">
+            <div class="input-group">
+                <div>
+                    <label class="label">Nome Completo</label>
+                    <input autocomplete="off" placeholder="Nome Completo" class="input" type="text" id="input_nomeCompleto">
+                </div>
+                <div>
+                    <label class="label">CPF</label>
+                    <input autocomplete="off" maxlength="14" placeholder="123.456.789-01" class="input" type="text"
+                        id="input_cpf" onkeyup= "MaskCNPJ()">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div>
+                    <label class="label">Data de Nascimento</label>
+                    <input autocomplete="off" placeholder="01/01/2000" class="input" type="date" id="input_dtNasc">
+                </div>
+                <div>
+                    <label class="label">Gênero</label>
+                    <select class="input" id="select_genero">
+                        <option value="selecione" selected disabled>Selecione</option>
+                        <option value="AC">Masculino</option>
+                        <option value="AL">Feminino</option>
+                        <option value="AP">Não Binário</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="input-group">
+                <div>
+                    <label class="label">Email</label>
+                    <input autocomplete="off" placeholder="user@email.com" class="input" type="text" id="input_emailUsuário">
+
+                </div>
+                <div>
+                    <label class="label">Senha</label>
+                    <input autocomplete="off" placeholder="********" class="input" type="password" id="input_senhaUsuario">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div>
+                    <label class="label">Confirmar senha</label>
+                    <input autocomplete="off" placeholder="********" class="input" type="password"
+                        id="input_corfirmarSenha">
+                </div>
+            </div>
+
+            <div class="conteudo">
+                <button type="submit" onclick="Register()">Continuar</button>
+            </div>
+
+
+            <div class="link">
+                <a onclick="window.location.href='../login/index.html'">Já tem uma conta?</a>
+            </div>
+
+        </form>
+    </section>
+</body>
+
+</html>
+<script>
+    function containsInvalidCharacters(str) {
+
+    const invalidChars = "#%&*!(){}[]<>/\\|^~`";
+
+    for (let i = 0; i < str.length; i++) {
+    if (invalidChars.indexOf(str[i]) !== -1) {
+        return true;
+    }
+}
+return false;
+}
+    const customSwal = (message) => {
+        return Swal.fire({
+            text: message,
+            background: '#F7E1BC',  
+            color: '#4A2721',       
+            confirmButtonColor: '#4A2721',  
+            customClass: {
+                popup: 'sweetalert-custom-popup',
+            }
+        });
+    };
+
+    function MaskCNPJ() {
+        let cpf = input_cpf.value;
+        if (cpf.length === 3 || cpf.length === 7) {
+            input_cpf.value = cpf + ".";
+        } else if (cpf.length === 11) {
+            input_cpf.value = cpf + "-";
+        } 
+        if (cpf.length > 13) {
+            cpf.length = 13
+        }
+    }
+
+    function Register() {
+        var nome = input_nomeCompleto.value;
+        var cpf = input_cpf.value.replace(/\D/g, '');
+        var dtNasc= input_dtNasc.value;
+        var genero = select_genero.value;
+        var email = input_email.value;
+        var senha = input_senhaUsuario.value;
+        var confirmarSenha = input_confirmarSenha.value;
+
+        if (nome === "" || cpf === "" || dtNasc === "" || genero === "selecione" || email === "" || senha === "" || confirmarSenha === "") {
+            return customSwal("Há campos vazios! Preencha-os para prosseguir.");
+        }
+
+        if (cpf.length !== 14) {
+            return customSwal("O número de caracteres no CNPJ deve ser 14.");
+        }
+
+        if (email.indexOf("@") === -1) {
+            return customSwal("É necessário inserir o @. Preencha-o para prosseguir.");
+        }
+
+        if (containsInvalidCharacters(email)) {
+            return customSwal("Caracteres inválidos. Remova-os para prosseguir.");
+        }
+
+        if (senha.length > 45) {
+            return customSwal("O valor máximo de caracteres é 45.");
+        }
+
+        if (senha.length < 7) {
+            return customSwal("O valor mínimo de caracteres na senha é 7.");
+        }
+
+        if (confirmarSenha !== password) {
+            return customSwal("As senhas não coincidem. Por favor, verifique e tente novamente.");
+        }
+
+        return document.getElementById('btn_eviar_email').addEventListener("click", function () {
+            window.location.href = "../../Backend/index.html"
+        })
+    }
+
+
+</script>
