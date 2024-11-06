@@ -14,20 +14,8 @@
     <h1>DashBoard - Apenas Graficos</h1>
 
 
-    <div class="sensor-choice">
-        <div id="temperatureDiv" class="sensor-option">
-            <i class="fas fa-thermometer-half"></i> 
-        </div>
-        <a href="Umidade.html"> 
-        <div id="humidityDiv" class="sensor-option">
-            <i class="fas fa-tint"></i> 
-        </div>
-     </a>
-    </div>
 
- 
 
-  
     <div class="container_talz">
         <div class="char_container">
             <div style="width: 100%; margin-bottom: 20px;">
@@ -53,6 +41,7 @@
 
     <div id="nav-content">
         <div onclick="home()" class="nav-button"><i class="fas fa-home"></i><span><a href="../frontend/index.html">Home</a></span></div>
+        <div onclick="temperatura()" class="nav-button"><i class="fas fa-arrow-left"></i><span>Voltar</span></div>
         <div onclick="plantacao()" class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span></div>
         <div onclick="grafico()" class="nav-button"><i class="fas fa-chart-bar"></i><span>Gráficos</span></div>
         <div onclick="kpi()"class="nav-button"><i class="fas fa-chart-pie"></i><span>KPI'S Detalhados</span></div>
@@ -93,8 +82,7 @@
             borderWidth: 2,
             pointBorderColor: 'rgba(0, 0, 0, 0.8)',
             pointRadius: 5,
-            pointHoverRadius: 7,
-            tension: 0.4
+            pointHoverRadius: 7
         }]
     },
     options: {
@@ -181,8 +169,7 @@ var sensorDigital = new Chart(document.getElementById('sensorDigital').getContex
             pointBackgroundColor: 'rgba(0, 123, 255, 0.8)',
             pointBorderColor: 'rgba(0, 0, 0, 0.8)',
             pointRadius: 5,
-            pointHoverRadius: 7,
-            tension: 0.4
+            pointHoverRadius: 7
         }]
     },
     options: {
@@ -313,6 +300,9 @@ var paginacao = {};
 
         function kpi(){
             window.location.href = "../Backend/Kpis.html"
+        }
+        function temperatura(){
+            window.location.href = "../Backend/Temperatura.html"
         }
     </script>
 </body>

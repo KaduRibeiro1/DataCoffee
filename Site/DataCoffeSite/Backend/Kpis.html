@@ -13,23 +13,74 @@
     
     <h1>DashBoard - Apenas KPI's</h1>
 
+    <div class="container">
+      <div class="kpi-container">
+          <div class="kpi" id="maximoU">
+              <i class="fas fa-cloud-showers-heavy" style="color: #0000FF;"></i> 
 
-
-    <div class="sensor-choice">
-        <div id="temperatureDiv" class="sensor-option">
-            <i class="fas fa-thermometer-half"></i> 
+            <p>15%</p>
+            <h3>Umidade do Solo Máxima</h3>
+            <span></span>
+            <span>Temperatura Recomendada : 22,5°C</span>
         </div>
-        <a href="Umidade.html"> 
-        <div id="humidityDiv" class="sensor-option">
-            <i class="fas fa-tint"></i> 
-        </div>
-     </a>
-    </div>
+        <div class="kpi" id="mediaU">
+          <i class="fas fa-water" style="color: #4682B4;"></i> 
 
+            <p>13%</p>
+            <h3>Umidade do Solo  Média</h3>
+            <span></span>
+            <span></span>
+
+
+        </div>
+        <div class="kpi" id="minimaU">
+          <i class="fas fa-tint" style="color: #ADD8E6;"></i> 
+           <p>8%</p>
+           <h3>Umidade do Solo Mínima</h2>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+       
+        <div class="container">
+          <div class="kpi-container2">
+          <div class="kpi" id="maximo">
+              <i class="fas fa-temperature-high" style="color: #FF4500;"></i> 
+              <p>26°C</p>
+              <h3>Temperatura Máxima</h3>
+              <span></span>
+              <span>Temperatura Recomendada : 22,5°C</span>
+          </div>
+          <div class="kpi" id="media">
+              <i class="fas fa-sun" style="color: #FFD700;"></i>
+              <p>17.5°C</p>
+              <h3>Temperatura Média</h3>
+              <span></span>
+              <span></span>
+  
+  
+          </div>
+          <div class="kpi" id="minima">
+              <i class="fas fa-temperature-low" style="color: #1E90FF;"></i> 
+             <p>15°C</p>
+             <h3>Temperatura Mínima</h2>
+              <span></span>
+              <span></span>
+            </div>
+            </div>
+          </div>
+
+
+  
+
+
+
+
+
+   
  
 
   
-<h1>Em Fase de constução</h1>
 
 
 
@@ -43,6 +94,7 @@
 
     <div id="nav-content">
         <div onclick="home()" class="nav-button"><i class="fas fa-home"></i><span><a href="../frontend/index.html">Home</a></span></div>
+        <div onclick="temperatura()" class="nav-button"><i class="fas fa-arrow-left"></i><span>Voltar</span></div>
         <div onclick="plantacao()" class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span></div>
         <div onclick="grafico()"class="nav-button"><i class="fas fa-chart-bar"></i><span>Gráficos</span></div>
         <div onclick="kpí()" class="nav-button"><i class="fas fa-chart-pie"></i><span>KPI'S Detalhados</span></div>
@@ -87,6 +139,9 @@
 
         function kpi(){
             window.location.href = "../Backend/Kpis.html"
+        }
+        function temperatura(){
+          window.location.href = "../Backend/Temperatura.html"
         }
     </script>
 </body>

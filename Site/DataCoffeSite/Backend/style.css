@@ -52,6 +52,9 @@ h1 {
   min-height: 100vh; 
 }
 
+
+
+
 .plantacao-container {
   display: flex;
   flex-direction: row;
@@ -112,65 +115,154 @@ h1 {
   background-color: red; 
 }
 
-
-
 .plantacao:hover {
   transform: translateY(-5px);
 }
+
 
 .kpi-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 100%;
   margin-bottom: 300px;
-  gap: 20px; 
+  gap: 20px;
 }
 
-#temperaturaMaxima, #temperaturaMedia, #temperaturaMinima, #umidadeMaxima, #umidadeMedia, #umidadeMinima {
-  font-size: 20px;
+
+
+
+.kpi-container2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   position: relative;
-  bottom: 25px;
-  font-weight : bold;
+  bottom: 510px;
+  right: 130px;
+  gap: 20px;
 }
+
 
 .kpi {
   background-color: var(--primario);
+  height: 180px;
+  width: 180px;
   border: 3px solid #2c1d13;
-  color: var(--corSecundaria);
+  color: black;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
-  flex: 1;
-  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   transition: transform 0.3s;
-
-  span {
-    font-weight : bold;
-    font-size: 10px;
-  }
+  margin: 0 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
 }
-
-
-
-.kpi canvas{
-  width: 20px; 
-  height: 20px;
-  border-radius: 10px;
-}
-
-
+ 
 .kpi:hover {
   transform: translateY(-5px);
+  transform: scale(0.98); 
+  color: #5d3f26;
+  transform: translateY(-2px); 
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); 
 }
+
+.kpi p {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0;
+  transition: color 0.3s, transform 0.3s, text-shadow 0.3s; 
+  color: #333; 
+}
+
+
+
+.kpi h3 {
+  font-size: 1em; 
+  margin: 0;
+}
+
+.kpi span {
+  font-size: 0.6em;
+  color: #555;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.kpi i {
+  font-size: 1.8em;
+  color: #2c1d13;
+  margin-top: 10px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.kpi:hover i {
+  transform: scale(1.2);
+}
+
+#maximo {
+  border-left: 12px solid #FF4500;
+}
+
+#media {
+  border-left: 12px solid #FFD700; 
+}
+
+#minima {
+  border-left: 12px solid #1E90FF;
+}
+
+#maximo:hover {
+  border-color: #FF4500;
+}
+
+#media:hover {
+  border-color: #FFD700;
+}
+
+#minima:hover {
+  border-color: #1E90FF;
+}
+
+
+#maximoU {
+  border-left: 12px solid #0000FF;  
+}
+
+#mediaU {
+  border-left: 12px solid #4682B4;
+}
+
+#minimaU {
+  border-left: 12px solid #ADD8E6;
+}
+
+#maximoU:hover {
+  border-color: #0000FF;  
+}
+
+#mediaU:hover {
+  border-color: #4682B4;
+}
+
+#minimaU:hover {
+  border-color: #ADD8E6;
+}
+
+
+
+
 
 .chart-container {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 20px;
 }
 
 .chart-container canvas {
@@ -189,6 +281,41 @@ h1 {
 
 .chart-container canvas:hover {
   transform: translateY(-5px);
+}
+
+.h2Temperatura h2{
+  z-index: 999;
+  bottom: 290px;
+  left: 200px;
+  position: relative;
+  color: #ffffff;
+  font-family: "Dancing Script", cursive;
+  text-shadow: 1px 1px #5d3f26,
+  2px 2px #5d3f26,
+  3px 3px #5d3f26,
+  4px 4px #5d3f26,
+  4px 4px #5d3f26,
+  5px 5px #5d3f26,
+  6px 6px #5d3f26,
+  6px 6px #5d3f26;
+}
+
+.h2Umidade h2 {
+  z-index: 999;
+  bottom: 290px;
+  left: 180px;
+  position: relative;
+  color: #ffffff;
+  font-family: "Dancing Script", cursive;
+  text-shadow: 1px 1px #5d3f26,
+    2px 2px #5d3f26,
+    3px 3px #5d3f26,
+    4px 4px #5d3f26,
+    4px 4px #5d3f26,
+    5px 5px #5d3f26,
+    6px 6px #5d3f26,
+    6px 6px #5d3f26;
+  transition: color 0.3s, text-shadow 0.3s; 
 }
 
 
@@ -660,7 +787,7 @@ label[for=nav-footer-toggle] {
   width: 70%;
   position: relative;
   left: 350px;
-  bottom: 25px;
+
 }
 
 .char_container canvas {
