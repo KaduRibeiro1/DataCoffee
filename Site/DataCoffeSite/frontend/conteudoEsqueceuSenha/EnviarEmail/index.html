@@ -20,12 +20,14 @@
             <form action="#">
                 <div class="input-group">
                     <label class="label">Insira seu Email</label>
-                    <input autocomplete="off" placeholder="usuario@datacoffe" class="input" type="email" id="email_user">
+                    <input autocomplete="off" placeholder="usuario@datacoffe" class="input" type="email"
+                        id="email_user">
                 </div>
             </form>
 
             <div class="conteudo">
-                <button type="submit" id="btn_eviar_email" onclick="SendRecoveryLink()">Enviar link de recuperação</button>
+                <button type="submit" id="btn_enviar_email" onclick="SendRecoveryLink()">Enviar link de
+                    recuperação</button>
             </div>
             <div class="link">
                 <a href="../../cadastro/index.html">Ainda não tem uma conta? Cadastre-se gratuitamente</a>
@@ -38,33 +40,38 @@
 <script>
 
 function SendRecoveryLink() {
-    var email = email_user.value;
+    var email = document.getElementById("email_user").value;
     if (email == "") {
         return customSwal("Há campos vazios! Preencha-os para prosseguir.");
     } else if (email.indexOf("@") == -1) {
         return customSwal("É necessário inserir o @. Preencha-o para prosseguir.");
     } else if (containsInvalidCharacters(email)) {
-        return customSwal("Caracteres inválidos. Remova-os para prosseguir");
+        return customSwal("Caracteres inválidos. Remova-os para prosseguir.");
     } else {
-        document.getElementById('btn_eviar_email').addEventListener("click", function () {
-            window.location.href = "../PageCodVerificação/index.html"
-        });
+            window.location.href = "../../conteudoEsqueceuSenha/PageCodVerificação/index.html";
     }
 }
 
-const customSwal = (message) => {
-    return Swal.fire({
-        text: message,
-        background: '#F7E1BC',  
-        color: '#4A2721',       
-        confirmButtonColor: '#4A2721',  
-        customClass: {
-            popup: 'sweetalert-custom-popup',
+
+    const customSwal = (message) => {
+        return Swal.fire({
+            text: message,
+            background: '#F7E1BC',
+            color: '#4A2721',
+            confirmButtonColor: '#4A2721',
+            customClass: {
+                popup: 'sweetalert-custom-popup',
+            }
+        });
+    };
+
+    function containsInvalidCharacters(str) {
+        const invalidChars = "#%&*!(){}[]<>/\\|^~`";
+        for (let i = 0; i < str.length; i++) {
+            if (invalidChars.indexOf(str[i]) !== -1) {
+                return true;
+            }
         }
-    });
-};
-
-
-
-
+        return false;
+    }
 </script>
