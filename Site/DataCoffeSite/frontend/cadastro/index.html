@@ -8,64 +8,39 @@
     <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Cadastro - Data Coffe</title>
+    <title>Cadastro de Usuário | Data Coffee</title>
 </head>
 
 <body>
     <section class="container">
         <img src="../assets/img/logoSemFundo.png" alt="Logo - DataCoffe" onclick="window.location.href='../index.html'"
             class="logo">
-        <h1>Cadastre-se</h1>
+        <h1>Cadastro de Usuário</h1>
         <form action="#">
             <div class="input-group">
                 <div>
-                    <label class="label">Nome</label>
-                    <input autocomplete="off" placeholder="Nome Completo" class="input" type="text" id="input_name">
+                    <label class="label">Nome Completo</label>
+                    <input autocomplete="off" placeholder="Nome Completo" class="input" type="text" id="input_nomeCompleto">
                 </div>
                 <div>
-                    <label class="label">Propiedade</label>
-                    <input autocomplete="off" placeholder=" Exemplo: Fazenda Monte Verde" class="input" type="text"
-                        id="input_property">
+                    <label class="label">CPF</label>
+                    <input autocomplete="off" maxlength="14" placeholder="123.456.789-01" class="input" type="text"
+                        id="input_cpf" onkeyup="MaskCNPJ()">
                 </div>
             </div>
 
             <div class="input-group">
                 <div>
-                    <label class="label">CNPJ</label>
-                    <input autocomplete="off" placeholder="00.000.000/0000-00" class="input" type="text" id="input_cnpj"
-                        onkeyup="MaskCNPJ()">
+                    <label class="label">Data de Nascimento</label>
+                    <input autocomplete="off" placeholder="01/01/2000" class="input" type="date" id="input_dtNasc">
                 </div>
                 <div>
-                    <label class="label">UF</label>
-                    <select class="input" id="select_uf">
+                    <label class="label">Gênero</label>
+                    <select class="input" id="select_genero">
                         <option value="selecione" selected disabled>Selecione</option>
-                        <option value="AC">Acre (AC)</option>
-                        <option value="AL">Alagoas (AL)</option>
-                        <option value="AP">Amapá (AP)</option>
-                        <option value="AM">Amazonas (AM)</option>
-                        <option value="BA">Bahia (BA)</option>
-                        <option value="CE">Ceará (CE)</option>
-                        <option value="DF">Distrito Federal (DF)</option>
-                        <option value="ES">Espírito Santo (ES)</option>
-                        <option value="GO">Goiás (GO)</option>
-                        <option value="MA">Maranhão (MA)</option>
-                        <option value="MT">Mato Grosso (MT)</option>
-                        <option value="MS">Mato Grosso do Sul (MS)</option>
-                        <option value="MG">Minas Gerais (MG)</option>
-                        <option value="PA">Pará (PA)</option>
-                        <option value="PB">Paraíba (PB)</option>
-                        <option value="PR">Paraná (PR)</option>
-                        <option value="PE">Pernambuco (PE)</option>
-                        <option value="PI">Piauí (PI)</option>
-                        <option value="RJ">Rio de Janeiro (RJ)</option>
-                        <option value="RN">Rio Grande do Norte (RN)</option>
-                        <option value="RS">Rio Grande do Sul (RS)</option>
-                        <option value="RO">Rondônia (RO)</option>
-                        <option value="RR">Roraima (RR)</option>
-                        <option value="SC">Santa Catarina (SC)</option>
-                        <option value="SP">São Paulo (SP)</option>
-                        <option value="SE">Sergipe (SE)</option>
-                        <option value="TO">Tocantins (TO)</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="nao_binario">Não Binário</option>
                     </select>
                 </div>
 
@@ -73,27 +48,29 @@
             <div class="input-group">
                 <div>
                     <label class="label">Email</label>
-                    <input autocomplete="off" placeholder="user@email.com" class="input" type="text" id="input_email">
-
+                    <input autocomplete="off" placeholder="user@email.com" class="input" type="text" id="input_emailUsuário">
                 </div>
                 <div>
                     <label class="label">Senha</label>
-                    <input autocomplete="off" placeholder="********" class="input" type="password" id="input_password">
+                    <input autocomplete="off" placeholder="********" class="input" type="password" id="input_senhaUsuario">
                 </div>
+                
             </div>
 
             <div class="input-group">
                 <div>
+                    <label class="label">Código de Autenticação</label>
+                    <input autocomplete="off" placeholder="Ex: A1B2C3" class="input" type="password" id="input_codigoAutenticacao">
+                </div>
+                <div>
                     <label class="label">Confirmar senha</label>
-                    <input autocomplete="off" placeholder="********" class="input" type="password"
-                        id="input_confirmPassword">
+                    <input autocomplete="off" placeholder="********" class="input" type="password" id="input_confirmarSenha">
                 </div>
             </div>
 
             <div class="conteudo">
-                <button type="submit" onclick="Register()">Continuar</button>
+                <button type="button" onclick="Register()">Continuar</button>
             </div>
-
 
             <div class="link">
                 <a onclick="window.location.href='../login/index.html'">Já tem uma conta?</a>
@@ -106,22 +83,21 @@
 </html>
 <script>
     function containsInvalidCharacters(str) {
-
-    const invalidChars = "#%&*!(){}[]<>/\\|^~`";
-
-    for (let i = 0; i < str.length; i++) {
-    if (invalidChars.indexOf(str[i]) !== -1) {
-        return true;
+        const invalidChars = "#%&*!(){}[]<>/\\|^~`";
+        for (let i = 0; i < str.length; i++) {
+            if (invalidChars.indexOf(str[i]) !== -1) {
+                return true;
+            }
+        }
+        return false;
     }
-}
-return false;
-}
+
     const customSwal = (message) => {
         return Swal.fire({
             text: message,
-            background: '#F7E1BC',  
-            color: '#4A2721',       
-            confirmButtonColor: '#4A2721',  
+            background: '#F7E1BC',
+            color: '#4A2721',
+            confirmButtonColor: '#4A2721',
             customClass: {
                 popup: 'sweetalert-custom-popup',
             }
@@ -129,31 +105,30 @@ return false;
     };
 
     function MaskCNPJ() {
-        let cnpj = input_cnpj.value;
-        if (cnpj.length === 2 || cnpj.length === 6) {
-            input_cnpj.value = cnpj + ".";
-        } else if (cnpj.length === 10) {
-            input_cnpj.value = cnpj + "/";
-        } else if (cnpj.length === 15) {
-            input_cnpj.value = cnpj + "-";
+        let cpf = input_cpf.value;
+        if (cpf.length === 3 || cpf.length === 7) {
+            input_cpf.value = cpf + ".";
+        } else if (cpf.length === 11) {
+            input_cpf.value = cpf + "-";
         }
     }
 
     function Register() {
-        var name = input_name.value;
-        var property = input_property.value;
-        var cnpj = input_cnpj.value.replace(/\D/g, '');
-        var uf = select_uf.value;
-        var email = input_email.value;
-        var password = input_password.value;
-        var confirmPassword = input_confirmPassword.value;
+        var nome = input_nomeCompleto.value;
+        var cpf = input_cpf.value.replace(/\D/g, '');
+        var dtNasc = input_dtNasc.value;
+        var genero = select_genero.value;
+        var email = input_emailUsuário.value;
+        var senha = input_senhaUsuario.value;
+        var confirmarSenha = input_confirmarSenha.value;
+        var autenticacao = input_codigoAutenticacao.value;
 
-        if (name === "" || property === "" || cnpj === "" || uf === "selecione" || email === "" || password === "" || confirmPassword === "") {
+        if (nome === "" || cpf === "" || dtNasc === "" || genero === "selecione" || email === "" || senha === "" || confirmarSenha === "" || autenticacao === "") {
             return customSwal("Há campos vazios! Preencha-os para prosseguir.");
         }
 
-        if (cnpj.length !== 14) {
-            return customSwal("O número de caracteres no CNPJ deve ser 14.");
+        if (cpf.length !== 14) {
+            return customSwal("O número de caracteres no CPF deve ser 14.");
         }
 
         if (email.indexOf("@") === -1) {
@@ -164,22 +139,18 @@ return false;
             return customSwal("Caracteres inválidos. Remova-os para prosseguir.");
         }
 
-        if (password.length > 45) {
+        if (senha.length > 45) {
             return customSwal("O valor máximo de caracteres é 45.");
         }
 
-        if (password.length < 7) {
+        if (senha.length < 7) {
             return customSwal("O valor mínimo de caracteres na senha é 7.");
         }
 
-        if (confirmPassword !== password) {
+        if (confirmarSenha !== senha) {
             return customSwal("As senhas não coincidem. Por favor, verifique e tente novamente.");
         }
 
-        return document.getElementById('btn_eviar_email').addEventListener("click", function () {
-            window.location.href = "../../Backend/index.html"
-        })
+        window.location.href = "../../Backend/index.html";
     }
-
-
 </script>
