@@ -8,7 +8,7 @@ const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3300;
 
 // habilita ou desabilita a inserção de dados no banco de dados
-const HABILITAR_OPERACAO_INSERIR = false;
+const HABILITAR_OPERACAO_INSERIR = true;
 
 // função para comunicação serial
 const serial = async (
@@ -51,13 +51,14 @@ const serial = async (
     // processa os dados recebidos do Arduino
         arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
             console.log(data);
+        
             const valores = data.split(';');
             const sensorAnalogicoTemperatura = parseFloat(valores[0]);
             const sensorAnalogicoUmidadeSolo = parseFloat(valores[1]);
 
             // armazena os valores dos sensores nos arrays correspondentes
-            valoresSensorUmidadeSolo.push(sensorAnalogicoUmidadeSolo);
             valoresSensorTemperatura.push(sensorAnalogicoTemperatura);
+            valoresSensorUmidadeSolo.push(sensorAnalogicoUmidadeSolo);
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
@@ -81,8 +82,8 @@ const serial = async (
 
 // função para criar e configurar o servidor web
 const servidor = (
-    valoresSensorUmidadeSolo,
-    valoresSensorTemperatura
+    valoresSensorTemperatura,
+    valoresSensorUmidadeSolo
 ) => {
     const app = express();
 
@@ -99,29 +100,29 @@ const servidor = (
     });
 
     // define os endpoints da API para cada tipo de sensor
-    app.get('/sensores/analogico', (_, response) => {
-        return response.json(valoresSensorUmidadeSolo);
-    });
     app.get('/sensores/digital', (_, response) => {
         return response.json(valoresSensorTemperatura);
+    });
+    app.get('/sensores/analogico', (_, response) => {
+        return response.json(valoresSensorUmidadeSolo);
     });
 }
 
 // função principal assíncrona para iniciar a comunicação serial e o servidor web
 (async () => {
     // arrays para armazenar os valores dos sensores
-    const valoresSensorUmidadeSolo = [];
     const valoresSensorTemperatura = [];
+    const valoresSensorUmidadeSolo = [];
 
     // inicia a comunicação serial
     await serial(
-        valoresSensorUmidadeSolo,
-        valoresSensorTemperatura
+        valoresSensorTemperatura,
+        valoresSensorUmidadeSolo
     );
 
     // inicia o servidor web
     servidor(
-        valoresSensorUmidadeSolo,
-        valoresSensorTemperatura
+        valoresSensorTemperatura,
+        valoresSensorUmidadeSolo
     );
 })();

@@ -1,231 +1,263 @@
 -- tabela 1 cadastro
 create database datacoffe;
-	
-	
+
 use datacoffe;
 
-create table cliente(
-idCliente INT PRIMARY KEY AUTO_INCREMENT,
-Produtor varchar(100)NOT NULL,
-Propriedade  varchar(100)NOT NULL,
-CNPJ char(14) NOT NULL,
-UF char(2) NOT NULL,
+create table Empresa(
+idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+razao_social VARCHAR(100)NOT NULL,
+cnpj char(14) NOT NULL,
+cep char(8) NOT NULL,
+uf char(2),
+cidade varchar(45),
+logradouro varchar(60),
+bairro varchar(45),
+numero int NOT NULL,
+complemento varchar(100),
 Email varchar(100) NOT NULL,
-Senha varchar(100) NOT NULL
+codigo_de_ativacao varchar(50) NOT NULL
 );
 
-    
-insert into cliente values
-(default,'José da Silva', 'Fazenda Boa Vista', '12345678000123', 'SP', 'jose.silva@example.com', 'senha123'),
-(default,'Maria de Souza', 'Sítio das Flores', '98765432000189', 'MG', 'maria.souza@example.com', 'senha456'),
-(default,'João Oliveira', 'Chácara Oliveira', '10293847560123', 'RS', 'joao.oliveira@example.com', 'senha789'),
-(default,'Ana Pereira', 'Fazenda Esperança', '56473829100145', 'PR', 'ana.pereira@example.com', 'senha101'),
-(default,'Carlos Lima', 'Fazenda Horizonte', '87654321000156', 'GO', 'carlos.lima@example.com', 'senha202');
+INSERT INTO Empresa (razao_social, cnpj, cep, uf, cidade, logradouro, bairro, numero, complemento, Email, codigo_de_ativacao) 
+VALUES 
+('FriezzaLTDA', '12345678000100', '12345678', 'SP', 'São Paulo', 'Rua das Flores', 'Centro', 100, 'Próximo ao metro', 'friezza@gmail.com', 'COD12345');
 
-SELECT * FROM cliente;
 
 create table usuario(
 	idUsuario int primary key auto_increment,
-    nomeUsuario varchar(45),
-    senha varchar(45),
-    fkCliente int,
-    fksupervisor int ,
-    constraint fksupervisorusuario foreign key (fksupervisor) references usuario(idUsuario), 
-    constraint fkClienteUsuario foreign key (fkCliente) references cliente(idCliente)
+    nome varchar(45),
+    dtNascimento date,
+    cpf char(11),
+    genero varchar(45),
+    email varchar(100),
+    senha varchar(100),
+    fkEmpresa int,
+    fkSupervisor int ,
+    constraint fkSupervisorusuario foreign key (fkSupervisor) references usuario(idUsuario), 
+    constraint fkEmpresaUsuario foreign key (fkEmpresa) references empresa(idEmpresa),
+    constraint chkGenero check (genero in ('Masculino', 'Feminino', 'Não Binario'))
     );
-    
-select * from usuario;
-    
-insert into usuario values
-(default,'Supervisor José', 'senhaJose', 1, NULL),
-(default,'Supervisor Maria', 'senhaMaria', 2, NULL);
-
-insert into usuario values 
-(default,'Usuario João', 'senhaJoao', 3, 1), 
-(default,'Usuario Ana', 'senhaAna', 4, 2),   
-(default,'Usuario Carlos', 'senhaCarlos', 5, 1);
-
+ INSERT INTO Usuario (nome, dtNascimento, cpf, genero, email, senha, fkEmpresa, fkSupervisor) 
+VALUES 
+('João Silva', '1990-01-01', '12345678901', 'Masculino', 'joao.silva@gmail.com', 'cafeDoBom', 1, NULL),
+('Maria Souza', '1992-05-15', '23456789012', 'Feminino', 'maria.souza@outlook.com', 'cafeDosDeuses', 1, 1),
+('Ana Pereira', '1988-08-22', '34567890123', 'Não Binario', 'ana.pereira@yahoo.com', 'cafeSaboroso', 1, 1);
 
 
 create table plantacao(
-	idPlantacao int primary key auto_increment not null,
-    hectares float,
+	idPlantacao int primary key auto_increment,
+    hectares decimal(10,2) not null,
     qtdPes int,
-    fkCliente int not null,
-    constraint fkClientePlantacao foreign key (fkCliente)
-    references cliente(idCliente)
+    fkEmpresa int not null,
+    constraint fkEmpresaPlantacao foreign key (fkEmpresa)
+    references empresa(idEmpresa)
     );
-    
-insert into plantacao values
-(default,1, 150.5, 12000),  
-(default,2, 200.0, 18000),  
-(default,3, 75.8, 9000),    
-(default,4, 300.3, 25000),  
-(default,5, 125.6, 15000);
 
-select * from plantacao;
+INSERT INTO Plantacao (hectares, qtdPes, fkEmpresa) 
+VALUES 
+(50.5, 1000, 1),
+(30.0, 800, 1);
+
 
 create table sensor(
 idSensor INT PRIMARY KEY AUTO_INCREMENT,
-modelo varchar(45),
-localizacao varchar(45),
-dtInstalacao date,
-fkPlantacao int,
+modelo VARCHAR(45) NOT NULL,
+setor VARCHAR(45),
+dtInstalacao DATE NOT NULL,
+fkPlantacao INT NOT NULL,
 constraint fkPlantacaoSensor foreign key (fkPlantacao) references plantacao(idPlantacao)
 );
 
+INSERT INTO Sensor (modelo, setor, dtInstalacao, fkPlantacao) 
+VALUES 
+('LM35', 'Setor Norte', '2024-01-01', 1),
+('Sensor de Umidade', 'Setor Norte', '2024-02-01', 1),
+('LM35', 'Setor Sul', '2024-01-01', 1),
+('Sensor de Umidade', 'Setor Sul', '2024-02-01', 1),
+('LM35', 'Setor Norte', '2024-01-01', 2),
+('Sensor de Umidade', 'Setor Norte', '2024-02-01', 2),
+('LM35', 'Setor Sul', '2024-01-01', 2),
+('Sensor de Umidade', 'Setor Sul', '2024-02-01', 2);
 
-insert into sensor (modelo, localizacao, dtInstalacao, fkPlantacao)
-values 
-('LM 35', 'Norte', '2023-03-15', 1),
-('Sensor de Umidade de Solo', 'Sul', '2023-04-10', 2),
-('LM 35', 'Leste', '2023-05-20', 3),
-('Sensor de Umidade de Solo', 'Oeste', '2023-06-05', 4),
-('LM 35', 'Centro', '2023-07-12', 5);
 
 
 create table registro(
-idRegistro int auto_increment,
+idRegistro INT,
 fkSensor int,
 constraint pkRegistro primary key (idRegistro, fkSensor),
-umidade float,
-temperatura float,
+registro decimal (4,2),
 dtRegistro datetime,
-fkKPI int,
-constraint fkKPIRegistro foreign key (fkKPI) references KPI(idKPI),
 constraint fkSensorRegistro foreign key (fkSensor) references sensor(idSensor)
 );
 
-select * from registro;
-	
-insert into registro values 
-(default,65.2, 28.5, '2023-09-01 08:30:00', 1),
-(default,70.1, 30.2, '2023-09-01 09:00:00', 2),
-(default,68.3, 29.8, '2023-09-01 09:30:00', 3),
-(default,72.0, 31.1, '2023-09-01 10:00:00', 4),
-(default,66.5, 27.9, '2023-09-01 10:30:00', 5);
+INSERT INTO Registro (idRegistro, fkSensor, registro, dtRegistro) 
+VALUES 
+(1, 1, 25.3, '2024-06-02 15:00:00'),  -- Registro de temperatura
+(2, 2, 60.5, '2024-06-02 15:00:00'),  -- Registro de umidade
+(3, 1, 24.8, '2024-06-02 16:00:00'),  -- Registro de temperatura
+(4, 2, 62.0, '2024-06-02 16:00:00'),  -- Registro de umidade
+(5, 3, 26.5, '2024-06-02 17:00:00'),  -- Registro de temperatura
+(6, 4, 59.3, '2024-06-02 17:00:00'),  -- Registro de umidade
+(7, 3, 27.1, '2024-06-02 18:00:00'),  -- Registro de temperatura
+(8, 4, 61.8, '2024-06-02 18:00:00');  -- Registro de umidade
 
 
-create table KPI(
-	idKPI int primary key auto_increment not null,
-	tipo varchar(45),
-    minimo decimal,
-    maximo decimal,
-	media decimal
-    );
-
-insert into KPI (tipo, minimo, maximo, media) values
-('Umidade Ideal', 60.0, 80.0, 70.0),
-('Temperatura Ideal', 25.0, 30.0, 27.5),
-('Umidade Crítica', 40.0, 59.9, 50.0),
-('Temperatura Crítica', 30.1, 35.0, 32.5),
-('Umidade Alta', 80.1, 100.0, 90.0);
-
-select * from KPI;
-
--- Mostrar dados das plantações e seus respectivos clientes:
-select 
-    c.Produtor, 
-    c.Propriedade, 
-    p.hectares, 
+SELECT 
+    e.razao_social AS Empresa,
+    p.hectares,
     p.qtdPes
-from 
-    cliente c
-join 
-    plantacao p on c.idCliente = p.fkCliente;
+FROM 
+    Empresa e
+JOIN 
+    Plantacao p ON e.idEmpresa = p.fkEmpresa;
     
     
- -- Mostrar sensores instalados em cada plantação com detalhes do cliente e localização do sensor:
-
-select 
-    c.Produtor, 
-    c.Propriedade, 
-    s.modelo, 
-    s.localizacao, 
-    s.dtInstalacao
-from 
-    cliente c
-join 
-    plantacao p on c.idCliente = p.fkCliente
-join 
-    sensor s on p.idPlantacao = s.fkPlantacao;
-
--- Mostrar registros de umidade e temperatura de cada sensor com informações da plantação e do cliente:
-
-select 
-    c.Produtor, 
-    c.Propriedade, 
-    s.modelo as ModeloSensor, 
-    r.umidade, 
-    r.temperatura, 
-    r.dtRegistro
-from 
-    cliente c
-join 
-    plantacao p on c.idCliente = p.fkCliente
-join 
-    sensor s on p.idPlantacao = s.fkPlantacao
-join 
-    registro r on s.idSensor = r.fkSensor;
-
--- Mostrar as plantações de cada cliente com detalhes do número de sensores instalados em cada plantação:
-select 
-    c.Produtor, 
-    c.Propriedade, 
-    p.hectares, 
-    count(s.idSensor) as qtdSensores
-from 
-    cliente c
-join 
-    plantacao p on c.idCliente = p.fkCliente
-left join 
-    sensor s on p.idPlantacao = s.fkPlantacao
-group by 
-    c.Produtor, c.Propriedade, p.hectares;
+SELECT 
+    e.razao_social AS Empresa,
+    p.hectares AS Hectares,
+    s.modelo AS ModeloSensor,
+    s.setor AS Setor,
+    s.dtInstalacao AS DataInstalacao
+FROM 
+    Empresa e
+JOIN 
+    Plantacao p ON e.idEmpresa = p.fkEmpresa
+JOIN 
+    Sensor s ON p.idPlantacao = s.fkPlantacao;
     
-    -- Mostrar os últimos registros de cada sensor para cada cliente:
     
-    select 
-    c.Produtor, 
-    c.Propriedade, 
-    s.modelo, 
-    r.umidade, 
-    r.temperatura, 
-    r.dtRegistro
-from 
-    cliente c
-join 
-    plantacao p on c.idCliente = p.fkCliente
-join 
-    sensor s on p.idPlantacao = s.fkPlantacao
-join 
-    registro r on s.idSensor = r.fkSensor
-where 
+    
+SELECT 
+    e.razao_social AS Empresa,
+    p.hectares AS Hectares,
+    s.modelo AS ModeloSensor,
+    r.registro AS ValorMedido,
+    r.dtRegistro AS DataRegistro
+FROM 
+    Empresa e
+JOIN 
+    Plantacao p ON e.idEmpresa = p.fkEmpresa
+JOIN 
+    Sensor s ON p.idPlantacao = s.fkPlantacao
+JOIN 
+    Registro r ON s.idSensor = r.fkSensor;
+    
+    
+SELECT 
+    e.razao_social AS Empresa,
+    p.hectares AS Hectares,
+    COUNT(s.idSensor) AS QuantidadeSensores
+FROM 
+    Empresa e
+JOIN 
+    Plantacao p ON e.idEmpresa = p.fkEmpresa
+LEFT JOIN 
+    Sensor s ON p.idPlantacao = s.fkPlantacao
+GROUP BY 
+    e.razao_social, p.hectares;
+
+
+SELECT 
+    e.razao_social AS Empresa,
+    p.hectares AS Hectares,
+    s.modelo AS ModeloSensor,
+    r.registro AS ValorMedido,
+    r.dtRegistro AS DataRegistro
+FROM 
+    Empresa e
+JOIN 
+    Plantacao p ON e.idEmpresa = p.fkEmpresa
+JOIN 
+    Sensor s ON p.idPlantacao = s.fkPlantacao
+JOIN 
+    Registro r ON s.idSensor = r.fkSensor
+WHERE 
     r.dtRegistro = (
-        select max(r2.dtRegistro) 
-        from registro r2 
-        where r2.fkSensor = s.idSensor
+        SELECT MAX(r2.dtRegistro) 
+        FROM Registro r2 
+        WHERE r2.fkSensor = s.idSensor
     );
+
+
+SELECT 
+    s.idSensor,
+    s.modelo AS ModeloSensor,
+    MAX(r.registro) AS TemperaturaMaxima,
+    MIN(r.registro) AS TemperaturaMinima
+FROM 
+    Sensor s
+JOIN 
+    Registro r ON s.idSensor = r.fkSensor
+WHERE 
+    s.modelo = 'LM35'
+GROUP BY 
+    s.idSensor;
     
-     -- Mostrar as plantações e sensores instalados para cada cliente com suas respectivas datas de instalação:
-select 
-    c.Produtor, 
-    c.Propriedade, 
-    p.hectares, 
-    s.modelo, 
-    s.localizacao, 
-    s.dtInstalacao
-from 
-    cliente c
-join 
-    plantacao p on c.idCliente = p.fkCliente
-join 
-    sensor s on p.idPlantacao = s.fkPlantacao
-order by 
-    s.dtInstalacao desc;
-select * from registro;
 
-show tables;
+SELECT 
+    s.idSensor,
+    s.modelo AS ModeloSensor,
+    MAX(r.registro) AS TemperaturaMaxima,
+    MIN(r.registro) AS TemperaturaMinima
+FROM 
+    Sensor s
+JOIN 
+    Registro r ON s.idSensor = r.fkSensor
+WHERE 
+    s.modelo = 'Sensor de Umidade'
+GROUP BY 
+    s.idSensor;
+    
+-- Registros de Temperatura para sensores LM35
+INSERT INTO Registro (idRegistro, fkSensor, registro, dtRegistro) VALUES 
+(9, 1, 24.5, '2024-06-02 19:00:00'),
+(10, 1, 25.2, '2024-06-02 20:00:00'),
+(11, 3, 26.1, '2024-06-02 15:00:00'),
+(12, 3, 24.8, '2024-06-02 16:00:00'),
+(13, 5, 23.9, '2024-06-02 17:00:00'),
+(14, 5, 25.5, '2024-06-02 18:00:00');
 
+-- Registros de Umidade para sensores de umidade
+INSERT INTO Registro (idRegistro, fkSensor, registro, dtRegistro) VALUES 
+(15, 2, 60.2, '2024-06-02 19:00:00'),
+(16, 2, 58.5, '2024-06-02 20:00:00'),
+(17, 4, 59.1, '2024-06-02 15:00:00'),
+(18, 4, 61.3, '2024-06-02 16:00:00'),
+(19, 6, 60.7, '2024-06-02 17:00:00'),
+(20, 6, 59.9, '2024-06-02 18:00:00');
+
+
+
+SELECT 
+    r.idRegistro,
+    r.fkSensor,
+    MAX(r.registro) AS TemperaturaMaxima,
+    MIN(r.registro) AS TemperaturaMinima,
+    dtRegistro
+FROM 
+    Registro r
+JOIN 
+    Sensor s ON r.fkSensor = s.idSensor
+WHERE 
+    s.modelo = 'LM35'
+GROUP BY 
+    r.idRegistro, r.fkSensor
+ORDER BY dtRegistro;
+
+SELECT 
+    r.idRegistro,
+    r.fkSensor,
+    MAX(r.registro) AS TemperaturaMaxima,
+    MIN(r.registro) AS TemperaturaMinima,
+    dtRegistro
+FROM 
+    Registro r
+JOIN 
+    Sensor s ON r.fkSensor = s.idSensor
+WHERE 
+    s.modelo = 'Sensor de umidade'
+GROUP BY 
+    r.idRegistro, r.fkSensor
+ORDER BY dtRegistro;
 
 
