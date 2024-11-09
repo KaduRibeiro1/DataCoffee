@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    <title>Landing Page | Data Coffee</title>
+</head>
+
+<body>
+    <header>
+        <ul class="navbar">
+            <img class="logo" src="./assets/img/logoSemFundo.png" alt="">
+            <li>
+                <a href="#home">Home</a>
+            </li>
+            <li>
+                <a href="#company_values">Nossos Objetivos</a>
+            </li>
+            <li>
+                <a href="#company_history">Nossa História</a>
+            </li>
+            <li>
+                <a href="#company_team">Equipe Institucional</a>
+            </li>
+            <li>
+                <a href="#company_contact">Contato</a>
+            </li>
+            <div class="conteiner_login_and_register">
+                <button class="button" id="login" onclick="window.location.href='./front-end/login.html'"
+                    target="_blank">Entre</button>
+                <button class="button" target="_blank"
+                    onclick="window.location.href='./front-end/cadastro/index.html'">Registre-se</button>
+            </div>
+        </ul>
+    </header>
+
+    <main>
+        <section id="home" class="conteiner_home">
+            <div class="conteiner_main_text">
+                <h1>Data Coffee</h1>
+                <h2>Transformando Grãos em Obras-Primas: <br> Precisão térmica para o <span>Café Perfeito</span></h2>
+                <button onclick="calculadoraFinanceira()" class="btn_see_more">CONFIRA MAIS</button>
+            </div>
+            <div class="conteiner_img">
+                <img src="assets/img/coffee-landing-transformed copy 1.png" class="conteiner_img_machine_coffe">
+            </div>
+        </section>
+        <section class="conteiner_purpose">
+            <h1>Somos Singularidade......</h1>
+            <div class="card_purpose">
+                <p>Nossa empresa combina tecnologia e paixão pelo café para garantir que cada grão conte sua história da
+                    melhor forma. Com sensores de monitoramento térmico, oferecemos mais do que equipamentos:
+                    proporcionamos qualidade, consistência e dedicação ao café.</p>
+                <img src="./assets/img/ilustracao-de-desenho-animado-de-cafe-desenhada-a-mao (1) 1.png" alt="">
+            </div>
+        </section>
+        <section id="company_values" class="conteiner_company_values">
+            <h1>Valores da Empresa</h1>
+            <div class="conteiner_cards">
+                <div class="card_values">
+                    <img src="./assets/img/cafe.png" alt="" class="cafe">
+                    <p>QUALIDADE</p>
+                </div>
+                <div class="card_values">
+                    <img src="./assets/img/cafe_sustentavel-removebg-preview 1.png" alt="">
+                    <p>SUSTENTABILIDADE</p>
+                </div>
+                <div class="card_values">
+                    <img src="./assets/img/DeWatermark.ai_1727059305200-removebg-preview 1.png" alt="">
+                    <p>COMUNIDADE</p>
+                </div>
+                <div class="card_values">
+                    <img src="./assets/img/fundo-retro-vintage-com-delicioso-cafe-preto_705862-5735-transformed-removebg-preview 1 (1).png"
+                        alt="">
+                    <p>AMOR PELO CAFÉ</p>
+                </div>
+            </div>
+        </section>
+        <section id="company_history" class="conteiner_company_history">
+            <h1>Nossa Historia</h1>
+            <h2>A Paixão pelo Café: Uma História de Conexões...</h2>
+            <div class="conteiner_company_objectives_main">
+                <img src="./assets/img/cafedamanhamae.png" alt="">
+                <p>Uma mãe, ao perceber que o sabor do café já não era o mesmo, fundou uma empresa focada no
+                    gerenciamento térmico do café. Usando tecnologia para monitorar a temperatura em cada etapa, ela
+                    conseguiu resgatar a essência e o sabor dos grãos. A empresa, movida pela paixão pelo café, ajudava
+                    outros amantes da bebida a aprimorar suas experiências. Com isso, a mãe transformou cada manhã em um
+                    momento de conexão e carinho, celebrando a volta do sabor que ela tanto amava.</p>
+            </div>
+        </section>
+        <section id="company_mission" class="conteiner_company_mission">
+            <h1>Nossos Objetivos</h1>
+            <div class="conteiner_company_mission_main">
+                <img src="./assets/img/menina_cafe_objetivo.svg" alt="">
+                <div class="conteiner_company_mission_main_text">
+                    <h3>Missão:</h3>
+                    <p>
+                        Ajudar produtores e torrefadores a preservar sabores e aromas únicos de café através de
+                        tecnologias avançadas de controle de temperatura.
+                    </p>
+                    <h3>Visão:</h3>
+                    <p>
+                        Ser a principal referência em excelência no mundo do café, promovendo práticas inovadoras e
+                        sustentáveis.
+                    </p>
+                    <h3>Valores:</h3>
+                    <ol>
+                        <li> Amor pelo café: Mais que uma bebida, o café é uma experiência cultural.</li>
+                        <li> Qualidade: Compromisso com a excelência em produtos e atendimento. </li>
+                        <li> Sustentabilidade: Respeito ao meio ambiente e apoio econômico aos produtores. </li>
+                        <li> Comunidade: Valorização do bem-estar dos agricultores e suas comunidades. </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+        <section id="company_team" class="conteiner_company_team">
+            <h1 class="conteiner_company_team_title">Nossa Equipe</h1>
+            <div class="conteiner_company_team_cardstop">
+                <div class="card">
+                    <div>
+                        <img src="./assets/img/user.svg" alt="" class="profile_img">
+                    </div>
+                    <div class="text_card">
+                        <h1>Ali</h1>
+                        <h2>Back-End Developer</h2>
+
+                        <a href="https://github.com/AliKadri2" target="_blank"><i class="bi bi-github"
+                                class="card_github_logo"></i></a>
+                        <a href="https://www.linkedin.com/in/ali-kadri-5b7b05266/" target="_blank"><i
+                                class="bi bi-linkedin" class="card_github_logo"></i></a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <img src="./assets/img/user.svg" alt="" class="profile_img">
+                    </div>
+                    <div class="text_card">
+                        <h1>Carlos Eduardo</h1>
+                        <h2>Back-End Developer</h2>
+                        <a href="https://github.com/KaduRibeiro1" target="_blank"><i class="bi bi-github"
+                                class="card_github_logo"></i></a>
+                        <a href="" target="_blank"><i class="bi bi-linkedin" class="card_github_logo"></i></a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <a href=""> <img src="./assets/img/user.svg" alt="" class="profile_img"></a>
+                    </div>
+                    <div class="text_card">
+                        <h1>Felipe</h1>
+                        <h2>Back-End Developer</h2>
+                        <a href="https://github.com/felipe-lim4" target="_blank"><i class="bi bi-github"
+                                class="card_github_logo"></i></a>
+                        <a href="https://www.linkedin.com/in/felipe-acbb/" target="_blank"><i class="bi bi-linkedin"
+                                class="card_github_logo"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="conteiner_company_team_cardsbottom">
+                <div class="card">
+                    <div>
+                        <img src="./assets/img/user.svg" alt="" class="profile_img">
+                    </div>
+                    <div class="text_card">
+                        <h1>Harison</h1>
+                        <h2>Front-End Developer</h2>
+                        <a href="https://github.com/HarisonRios" target="_blank"><i class="bi bi-github"
+                                class="card_github_logo"></i></a>
+                        <a href="https://www.linkedin.com/in/harisonrios/" target="_blank"><i class="bi bi-linkedin"
+                                class="card_github_logo"></i></a>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <img src="./assets/img/user.svg" alt="" class="profile_img">
+                    </div>
+                    <div class="text_card">
+                        <h1>João</h1>
+                        <h2>Full-Stack Developer</h2>
+                        <a href="https://github.com/JoaoGaldinoCunha" target="_blank"><i class="bi bi-github"
+                                class="card_github_logo"></i></a>
+                        <a href="https://www.linkedin.com/in/jo%C3%A3o-victor-galdino-cunha-47a0a32a9/"
+                            target="_blank"><i class="bi bi-linkedin" class="card_github_logo"></i></a>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <img src="./assets/img/user.svg" alt="" class="profile_img">
+                    </div>
+
+                    <div class="text_card">
+                        <h1>Rodrigo</h1>
+                        <h2>Front-End Developer</h2>
+                        <a href="https://github.com/Olivaresss" target="_blank"><i class="bi bi-github"
+                                class="card_github_logo"></i></a>
+                        <a href="https://www.linkedin.com/in/rodrigo-olivares-421a83265/" target="_blank"><i
+                                class="bi bi-linkedin" class="card_github_logo"></i></a>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container_review">
+            <div class="review">
+                <h1 class="conteiner_company_team_title">Avaliações</h1>
+            </div>
+            <div class="reviews">
+                <div class="box_review box_review_left">
+                    <img class="person_review" src="./assets/img/pessoa(1).svg" alt="">
+                    <p class="review_name">Isabela Santos</p>
+                    <p class="review_description"></p>
+                    <img class="sentence_review" src="./assets/img/virgula_comentario.svg" alt="">
+                    <p class="review_description_left">A tecnologia DataCoffee foi uma virada de jogo para nossa
+                        fazenda. Com os sensores de umidade e temperatura, conseguimos melhorar a qualidade do café e
+                        aumentar a produtividade. Simplesmente revolucionário! </p>
+                </div>
+                <div class="box_review box_review_mid">
+                    <img class="person_review" src="./assets/img/pessoa(2).svg" alt="">
+                    <p class="review_name">Mariana Oliveira</p>
+                    <p class="review_description"></p>
+                    <img class="sentence_review" src="./assets/img/virgula_comentario.svg" alt="">
+                    <p class="review_description_mid">Graças ao monitoramento preciso do DataCoffee, nossas safras
+                        alcançaram uma qualidade superior e conseguimos atingir uma maior valorização no mercado. Uma
+                        solução essencial para qualquer cafeicultor.</p>
+                </div>
+                <div class="box_review box_review_right">
+                    <img src="./assets/img/pessoa(3).svg" alt="">
+                    <p class="review_name">Ana Souza</p>
+                    <p class="review_description"></p>
+                    <img class="sentence_review" src="./assets/img/virgula_comentario.svg" alt="">
+                    <p class="review_description_right">O sistema DataCoffee nos proporcionou dados valiosos sobre
+                        nossas plantações. Com os dashboards intuitivos, tomamos decisões mais rápidas e eficientes,
+                        melhorando significativamente o retorno financeiro.</p>
+                </div>
+            </div>
+        </section>
+        <section id="company_contact" class="conteiner_company_contact">
+            <h1>Contate-nos</h1>
+
+            <div class="conteiner_company_contact_main">
+                <img src="./assets/img/Reserve Img.png" alt="">
+                <div class="conteiner_company_contact_inputs">
+                    <div class="InputContainer">
+                        <input placeholder="Nome" id="input" class="input" name="text" type="text" />
+
+                        <label class="labelforsearch" for="input">
+                            <img class="searchIcon" src="./assets/img/Email.png" alt="">
+                        </label>
+                    </div>
+                    <div class="InputContainer">
+                        <input placeholder="Email" id="input" class="input" name="text" type="text" />
+
+                        <label class="labelforsearch" for="input">
+                            <img class="searchIcon" src="./assets/img/Perfil.png" alt="">
+                        </label>
+                    </div>
+
+
+
+
+                    <textarea class="message_area" name="" id="" cols="30" rows="10" placeholder="Mensagem"></textarea>
+                    <button class="btn_post">ENVIAR</button>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+        <section class="container_localization">
+            <div class="container_localization_main" id="mapa">
+                <h1 class="conteiner_company_team_title">Onde estamos localizados?</h1>
+                <p class="conteiner_company_team_title">Rua Haddock Lobo, 595 - Cerqueira César, São Paulo -
+                    SP,01414-001</p>
+            </div>
+
+        </section>
+
+        <footer>
+            <div class="footer_logo">
+                <img src="./assets/img/logoSemFundo 2.svg" class="datacoffe_logo" alt="" id="logo">
+            </div>
+
+
+            <div class="footer_mid">
+                <div class="footer_mid_cookies">
+                    <a href="">Termos de Serviço</a>
+                    <a href="">Configurações de Cookies</a>
+                    <a href="">Política de Privacidade</a>
+                </div>
+                <div class="footer_mid_service_rights">
+                    <p>© 2024 DataCoffee. Todos os direitos reservados - SPTECH</p>
+                </div>
+            </div>
+
+
+            <div class="footer_icons">
+                <i class="bi bi-linkedin"></i>
+                <i class="bi bi-github"></i>
+                <i class="bi bi-instagram"></i>
+                <i class="bi bi-twitter-x"></i>
+            </div>
+        </footer>
+    </main>
+</body>
+
+</html>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+
+<script>
+    document.getElementById('mapa').addEventListener("click", function () {
+        window.location.href = "https://www.google.com.br/maps/place/Rua+Haddock+Lobo,+595+-+Cerqueira+C%C3%A9sar,+S%C3%A3o+Paulo+-+SP,+01414-001/@-23.558092,-46.6616751,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce59d2a5270055:0x3c7ea4f4c7d51fb6!8m2!3d-23.558092!4d-46.6616751!16s%2Fg%2F11b8v86f6p?entry=ttu&g_ep=EgoyMDI0MTAwOS4wIKXMDSoASAFQAw%3D%3D"
+    })
+
+    document.getElementById('logo').addEventListener("click", function () {
+        window.location.href = "#home"
+    })
+
+
+    let lastScrollTop = 0;
+    const navbar = document.querySelector(".navbar");
+
+    window.addEventListener("scroll", function () {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+
+            navbar.style.top = "-80px";
+        } else {
+
+            navbar.style.top = "0";
+        }
+        lastScrollTop = scrollTop;
+    });
+
+    function calculadoraFinanceira() {
+        window.location.href = "../../Calculadora/indexCoffe2.0.html"
+    }
+
+
+</script>
