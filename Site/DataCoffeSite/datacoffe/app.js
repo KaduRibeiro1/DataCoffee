@@ -37,18 +37,28 @@ app.use("/empresas", empresasRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
+ 
 
-        
-                        DDDDD   AAAAA  TTTTT  AAAAA  CCCCC  OOO  FFFFF  FFFFF  EEEEE
-                        D   D  A     A   T   A     A C      O   O F      F      E
-                        D   D  AAAAAAA   T   AAAAAAA C      O   O FFFF   FFFF   EEEE
-                        D   D  A     A   T   A     A C      O   O F      F      E
-                        DDDDD  A     A   T   A     A CCCCC  OOO  F      F      EEEEE
-
-    \n\n\n                                                                                                 
-    Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar .: http://${HOST_APP}:${PORTA_APP} :. \n\n
-    Você está rodando sua aplicação em ambiente de .:${process.env.AMBIENTE_PROCESSO}:. \n\n
-    \tSe .:desenvolvimento:. você está se conectando ao banco local. \n
-    \tSe .:producao:. você está se conectando ao banco remoto. \n\n
-    \t\tPara alterar o ambiente, comente ou descomente as linhas 1 ou 2 no arquivo 'app.js'\n\n`);
+    ██████   █████  ████████  █████       ██████  ██████  ███████ ███████ ███████ ███████ 
+    ██   ██ ██   ██    ██    ██   ██     ██      ██    ██ ██      ██      ██      ██      
+    ██   ██ ███████    ██    ███████     ██      ██    ██ █████   █████   █████   █████   
+    ██   ██ ██   ██    ██    ██   ██     ██      ██    ██ ██      ██      ██      ██      
+    ██████  ██   ██    ██    ██   ██      ██████  ██████  ██      ██      ███████ ███████ 
+                                                                                                                                                               
+    \n
+    ☕️ Servidor iniciado com sucesso! Seu cafezinho está pronto para ser servido! ☕️
+    ☕ Saboreie sua experiência Data Coffee! Acesse agora e descubra os melhores grãos: http://${HOST_APP}:${PORTA_APP} ☕\n\n 
+    Você está operando em um ambiente: ${process.env.AMBIENTE_PROCESSO}.\n\n
+    - 🟢 Se for desenvolvimento, você está moendo os grãos localmente. 
+    - 🔴 Se for produção, é hora de levar seu café para o mundo! 
+    Para ajustar seu ambiente, edite o arquivo 'app.js'.\n\n
+    Vamos juntos criar a melhor experiência para os amantes de café! ☕\n\n`);
 });
+
+
+
+
+
+    
+                                        
+
