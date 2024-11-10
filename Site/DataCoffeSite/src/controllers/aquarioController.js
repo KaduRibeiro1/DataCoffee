@@ -20,6 +20,7 @@ function buscarPlantacoesPorEmpresa(req, res) {
   var idUsuario = req.params.idUsuario;
 
   aquarioModel.buscarPlatacoesPorEmpresa(idUsuario).then((resultado) => {
+    console.log("Resultados encontrados:", resultado); 
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } else {

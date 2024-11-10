@@ -91,17 +91,6 @@
     return false;
   }
 
-  const customSwal = (message) => {
-    return Swal.fire({
-      text: message,
-      background: '#F7E1BC',
-      color: '#4A2721',
-      confirmButtonColor: '#4A2721',
-      customClass: {
-        popup: 'sweetalert-custom-popup',
-      }
-    });
-  };
 
   function MaskCNPJ() {
     let cpf = input_cpf.value;
@@ -127,31 +116,108 @@
 
 
     if (nomeVar === "" || cpfVar === "" || dtNascVar === "" || generoVar === "selecione" || emailVar === "" || senhaVar === "" || confirmarSenha === "" || idEmpresaVincular === "") {
-      return customSwal("Há campos vazios! Preencha-os para prosseguir.");
+       Swal.fire({
+        title: "Ops!",
+        text: "Por favor, preencha todos os campos.",
+        icon: "error",
+        width: 350,
+        padding: "2em",
+        color: "#4e3629",
+        background: "#f7f0e1",
+        backdrop: `rgba(78, 54, 41, 0.8)`,
+        confirmButtonText: 'Ok',
+        confirmButtonColor: '#4e3629',
+      });
     }
 
     if (cpfVar.length !== 11) {
-      return customSwal("O número de caracteres no CPF deve ser 11.");
+      Swal.fire({
+        title: "Ops!",
+        text: "O número de caracteres no CPF deve ser 11.",
+        icon: "error",
+        width: 350,
+        padding: "2em",
+        color: "#4e3629",
+        background: "#f7f0e1",
+        backdrop: `rgba(78, 54, 41, 0.8)`,
+        confirmButtonText: 'Ok',
+        confirmButtonColor: '#4e3629',
+      });
     }
 
     if (emailVar.indexOf("@") === -1) {
-      return customSwal("É necessário inserir o @. Preencha-o para prosseguir.");
+      Swal.fire({
+        title: "Ops!",
+        text: "É necessário inserir o @. Preencha-o para prosseguir.",
+        icon: "error",
+        width: 350,
+        padding: "2em",
+        color: "#4e3629",
+        background: "#f7f0e1",
+        backdrop: `rgba(78, 54, 41, 0.8)`,
+        confirmButtonText: 'Ok',
+        confirmButtonColor: '#4e3629',
+      });
     }
 
     if (containsInvalidCharacters(emailVar)) {
-      return customSwal("Caracteres inválidos. Remova-os para prosseguir.");
+      Swal.fire({
+        title: "Ops!",
+        text: "Caracteres inválidos. Remova-os para prosseguir.",
+        icon: "error",
+        width: 350,
+        padding: "2em",
+        color: "#4e3629",
+        background: "#f7f0e1",
+        backdrop: `rgba(78, 54, 41, 0.8)`,
+        confirmButtonText: 'Ok',
+        confirmButtonColor: '#4e3629',
+      });
     }
 
     if (senhaVar.length > 45) {
-      return customSwal("O valor máximo de caracteres é 45.");
+      Swal.fire({
+        title: "Ops!",
+        text: "O valor máximo de caracteres é 45.",
+        icon: "error",
+        width: 350,
+        padding: "2em",
+        color: "#4e3629",
+        background: "#f7f0e1",
+        backdrop: `rgba(78, 54, 41, 0.8)`,
+        confirmButtonText: 'Ok',
+        confirmButtonColor: '#4e3629',
+      });
     }
 
     if (senhaVar.length < 7) {
-      return customSwal("O valor mínimo de caracteres na senha é 7.");
+      Swal.fire({
+        title: "Ops!",
+        text: "O valor mínimo de caracteres na senha é 7.",
+        icon: "error",
+        width: 350,
+        padding: "2em",
+        color: "#4e3629",
+        background: "#f7f0e1",
+        backdrop: `rgba(78, 54, 41, 0.8)`,
+        confirmButtonText: 'Ok',
+        confirmButtonColor: '#4e3629',
+      });
     }
 
     if (confirmarSenha !== senhaVar) {
-      return customSwal("As senhas não coincidem. Por favor, verifique e tente novamente.");
+      Swal.fire({
+        title: "Ops!",
+        text: "O valor mínimo de caracteres na senha é 7.",
+        icon: "error",
+        width: 350,
+        padding: "2em",
+        color: "#4e3629",
+        background: "#f7f0e1",
+        backdrop: `rgba(78, 54, 41, 0.8)`,
+        confirmButtonText: 'Ok',
+        confirmButtonColor: '#4e3629',
+      });
     }
 
 
@@ -163,8 +229,18 @@
         console.log("Código de ativação válido.");
         break;
       } else {
-        customSwal("Código de ativação inválido."); // Alterado para customSwal
-        return false;
+        Swal.fire({
+        title: "Ops!",
+        text: "Código de ativação inválido.",
+        icon: "error",
+        width: 350,
+        padding: "2em",
+        color: "#4e3629",
+        background: "#f7f0e1",
+        backdrop: `rgba(78, 54, 41, 0.8)`,
+        confirmButtonText: 'Ok',
+        confirmButtonColor: '#4e3629',
+      });
       }
     }
 
@@ -191,7 +267,18 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          customSwal("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+          Swal.fire({
+            title: "Cadastro realizado com sucesso! ",
+            text: "Redirecionando para tela de Login...",
+            icon: "success",
+            width: 350,
+            padding: "2em",
+            color: "#4e3629",
+            background: "#f7f0e1",
+            backdrop: `rgba(78, 54, 41, 0.8)`,
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#4e3629',
+          });
           setTimeout(() => {
             window.location = "login.html";
           }, 2000);

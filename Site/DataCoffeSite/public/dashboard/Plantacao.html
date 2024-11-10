@@ -40,7 +40,7 @@
 
     <div id="nav-footer">
       <div id="nav-footer-heading">
-        <div id="nav-footer-avatar"><img src="../../assets/img/icon.png" /></div>
+        <div id="nav-footer-avatar"><img src="../assets/img/icon.png" /></div>
         <div id="nav-footer-titlebox">DataCoffee<span id="nav-footer-subtitle">Administrador</span></div>
         <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
       </div>
@@ -61,17 +61,23 @@
 
 <script>
 
-        JSON.parse(sessionStorage.PLANTACOES).forEach(item => {
+console.log(sessionStorage.PLANTACOES);
 
-            document.getElementById("container").innerHTML += `
-                    <div class="plantacao-container">
-        <div onclick="dashboard()" class="plantacao funcionando">
-          <i class="fas fa-seedling"></i>
-          <span>Plantacao ${item.idPlantacao}</span>
-          Sensor Instalado<br> <strong>Status: Funcionando</strong>
-        </div>
-                    `
-        });
+if (sessionStorage.PLANTACOES) {
+    JSON.parse(sessionStorage.PLANTACOES).forEach(item => {
+        document.getElementById("container").innerHTML += `
+            <div class="plantacao-container">
+                <div onclick="dashboard()" class="plantacao funcionando">
+                    <i class="fas fa-seedling"></i>
+                    <span>Plantacao ${item.idPlantacao}</span>
+                    Sensor Instalado<br> <strong>Status: Funcionando</strong>
+                </div>
+            </div>`;
+    });
+} else {
+    console.warn("Nenhuma plantação encontrada no sessionStorage.");
+}
+
 
   
     
