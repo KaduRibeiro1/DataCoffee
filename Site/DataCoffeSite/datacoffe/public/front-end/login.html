@@ -109,99 +109,129 @@
         </div>
       </div>
     </section>
+    <div id="div_aguardar" style="display: none;">
+      <p>...</p>
+  </div>
   </body>
 </html>
 <script>
-  function containsInvalidCharacters(str) {
-    const invalidChars = "#%&*!(){}[]<>/\\|^~`";
+  function aguardar() {
+      var divAguardar = document.getElementById("div_aguardar");
+      divAguardar.style.display = "flex";
+  }
 
-    for (let i = 0; i < str.length; i++) {
-      if (invalidChars.indexOf(str[i]) !== -1) {
-        return true;
+  function finalizarAguardar(texto) {
+      var divAguardar = document.getElementById("div_aguardar");
+      divAguardar.style.display = "none";
+
+      if (texto) {
+          Swal.fire({
+              title: "Erro",
+              text: texto,
+              icon: "error",
+              width: 400,
+              padding: "2em",
+              color: "#4e3629",  
+              background: "#f7f0e1", 
+              backdrop: `rgba(78, 54, 41, 0.8)`, 
+              confirmButtonText: 'Ok',
+              confirmButtonColor: '#4e3629',
+          });
       }
-    }
-    return false;
   }
+
   function entrar() {
+      event.preventDefault();
+      if (typeof aguardar === "function") aguardar();
 
-    const customSwal = (message) => {
-      return Swal.fire({
-        text: message,
-        background: "#F7E1BC",
-        color: "#4A2721",
-        confirmButtonColor: "#4A2721",
-        customClass: {
-          popup: "sweetalert-custom-popup",
-        },
+      var emailVar = document.getElementById("email_input").value;
+      var senhaVar = document.getElementById("senha_input").value;
+
+      if (emailVar == "" || senhaVar == "") {
+          Swal.fire({
+              title: "Ops!",
+              text: "Por favor, preencha todos os campos.",
+              icon: "error",
+              width: 350,
+              padding: "2em",
+              color: "#4e3629",  
+              background: "#f7f0e1", 
+              backdrop: `rgba(78, 54, 41, 0.8)`, 
+              confirmButtonText: 'Ok',
+              confirmButtonColor: '#4e3629', 
+          });
+          if (typeof finalizarAguardar === "function") finalizarAguardar();
+          return;
+      }
+
+      fetch("/usuarios/autenticar", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+              emailServer: emailVar,
+              senhaServer: senhaVar
+          })
+      }).then(function (resposta) {
+          if (resposta.ok) {
+              resposta.json().then(json => {
+                  sessionStorage.EMAIL_USUARIO = json.email;
+                  sessionStorage.NOME_USUARIO = json.nome;
+                  sessionStorage.ID_USUARIO = json.id;
+                  sessionStorage.AQUARIOS = JSON.stringify(json.aquarios);
+
+                  Swal.fire({
+                      title: "Login realizado com sucesso!",
+                      text: "Redirecionando para o dashboard...",
+                      icon: "success",
+                      width: 350,
+                      padding: "2em",
+                      color: "#4e3629",  
+                      background: "#f7f0e1", 
+                      backdrop: `rgba(78, 54, 41, 0.8)`, 
+                      confirmButtonText: 'Ok',
+                      confirmButtonColor: '#4e3629', 
+                  });
+
+                  setTimeout(function () {
+                     window.location = "./pagesDashboard/Plantacao.html";
+                  }, 1000);
+              });
+          } else {
+              resposta.text().then(texto => {
+                  Swal.fire({
+                      title: "Ops!",
+                      text: texto,
+                      icon: "error",
+                      width: 350,
+                      padding: "2em",
+                      color: "#4e3629", 
+                      background: "#f7f0e1", 
+                      backdrop: `rgba(78, 54, 41, 0.8)`, 
+                      confirmButtonText: 'Ok',
+                      confirmButtonColor: '#4e3629', 
+                  });
+                  if (typeof finalizarAguardar === "function") finalizarAguardar();
+              });
+          }
+
+      }).catch(function (erro) {
+          Swal.fire({
+              title: "Erro",
+              text: "Não foi possível conectar ao servidor.",
+              icon: "error",
+              width: 350,
+              padding: "2em",
+              color: "#4e3629",  
+              background: "#f7f0e1", 
+              backdrop: `rgba(78, 54, 41, 0.8)`, 
+              confirmButtonText: 'Ok',
+              confirmButtonColor: '#4e3629', 
+          });
+          if (typeof finalizarAguardar === "function") finalizarAguardar();
       });
-    };
-
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-
-    if (emailVar == "" || senhaVar == "") {
-      return customSwal("Há campos vazios! Preencha-os para prosseguir.");
-
-    } else if (emailVar.indexOf("@") == -1) {
-      return customSwal(
-        "É necessário inserir o @. Preencha-o para prosseguir."
-      );
-
-    } else if (containsInvalidCharacters(emailVar)) {
-      return customSwal("Caracteres inválidos. Remova-os para prosseguir.");
     }
 
-    console.log("FORM LOGIN: ", emailVar);
-    console.log("FORM SENHA: ", senhaVar);
 
-    fetch("/usuarios/autenticar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-      }),
-    })
-      .then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!");
-
-        if (resposta.ok) {
-          console.log(resposta);
-
-          resposta.json().then((json) => {
-            console.log(json);
-            console.log(JSON.stringify(json));
-            sessionStorage.EMAIL_USUARIO = json.email;
-            sessionStorage.NOME_USUARIO = json.nome;
-            sessionStorage.ID_USUARIO = json.idUsuario;
-            sessionStorage.PLANTACOES = JSON.stringify(json.plantacao);
-            console.log("Session Storage:", sessionStorage);
-
-            setTimeout(function () {
-              console.log("Redirecionando para Plantacao.html...");
-              window.location = "./pagesDashboard/Plantacao.html";
-              console.log("entrou");
-
-            }, 1000); // apenas para exibir o loading
-          });
-        } else {
-          console.log("Houve um erro ao tentar realizar o login!");
-
-          resposta.text().then((texto) => {
-            console.error(texto);
-          });
-        }
-      })
-      .catch(function (erro) {
-        console.log(erro);
-      });
-
-    return false;
-  }
-
-  // function sumirMensagem() {
-  //   cardErro.style.display = "none";
-  // }
 </script>

@@ -59,7 +59,7 @@
 
       <div class="input-group">
         <div>
-          <label class="label">Código de Autenticação</label>
+          <label class="label">Código da Sua Empresa</label>
           <input autocomplete="off" placeholder="Ex: A1B2C3" class="input" type="password"
             id="input_codigoAutenticacao">
         </div>
@@ -132,15 +132,15 @@
       return customSwal("Há campos vazios! Preencha-os para prosseguir.");
     }
 
-    if (cpfVar.length !== 14) {
-      return customSwal("O número de caracteres no CPF deve ser 14.");
+    if (cpfVar.length !== 11) {
+      return customSwal("O número de caracteres no CPF deve ser 11.");
     }
 
     if (emailVar.indexOf("@") === -1) {
       return customSwal("É necessário inserir o @. Preencha-o para prosseguir.");
     }
 
-    if (containsInvalidCharacters(email)) {
+    if (containsInvalidCharacters(emailVar)) {
       return customSwal("Caracteres inválidos. Remova-os para prosseguir.");
     }
 
@@ -197,15 +197,12 @@
           setTimeout(() => {
             window.location = "login.html";
           }, 2000);
-          limparFormulario();
-          finalizarAguardar();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
       });
 
     return false;
