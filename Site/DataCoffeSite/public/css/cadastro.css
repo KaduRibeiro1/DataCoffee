@@ -198,19 +198,31 @@ h5 {
 }
 
 
-.link  {
+
+/* ESSE A AQUI É O "JÁ TEM CONTA" */
+
+a {
   cursor: pointer;
   margin-top: 15px;
-  color: #F7E1BC;
+  color: #F7E1BC; 
   opacity: 0.8;
   text-decoration: none;
   transition: 0.3s;
   font-size: 0.8rem;
 }
 
-.link:hover {
-  opacity: 5;
-  color: #ffffff;
+a:hover {
+  opacity: 1;
+  color: #ffffff; 
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 
                4px 4px 10px rgba(62, 40, 31, 0.5);
+}
+
+a:focus {
+  outline: none;
+}
+
+a:visited {
+  color: #F7E1BC; 
+  text-decoration: none;
 }

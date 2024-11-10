@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="assets/img/logoSemFundo.png" type="image/x-icon">
-  <link rel="stylesheet" href="../../css/cadastro.css">
+  <link rel="stylesheet" href="css/cadastro.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <title>Cadastro de Usuário | Data Coffee</title>
 </head>
@@ -73,9 +73,7 @@
         <button type="button" onclick="cadastrar()">Continuar</button>
       </div>
 
-      <div class="link">
-        <a onclick="window.location.href='../login/index.html'">Já tem uma conta?</a>
-      </div>
+        <a href="login.html">Já tem uma conta?</a>
 
     </form>
   </section>
@@ -232,85 +230,3 @@
 
 
 
-
-
-
-
-<!-- 
-
-
-Esse aqui é o script original antes do DATAVIZ, 
-porfavor não apagar, caso de alguma coisa de errado, a gente tem um backup 
-  -- Hari
- 
- function containsInvalidCharacters(str) {
-    const invalidChars = "#%&*!(){}[]<>/\\|^~`";
-    for (let i = 0; i < str.length; i++) {
-        if (invalidChars.indexOf(str[i]) !== -1) {
-            return true;
-        }
-    }
-    return false;
-}
-
-const customSwal = (message) => {
-    return Swal.fire({
-        text: message,
-        background: '#F7E1BC',
-        color: '#4A2721',
-        confirmButtonColor: '#4A2721',
-        customClass: {
-            popup: 'sweetalert-custom-popup',
-        }
-    });
-};
-
-function MaskCNPJ() {
-    let cpf = input_cpf.value;
-    if (cpf.length === 3 || cpf.length === 7) {
-        input_cpf.value = cpf + ".";
-    } else if (cpf.length === 11) {
-        input_cpf.value = cpf + "-";
-    }
-}
-
-function Register() {
-    var nome = input_nomeCompleto.value;
-    var cpf = input_cpf.value.replace(/\D/g, '');
-    var dtNasc = input_dtNasc.value;
-    var genero = select_genero.value;
-    var email = input_emailUsuário.value;
-    var senha = input_senhaUsuario.value;
-    var confirmarSenha = input_confirmarSenha.value;
-    var autenticacao = input_codigoAutenticacao.value;
-
-    if (nome === "" || cpf === "" || dtNasc === "" || genero === "selecione" || email === "" || senha === "" || confirmarSenha === "" || autenticacao === "") {
-        return customSwal("Há campos vazios! Preencha-os para prosseguir.");
-    }
-
-    if (cpf.length !== 14) {
-        return customSwal("O número de caracteres no CPF deve ser 14.");
-    }
-
-    if (email.indexOf("@") === -1) {
-        return customSwal("É necessário inserir o @. Preencha-o para prosseguir.");
-    }
-
-    if (containsInvalidCharacters(email)) {
-        return customSwal("Caracteres inválidos. Remova-os para prosseguir.");
-    }
-
-    if (senha.length > 45) {
-        return customSwal("O valor máximo de caracteres é 45.");
-    }
-
-    if (senha.length < 7) {
-        return customSwal("O valor mínimo de caracteres na senha é 7.");
-    }
-
-    if (confirmarSenha !== senha) {
-        return customSwal("As senhas não coincidem. Por favor, verifique e tente novamente.");
-    }
-
-    window.location.href = "../../Backend/index.html";
-} -->

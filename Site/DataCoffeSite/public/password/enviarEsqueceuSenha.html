@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/enviarEsqueceuSenha.css">
     <title>Login | Data Coffe</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -14,7 +14,7 @@
 <body>
     <section>
         <div class="container">
-            <a href="../../index.html"><img src="../../assets/img/logoSemFundo 2.svg" alt="Logo - DataCoffe"
+            <a href="../cadastro.html"><img src="../assets/img/logoSemFundo.svg" alt="Logo - DataCoffe"
                     class="logo"></a>
             <h1>Esqueceu Senha?</h1>
             <form action="#">
@@ -30,7 +30,7 @@
                     recuperação</button>
             </div>
             <div class="link">
-                <a href="../../cadastro/index.html">Ainda não tem uma conta? Cadastre-se gratuitamente</a>
+                <a href="../cadastro.html">Ainda não tem uma conta? Cadastre-se gratuitamente</a>
             </div>
         </div>
     </section>
@@ -48,7 +48,7 @@ function SendRecoveryLink() {
     } else if (containsInvalidCharacters(email)) {
         return customSwal("Caracteres inválidos. Remova-os para prosseguir.");
     } else {
-            window.location.href = "../../conteudoEsqueceuSenha/PageCodVerificação/index.html";
+            window.location.href = "codVerificacao.html";
     }
 }
 
