@@ -2,147 +2,174 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>AquaTech | Cadastro</title>
-
-  <script src="./js/sessao.js"></script>
-
-  <link rel="stylesheet" href="./css/estilo.css" />
-  <link rel="icon" href="./assets/icon/favicon2.ico" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="assets/img/logoSemFundo.png" type="image/x-icon">
+  <link rel="stylesheet" href="../../css/cadastro.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <title>Cadastro de Usuário | Data Coffee</title>
 </head>
 
-<body onload="listar()">
-  <!--header inicio-->
-  <div class="header">
-    <div class="container">
-      <h1 class="titulo">AquaTech</h1>
-      <ul class="navbar">
-        <li>
-          <a href="index.html">Inicial</a>
-        </li>
-        <li>
-          <a href="simulador.html">Simulador</a>
-        </li>
-        <li>|</li>
-        <li>
-          <a href="login.html">Login</a>
-        </li>
-        <li class="agora">
-          <a href="#">Cadastro</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <!--header fim-->
-
-  <div class="login">
-    <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
-      </div>
-    </div>
-    <div class="container">
-      <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
-        <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-          <div class="campo">
-            <span>Código de ativação:</span>
-            <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
-          </div>
-          <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
-          </div>
-          <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-          </div>
-          <div class="campo">
-            <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" />
-          </div>
-          <div class="campo">
-            <span>Confirmação da Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="******" />
-          </div>
-          <button class="botao" onclick="cadastrar()">Cadastrar</button>
+<body>
+  <section class="container">
+    <img src="assets/img/logoSemFundo.png" alt="Logo - DataCoffe"
+      onclick="window.location.href='../../index.html'" class="logo">
+    <h1>Cadastro de Usuário</h1>
+    <form action="#">
+      <div class="input-group">
+        <div>
+          <label class="label">Nome Completo</label>
+          <input autocomplete="off" placeholder="Nome Completo" class="input" type="text" id="input_nomeCompleto">
         </div>
-        <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
+        <div>
+          <label class="label">CPF</label>
+          <input autocomplete="off" maxlength="14" placeholder="123.456.789-01" class="input" type="text" id="input_cpf"
+            onkeyup="MaskCNPJ()">
+        </div>
+      </div>
+
+      <div class="input-group">
+        <div>
+          <label class="label">Data de Nascimento</label>
+          <input autocomplete="off" placeholder="01/01/2000" class="input" type="date" id="input_dtNasc">
+        </div>
+        <div>
+          <label class="label">Gênero</label>
+          <select class="input" id="select_genero">
+            <option value="selecione" selected disabled>Selecione</option>
+            <option value="masculino">Masculino</option>
+            <option value="feminino">Feminino</option>
+            <option value="nao_binario">Não Binário</option>
+          </select>
         </div>
 
-        <div id="div_erros_login"></div>
       </div>
-    </div>
-  </div>
+      <div class="input-group">
+        <div>
+          <label class="label">Email</label>
+          <input autocomplete="off" placeholder="user@email.com" class="input" type="text" id="input_emailUsuário">
+        </div>
+        <div>
+          <label class="label">Senha</label>
+          <input autocomplete="off" placeholder="********" class="input" type="password" id="input_senhaUsuario">
+        </div>
 
-  <!--footer inicio-->
-  <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-      <span class="version">v1.0.0</span>
-    </div>
-  </div>
-  <!--footer fim-->
+      </div>
+
+      <div class="input-group">
+        <div>
+          <label class="label">Código da Sua Empresa</label>
+          <input autocomplete="off" placeholder="Ex: A1B2C3" class="input" type="password"
+            id="input_codigoAutenticacao">
+        </div>
+        <div>
+          <label class="label">Confirmar senha</label>
+          <input autocomplete="off" placeholder="********" class="input" type="password" id="input_confirmarSenha">
+        </div>
+      </div>
+
+      <div class="conteudo">
+        <button type="button" onclick="cadastrar()">Continuar</button>
+      </div>
+
+      <div class="link">
+        <a onclick="window.location.href='../login/index.html'">Já tem uma conta?</a>
+      </div>
+
+    </form>
+  </section>
 </body>
 
 </html>
-
 <script>
+  function containsInvalidCharacters(str) {
+    const invalidChars = "#%&*!(){}[]<>/\\|^~`";
+    for (let i = 0; i < str.length; i++) {
+      if (invalidChars.indexOf(str[i]) !== -1) {
+        return true;
+      }
+    }
+    return false;
+  }
 
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
+  const customSwal = (message) => {
+    return Swal.fire({
+      text: message,
+      background: '#F7E1BC',
+      color: '#4A2721',
+      confirmButtonColor: '#4A2721',
+      customClass: {
+        popup: 'sweetalert-custom-popup',
+      }
+    });
+  };
+
+  function MaskCNPJ() {
+    let cpf = input_cpf.value;
+    if (cpf.length === 3 || cpf.length === 7) {
+      input_cpf.value = cpf + ".";
+    } else if (cpf.length === 11) {
+      input_cpf.value = cpf + "-";
+    }
+  }
+
+
   let listaEmpresasCadastradas = [];
 
   function cadastrar() {
-    // aguardar();
+    var nomeVar = input_nomeCompleto.value;
+    var cpfVar = input_cpf.value.replace(/\D/g, '');
+    var dtNascVar = input_dtNasc.value;
+    var generoVar = select_genero.value;
+    var emailVar = input_emailUsuário.value;
+    var senhaVar = input_senhaUsuario.value;
+    var confirmarSenha = input_confirmarSenha.value;
+    var idEmpresaVincular = input_codigoAutenticacao.value;
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
-    var idEmpresaVincular
 
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      codigoVar == ""
-    ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
+    if (nomeVar === "" || cpfVar === "" || dtNascVar === "" || generoVar === "selecione" || emailVar === "" || senhaVar === "" || confirmarSenha === "" || idEmpresaVincular === "") {
+      return customSwal("Há campos vazios! Preencha-os para prosseguir.");
     }
+
+    if (cpfVar.length !== 11) {
+      return customSwal("O número de caracteres no CPF deve ser 11.");
+    }
+
+    if (emailVar.indexOf("@") === -1) {
+      return customSwal("É necessário inserir o @. Preencha-o para prosseguir.");
+    }
+
+    if (containsInvalidCharacters(emailVar)) {
+      return customSwal("Caracteres inválidos. Remova-os para prosseguir.");
+    }
+
+    if (senhaVar.length > 45) {
+      return customSwal("O valor máximo de caracteres é 45.");
+    }
+
+    if (senhaVar.length < 7) {
+      return customSwal("O valor mínimo de caracteres na senha é 7.");
+    }
+
+    if (confirmarSenha !== senhaVar) {
+      return customSwal("As senhas não coincidem. Por favor, verifique e tente novamente.");
+    }
+
+
 
     // Verificando se o código de ativação é de alguma empresa cadastrada
     for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
       if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
+        idEmpresaVincular = listaEmpresasCadastradas[i].id;
         console.log("Código de ativação válido.");
         break;
       } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
+        customSwal("Código de ativação inválido."); // Alterado para customSwal
+        return false;
       }
     }
+
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -154,6 +181,9 @@
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
+        cpfServer: cpfVar,
+        dtNascServer: dtNascVar,
+        generoServer: generoVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
         idEmpresaVincularServer: idEmpresaVincular
@@ -163,30 +193,22 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
+          customSwal("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
           setTimeout(() => {
             window.location = "login.html";
-          }, "2000");
-
-          limparFormulario();
-          finalizarAguardar();
+          }, 2000);
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
       });
 
     return false;
   }
 
-  // Listando empresas cadastradas 
+  // Listando empresas cadastradas
   function listar() {
     fetch("/empresas/listar", {
       method: "GET",
@@ -196,8 +218,8 @@
           empresas.forEach((empresa) => {
             listaEmpresasCadastradas.push(empresa);
 
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+            console.log("listaEmpresasCadastradas");
+            console.log(listaEmpresasCadastradas[0].codigo_ativacao);
           });
         });
       })
@@ -206,7 +228,89 @@
       });
   }
 
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
 </script>
+
+
+
+
+
+
+
+<!-- 
+
+
+Esse aqui é o script original antes do DATAVIZ, 
+porfavor não apagar, caso de alguma coisa de errado, a gente tem um backup 
+  -- Hari
+ 
+ function containsInvalidCharacters(str) {
+    const invalidChars = "#%&*!(){}[]<>/\\|^~`";
+    for (let i = 0; i < str.length; i++) {
+        if (invalidChars.indexOf(str[i]) !== -1) {
+            return true;
+        }
+    }
+    return false;
+}
+
+const customSwal = (message) => {
+    return Swal.fire({
+        text: message,
+        background: '#F7E1BC',
+        color: '#4A2721',
+        confirmButtonColor: '#4A2721',
+        customClass: {
+            popup: 'sweetalert-custom-popup',
+        }
+    });
+};
+
+function MaskCNPJ() {
+    let cpf = input_cpf.value;
+    if (cpf.length === 3 || cpf.length === 7) {
+        input_cpf.value = cpf + ".";
+    } else if (cpf.length === 11) {
+        input_cpf.value = cpf + "-";
+    }
+}
+
+function Register() {
+    var nome = input_nomeCompleto.value;
+    var cpf = input_cpf.value.replace(/\D/g, '');
+    var dtNasc = input_dtNasc.value;
+    var genero = select_genero.value;
+    var email = input_emailUsuário.value;
+    var senha = input_senhaUsuario.value;
+    var confirmarSenha = input_confirmarSenha.value;
+    var autenticacao = input_codigoAutenticacao.value;
+
+    if (nome === "" || cpf === "" || dtNasc === "" || genero === "selecione" || email === "" || senha === "" || confirmarSenha === "" || autenticacao === "") {
+        return customSwal("Há campos vazios! Preencha-os para prosseguir.");
+    }
+
+    if (cpf.length !== 14) {
+        return customSwal("O número de caracteres no CPF deve ser 14.");
+    }
+
+    if (email.indexOf("@") === -1) {
+        return customSwal("É necessário inserir o @. Preencha-o para prosseguir.");
+    }
+
+    if (containsInvalidCharacters(email)) {
+        return customSwal("Caracteres inválidos. Remova-os para prosseguir.");
+    }
+
+    if (senha.length > 45) {
+        return customSwal("O valor máximo de caracteres é 45.");
+    }
+
+    if (senha.length < 7) {
+        return customSwal("O valor mínimo de caracteres na senha é 7.");
+    }
+
+    if (confirmarSenha !== senha) {
+        return customSwal("As senhas não coincidem. Por favor, verifique e tente novamente.");
+    }
+
+    window.location.href = "../../Backend/index.html";
+} -->
