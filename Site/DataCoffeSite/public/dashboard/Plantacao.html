@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
 </head>
 <body>
-    <h1>Fazenda da Lagoa - MG <br>
+    <h1 id="titulo"> <br>
       Plantação de Café</h1>
   
   
@@ -59,7 +59,14 @@
 
 
 <script>
+var Plantacoes  = sessionStorage.PLANTACOES;
 
+        // Exibe o valor de Plantacao no <h1> após a página carregar
+        window.onload = function() {
+          var plantacoesArray = JSON.parse(Plantacoes);
+            const titulo = document.getElementById("titulo");
+            titulo.innerHTML = `${plantacoesArray[0].razao_social} <br>Plantação de Café`;
+        };
 console.log(sessionStorage.PLANTACOES);
 
 if (sessionStorage.PLANTACOES) {
@@ -68,8 +75,8 @@ if (sessionStorage.PLANTACOES) {
             <div class="plantacao-container">
                 <div onclick="dashboard()" class="plantacao funcionando">
                     <i class="fas fa-seedling"></i>
-                    <span>Plantacao ${item.idPlantacao}</span>
-                    Sensor Instalado<br> <strong>Status: Funcionando</strong>
+                    <span>Plantacao ${item.setor}</span>
+                    Sensor Instalado<br> <strong>Status: ${item.modelo}</strong>
                 </div>
             </div>`;
     });
@@ -89,7 +96,7 @@ function limparSessao() {
 };
 
 
-    
+
 
 
     function dashboard(){
