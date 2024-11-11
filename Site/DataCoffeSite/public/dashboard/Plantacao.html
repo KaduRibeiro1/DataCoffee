@@ -10,7 +10,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
 </head>
 <body>
-    
     <h1>Fazenda da Lagoa - MG <br>
       Plantação de Café</h1>
   
@@ -49,7 +48,7 @@
       <div id="nav-footer-content">
           <div class="nav-button"><i class="fas fa-user-circle"></i><span>Perfil</span></div>
         <div class="nav-button"><i class="fas fa-user-plus"></i><span>Logar com outro Usuário</span></div>
-        <div class="nav-button"><i class="fas fa-sign-out-alt"></i><span>Sair</span></div>
+        <div onclick="limparSessao()" class="nav-button"><i class="fas fa-sign-out-alt"></i><span >Sair</span></div>
       </div>
     </div>
   </div>
@@ -79,15 +78,25 @@ if (sessionStorage.PLANTACOES) {
 }
 
 
-  
+
+
+function limparSessao() {
+    // Limpa todos os dados da sessionStorage
+    sessionStorage.clear();
+
+    // Redireciona para a página de logout ou a página de destino
+    window.location = "../index.html";
+};
+
+
     
 
 
     function dashboard(){
-        window.location.href = "../Backend/Temperatura.html"
+        window.location.href = "../dashboard/Temperatura.html"
     }
 
     function home(){
-            window.location.href = "../../index.html"
+            window.location.href = "./Plantacao.html"
     }
 </script>
