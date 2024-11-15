@@ -8,15 +8,27 @@
     <script src="./js/bobia.js"></script>
 </head>
 <body>
-
-    <div id="container">
-        <h1>BobIA</h1>
-        <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
-        <br><br>
-        <button onclick="gerarResposta()">Gerar Resposta</button>
-        <h3>Resposta da IA:</h3>
+    <main>
+        <div class="logo">
+            <img src="./assets/img/logoSemFundo.png" alt="Logo DataCoffee">
+            DataCoffee - IA
+        </div>
+        <div class="divResposta"> 
+        <h3><img src="./assets/img/logoSemFundo.png" alt="Logo DataCoffee">Resposta da IA:</h3>
         <div id="resposta"></div>
-    </div>
+       </div>
+        <div class="message-form">
+            <div class="message-wrapper">
+                <textarea id="pergunta" class="message" rows="1" type="text" placeholder="Digite a pergunta..."></textarea>
+                <button class="send-button" onclick="gerarResposta()"><i class="bi bi-send"></i></button>
+            </div>
+            <div class="disclaimer">CoffeIA pode cometer erros. Considere verificar informações importantes.</div>
+        </div>
+    </main>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
 
     <script>
         
@@ -41,3 +53,10 @@
     
 </body>
 </html>
+
+
+
+
+
+
+
