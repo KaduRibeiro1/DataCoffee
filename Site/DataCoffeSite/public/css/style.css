@@ -462,104 +462,96 @@ body {
   font-size: 14px;
 }
 
-.conteiner_company_contact {
+
+.contact{
+  padding: 30px 15%;
   background-color: #54372B;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
   align-items: center;
-  padding-top: 40px;
-  text-align: center;
+  grid-gap: 6rem; 
+
 }
 
-.conteiner_company_contact h1 {
-  font-size: 40px;
+.contact-img img{
+  max-width: 100%;
+  width: 720px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.contact-form h1{
+  font-size: 80px;
+  color: #fff;
+  margin-bottom: 20px;
   font-family: "Dancing Script", cursive;
-  font-weight: bolder;
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-size: 72px;
   background: -webkit-linear-gradient(#F8E4BE, #DFC39D);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
-  line-height: 0.9;
 }
 
-.conteiner_company_contact {
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 80px;
+.contact-form span{
+  color: #54372B;
 }
 
-.conteiner_company_contact_main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.contact-form p{
+  font-size: 1.5rem;
+  color: #fff;
+  letter-spacing: 1px;
+  line-height: 26px;
+  margin-bottom: 3rem;
 }
 
-.conteiner_company_contact_inputs {
-  margin-left: 120px;
-  display: flex;
-  flex-direction: column;
+.contact-form form{
+  position: relative;
+ 
 }
 
-.InputContainer {
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(255, 255, 255);
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-  padding-left: 15px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
-  margin-bottom: 20PX;
-}
-
-.input {
-  width: 570px;
-  height: 100%;
+.contact-form form input, form textarea{
+  width: 100%;
+  padding: 17px;
   border: none;
   outline: none;
-  font-size: 0.9em;
-  caret-color: #54372B;
+  background: #F7E1BC;
+  border: solid 2px #4A2721;
+  color: black;
+  font-size: 1.1rem;
+  margin-bottom: 0.7rem;
+  border-radius: 10px;
 }
 
-.message_area {
-  font-size: 0.9em;
-  font-family: "Poppins", system-ui;
-  border-radius: 12px;
+.contact-form textarea{
+  resize: none;
+  height: 200px;
 }
 
-.btn_post {
-  margin-top: 20px;
-  position: relative;
-  display: inline-block;
-  padding: 20px;
-  padding-inline: 40px;
-  text-align: center;
-  font-size: 18px;
-  letter-spacing: 1px;
-  text-decoration: none;
-  color: #ffffff;
-  background: transparent;
-  cursor: pointer;
-  transition: ease-out 0.5s;
+.contact-form form .btn{
+  color: #4A2721;  
+  background: #DFC39D;
   border: 2px solid #F7E1BC;
   border-radius: 10px;
   box-shadow: inset 0 0 0 0 #F7E1BC;
-  ;
+  display: inline-block;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 600;
+  width: 220px;
+  transition: ease-out 0.5s;
+  cursor: pointer;
 }
 
-.btn_post:hover {
-  color: #4A2721;
-  box-shadow: inset 0 -100px 0 0 #F7E1BC;
-  ;
+.contact-form form .btn:hover{  
+  color: #DFC39D;
+  box-shadow: inset 0 -100px 0 0 #4A2721;  
+  border: 2px solid #DFC39D;
+  transform: scale(1.0);
 }
 
-.btn_post:active {
+.contact-form form .btn:active {
   transform: scale(0.9);
 }
-
 
 
 .labelforsearch {
@@ -607,6 +599,7 @@ textarea {
   border-radius: 20px;
   padding: 10px;
 }
+
 
 .container_review {
   background: #1B1B1B;
@@ -813,10 +806,6 @@ textarea {
   padding: 10px;
 }
 
-.container_review {
-  background: #1B1B1B;
-  margin-bottom: 15px;
-}
 
 .review {
   display: flex;
@@ -869,6 +858,40 @@ textarea {
   font-weight: bold;
 }
 
+
+
+.cabecalho{
+	text-align: center;
+	padding: 180px 180px 180px;
+}
+.cabecalho span{
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	color: white
+}
+.cabecalho h1{
+	line-height: 60px;
+	margin: 40px 0px;
+  text-align: center;
+  font-size: 55px;
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: bolder;
+  font-style: normal;
+  color: #fff;
+  background: -webkit-linear-gradient(#F8E4BE, #DFC39D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.cabecalho p{
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 30px;
+	color: white;
+}
+
+
 .faq-container {
   max-width: 600px;
   margin: 50px auto;
@@ -878,11 +901,11 @@ textarea {
   margin: 50px 0 30px;
   text-align: center;
   font-size: 50px;
-  font-family: "Dancing Script", cursive;
   font-optical-sizing: auto;
   font-weight: bolder;
   font-style: normal;
   color: #fff;
+  font-family: "Dancing Script", cursive;
   background: -webkit-linear-gradient(#F8E4BE, #DFC39D);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -964,24 +987,45 @@ textarea {
   background-color: #DFC39D;
 }
 
-.container_localization_main {
-  cursor: pointer;
+
+.location{
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 523px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(../assets/img/mapa.png);
+  gap: 5rem;
+  color: white;
 }
 
-.container_localization_main h1 {
-  font-size: 96px;
+.box{
+  max-width: 600px;
 }
 
-.container_localization_main p {
-  font-size: 20px;
+.box h1{
+  font-size: 5rem;
+  font-family: "Dancing Script", cursive;
+  background: -webkit-linear-gradient(#F8E4BE, #DFC39D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
+.box p{
+  font-size: 1.5rem;
+}
+
+.location iframe{
+  border-radius: 2em;
+  border: 5px solid #F7E1BC;
+  width: 500px;
+  height: 500px;
+  opacity: 0.7;
+  transition: 0.3s ease-in-out;
+}
+
+iframe:hover{
+  transform: scale(1.1);
+}
+
 
 
 footer {
@@ -1040,33 +1084,4 @@ footer {
 
 
 
-.cabecalho{
-	text-align: center;
-	padding: 180px 180px 180px;
-}
-.cabecalho span{
-	font-style: normal;
-	font-weight: 600;
-	font-size: 20px;
-	color: white
-}
-.cabecalho h1{
-	line-height: 60px;
-	margin: 40px 0px;
-  text-align: center;
-  font-size: 55px;
-  font-family: "Dancing Script", cursive;
-  font-optical-sizing: auto;
-  font-weight: bolder;
-  font-style: normal;
-  color: #fff;
-  background: -webkit-linear-gradient(#F8E4BE, #DFC39D);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.cabecalho p{
-	font-weight: 400;
-	font-size: 20px;
-	line-height: 30px;
-	color: white;
-}
+
