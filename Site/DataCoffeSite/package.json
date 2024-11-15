@@ -8,7 +8,7 @@
     "bobia": "node public/js/bobia.js",
     "dev": "nodemon --exec node app.js"
   },
-  "author": "Feito pelos desenvolvedores @ São Paulo Tech School / Bandtec Digital School",
+  "author": "DataCoffee - São Paulo Tech School ",
   "license": "MIT",
   "dependencies": {
     "@google/generative-ai": "^0.7.1",
