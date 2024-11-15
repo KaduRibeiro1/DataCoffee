@@ -921,3 +921,81 @@ text-align: center;
 .datacoffe_logo{
   cursor: pointer;
 }
+.section_questions{
+  padding: 90px;
+}
+
+img, svg{
+  max-width: 100%;
+}
+
+.button:hover{
+  color: rgb(77, 4, 4);
+}
+
+#card{
+  margin: auto;
+  background-color: white;
+  padding: 1.5rem;
+  max-width: 60%;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+#card-header{
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#card-header > img{
+  width: 40px;
+  margin-right: 1.5rem;
+}
+
+.title_questions{
+  color: #1B1B1B;
+}
+
+.card-item{
+  padding: 1rem 0;
+}
+
+.card-item:not(:last-child){
+  border-bottom: solid 2px hsl(275, 100%, 97%);
+}
+
+.card-item-btn{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: 700;
+  color: hsl(354, 58%, 14%);
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.icons > img{
+  min-width: 30px;
+}
+
+.minus-icon{
+  display: none;
+}
+
+.card-item-description{
+  font-size: 1rem;
+  color: hsl(0, 0%, 0%);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 200ms ease;
+}
+
+
+
