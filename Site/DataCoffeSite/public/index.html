@@ -358,10 +358,10 @@
             <div class="contact-form">
                 <h1>Contate-Nos</h1>
                 <p>Preencha o formulário abaixo para entrar em contato conosco</p>
-                <form action="">
-                    <input type="text" placeholder="Seu Nome">
-                    <input type="email" placeholder="Seu Email">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Sua Mensagem"></textarea>
+                <form id="contact-form">
+                    <input name="name" type="text" placeholder="Seu Nome">
+                    <input name="email" type="email" placeholder="Seu Email">
+                    <textarea name="message" cols="30" rows="10" placeholder="Sua Mensagem"></textarea>
                     <input type="submit" value="Enviar Mensagem" class="btn">
                 </form>
             </div>
@@ -424,6 +424,9 @@
     crossorigin="anonymous" />
 
 
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     document.getElementById('logo').addEventListener("click", function () {
         window.location.href = "#home"
@@ -449,6 +452,76 @@
         window.location.href = "./calculadora.html"
     }
 
+
+     // Inicialize o EmailJS
+     (function () {
+        emailjs.init("A0fkIFmmYLPz1L3J2"); 
+    })();
+
+    
+    document.getElementById('contact-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const form = event.target;
+
+        
+        const name = form.querySelector('input[name="name"]');
+        const email = form.querySelector('input[name="email"]');
+        const message = form.querySelector('textarea[name="message"]');
+
+        if (!name.value || !email.value || !message.value) {
+            Swal.fire({
+                title: "Preencha todos os campos!",
+                text: "Por favor, preencha todos os campos antes de enviar.",
+                icon: "error",
+                confirmButtonText: 'Ok',
+                confirmButtonColor: '#4e3629',
+                width: 350,
+                padding: "2em",
+                color: "#4e3629",
+                background: "#f7f0e1",
+                backdrop: `rgba(78, 54, 41, 0.8)`
+            });
+            return;
+        }
+
+        
+        emailjs.sendForm('service_6pa9bes', 'template_iahu5xl', form)
+            .then(function (response) {
+                console.log('Sucesso!', response.status, response.text);
+
+             
+                Swal.fire({
+                    title: "Mensagem enviada com sucesso!",
+                    text: "Sua mensagem foi enviada com sucesso. Agradecemos o seu contato!",
+                    icon: "success",
+                    width: 350,
+                    padding: "2em",
+                    color: "#4e3629",
+                    background: "#f7f0e1",
+                    backdrop: `rgba(78, 54, 41, 0.8)`,
+                    confirmButtonText: 'Ok',
+                    confirmButtonColor: '#4e3629'
+                });
+            }, function (error) {
+                console.log('Falha...', error);
+
+               
+                Swal.fire({
+                    title: "Erro ao enviar mensagem",
+                    text: "Houve um erro ao tentar enviar sua mensagem. Tente novamente mais tarde.",
+                    icon: "error",
+                    width: 350,
+                    padding: "2em",
+                    color: "#4e3629",
+                    background: "#f7f0e1",
+                    backdrop: `rgba(78, 54, 41, 0.8)`,
+                    confirmButtonText: 'Ok',
+                    confirmButtonColor: '#4e3629'
+                });
+            });
+    });
+
     const toggles = document.querySelectorAll('.faq-toggle')
 
     toggles.forEach(toggle => {
@@ -456,6 +529,7 @@
             toggle.parentNode.classList.toggle('active')
         })
     })
+
 
 
 </script>
