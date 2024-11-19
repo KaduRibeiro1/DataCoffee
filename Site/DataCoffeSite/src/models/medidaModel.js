@@ -16,7 +16,6 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
 }
 
 function buscarMedidasEmTempoReal(idAquario) {
-
     var instrucaoSql = `SELECT 
         dht11_temperatura as temperatura, 
         dht11_umidade as umidade,
@@ -28,6 +27,8 @@ function buscarMedidasEmTempoReal(idAquario) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+
 
 module.exports = {
     buscarUltimasMedidas,

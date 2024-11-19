@@ -13,10 +13,24 @@
 </head>
 
 <body>
-
-    <h1>FriezzaLTDA</h1>
-
     <div class="container">
+        <div class="parametros">
+            <div>
+                <p>abaixo</p>
+                <p> <20 Cº </p>
+                <p> <10 % </p>
+            </div>
+            <div>
+                <p>abaixo</p>
+                <p> <20 Cº </p>
+                <p> <10 % </p>
+            </div>
+            <div>
+                <p>abaixo</p>
+                <p> <20 Cº </p>
+                <p> <10 % </p>
+            </div>
+        </div>
         <div class="kpi-container">
             <div class="kpi" id="temperaturaAtual">
                 <i class="fas fa-temperature-high" style="color: #ff1900;"></i> 
@@ -53,11 +67,11 @@
         </div>
         <div class="chart-container">
             <div style="width: 50%;" class="h2Temperatura">
-                <h2>Grafico de Temperatura</h2>
+                <h2>Grafico de Umidade e Temperatura</h2>
                 <canvas id="sensorAnalogico"></canvas>
             </div>
             <div style="width: 50%;" class="h2Umidade">
-                <h2>Grafico de Umidade do Solo</h2>
+                <h2>Temperatura e umidade media por dia</h2>
                 <canvas id="sensorDigital"></canvas>
             </div>
         </div>
@@ -147,170 +161,6 @@ setInterval(() => {
 }, 1000);
 
 
-    
-
-
-        var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
-            type: 'line',
-            data: {
-                datasets: [{
-                    label: 'Grafico de Linhas',
-                    borderColor: 'rgba(255, 0, 0, 0.8)',
-                    backgroundColor: 'rgba(255, 0, 0, 0.288)',
-                    pointBackgroundColor: 'rgba(255, 0, 0, 0.8)',
-                    borderWidth: 2,
-                    pointBorderColor: 'rgba(0, 0, 0, 0.8)',
-                    pointRadius: 5,
-                    pointHoverRadius: 7,
-                }]
-            },
-            options: {
-                plugins: {
-                    legend: {
-                        display: true,
-                        labels: {
-                            color: 'rgba(0, 0, 0, 1)',
-                            font: {
-                                size: 16
-                            }
-                        }
-                    },
-                    annotation: {
-                        annotations: {
-                            lineMinTemp: {
-                                type: 'line',
-                                yMin: 20,
-                                yMax: 20,
-                                borderColor: 'yellow',
-                                borderWidth: 2,
-                                label: {
-                                    content: 'Mínimo 20',
-                                    enabled: true,
-                                    position: 'top'
-                                }
-                            },
-                            lineMaxTemp: {
-                                type: 'line',
-                                yMin: 25,
-                                yMax: 25,
-                                borderColor: 'red',
-                                borderWidth: 2,
-                                label: {
-                                    content: 'Máximo 25',
-                                    enabled: true,
-                                    position: 'top'
-                                }
-                            },
-                            lineMinUmid: {
-                                type: 'line',
-                                yMin: 9,
-                                yMax: 9,
-                                borderColor: 'blue',
-                                borderWidth: 2,
-                                label: {
-                                    content: 'Máximo 25',
-                                    enabled: true,
-                                    position: 'top'
-                                }
-                            },
-                            lineMaxUmid: {
-                                type: 'line',
-                                yMin: 13,
-                                yMax: 13,
-                                borderColor: 'dark blue',
-                                borderWidth: 2,
-                                label: {
-                                    content: 'Máximo 25',
-                                    enabled: true,
-                                    position: 'top'
-                                }
-                            }
-                        }
-                    }
-                },
-                elements: {
-                    line: {
-                        borderJoinStyle: 'round'
-                    }
-                },
-                scales: {
-                    x: {
-                        ticks: {
-                            display: false
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: '(°C)',
-                            color: 'rgba(0, 0, 0, 1)',
-                            font: {
-                                size: 14
-                            }
-                        },
-                        ticks: {
-                            color: 'rgba(0, 0, 0, 1)',
-                            font: {
-                                size: 12
-                            }
-                        },
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-
-        var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
-    type: 'bar',
-    data: {
-        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril'],
-        datasets: [{
-            label: 'Gráfico de Barras',
-            data: [12, 15, 10, 18],
-            backgroundColor: 'rgba(0, 123, 255, 0.8)',
-            borderColor: 'rgba(0, 123, 255, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        plugins: {
-            legend: {
-                display: true,
-                labels: {
-                    color: 'rgba(0, 0, 0, 1)',
-                    font: {
-                        size: 16
-                    }
-                }
-            }
-        },
-        scales: {
-            x: {
-                ticks: {
-                    display: true
-                }
-            },
-            y: {
-                title: {
-                    display: true,
-                    text: '(%)',
-                    color: 'rgba(0, 0, 0, 1)',
-                    font: {
-                        size: 14
-                    }
-                },
-                ticks: {
-                    color: 'rgba(0, 0, 0, 1)',
-                    font: {
-                        size: 12
-                    }
-                },
-                beginAtZero: true
-            }
-        }
-    }
-});
 
         var paginacao = {};
         var tempo = {};

@@ -6,6 +6,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-y: hidden;
 }
 
 .label-captura {
@@ -122,7 +123,6 @@ body {
   left: 20%;
   background-color: #161618;
   height: 100vh;
-  overflow: auto;
 }
 
 .area-parametros-alerta {
@@ -361,7 +361,6 @@ canvas {
   top: 0;
   left: 25%;
   height: 100vh;
-  overflow: auto;
 }
 
 .header-left h1 {
