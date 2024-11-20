@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="conteiner-main">
+        <aside>
+
+            <div id="nav-bar">
+                <input id="nav-toggle" type="checkbox" />
+                <div id="nav-header"><a id="nav-title" href="../frontend/index.html" target="_blank"><img
+                            src="../assets/img/logoSemFundo.png" alt="Logo DataCoffee"></a>
+                    <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+                </div>
+
+
+                <div id="nav-content">
+                    <div onclick="home()" class="nav-button"><i class="fas fa-home"></i><span><a
+                                href="../index.html">Home</a></span></div>
+                    <div onclick="plantacao()" class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span>
+                    </div>
+                    <div onclick="grafico()" class="nav-button"><i class="fas fa-chart-bar"></i><span>Avisos</span>
+                    </div>
+
+                    <div id="nav-content-highlight"></div>
+                </div>
+
+                <input id="nav-footer-toggle" type="checkbox" />
+
+                <div id="nav-footer">
+                    <div id="nav-footer-heading">
+                        <div id="nav-footer-avatar"><img src="../assets/img/icon.png" /></div>
+                        <div id="nav-footer-titlebox">DataCoffee<span id="nav-footer-subtitle">Administrador</span>
+                        </div>
+                        <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
+                    </div>
+
+
+                    <div id="nav-footer-content">
+                        <div class="nav-button"><i class="fas fa-user-circle"></i><span>Perfil</span></div>
+                        <div class="nav-button"><i class="fas fa-user-plus"></i><span>Logar com outro Usuário</span>
+                        </div>
+                        <div class="nav-button"><i class="fas fa-sign-out-alt"></i><span>Sair</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </aside>
+
+        <section class="content-dash">
+            <div class="container">
+                <div class="parametros">
+                    <div class="card card-abaixo">
+                        <h3>ABAIXO</h3>
+                        <p> <20 Cº </p>
+                        <p> <60 % </p>
+                    </div>
+                    <div class="card card-ideal">
+                        <h3>IDEAL</h3> 
+                        <p> 23 Cº </p>     
+                        <p> 70 % </p>
+                    </div>
+                    <div class="card card-acima">
+                        <h3>ACIMA</h3>
+                        <p> >25 Cº </p>
+                        <p> >80 % </p>
+                    </div>
+                </div>
+                <div class="kpi-container">
+                    <div class="kpi atual_boa" id="temperaturaAtual">
+                        <i class="fas fa-temperature-high" style="color: #ff1900;"></i> 
+                        <div class="kpi_legenda">
+                            <h3>Temperatura Atual</h3>
+                        </div>
+                        <div>
+                            <span>15°</span>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi" id="foraTemperatura">
+                        <i class="fas fa-sun" style="color: #FFD700;"></i>
+                        <div class="kpi_legenda">
+                            <h3>Tempo fora da condição ideal (Dia)</h3>
+                        </div>
+                        <div>
+                            <span>10H</span>
+                        </div>
+                    </div>
+                    <div class="kpi atual_acima" id="umidadeAtual">
+                        <i class="fas fa-temperature-low" style="color: #1E90FF;"></i>
+                        <div class="kpi_legenda">
+                            <h3>Umidade Atual</h3>
+                        </div>
+                        <div><span>50%</span></div>
+                    </div>
+                    <div class="kpi" id="foraUmidade">
+                        <i class="fas fa-temperature-low" style="color: #1E90FF;"></i>
+                        <div class="kpi_legenda">
+                            <h3>Tempo fora da condição ideal (Dia)</h3>
+                        </div>
+                        <div><span>3H</span></div>
+                    </div>
+        
+                </div>
+                <div class="chart-container">  
+                    <div  class="grafico-temperatura-umidade">
+                        <h2>Grafico de Umidade e Temperatura</h2>
+                        <canvas id="sensorAnalogico"></canvas>
+                    </div>
+                    <div  class="grafico-temperatura-umidade">
+                        <h2>Grafico de Umidade e Temperatura</h2>
+                        <canvas id="sensorAnalogico"></canvas>
+                    </div>
+            </div>
+        
+        </section>
+
+    </div>
+
+</html>
