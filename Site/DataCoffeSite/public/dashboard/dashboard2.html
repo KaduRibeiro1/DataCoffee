@@ -13,15 +13,13 @@
 <body>
     <div class="conteiner-main">
         <aside>
-
             <div id="nav-bar">
                 <input id="nav-toggle" type="checkbox" />
                 <div id="nav-header"><a id="nav-title" href="../frontend/index.html" target="_blank"><img
                             src="../assets/img/logoSemFundo.png" alt="Logo DataCoffee"></a>
                     <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
                 </div>
-
-
+                
                 <div id="nav-content">
                     <div onclick="home()" class="nav-button"><i class="fas fa-home"></i><span><a
                                 href="../index.html">Home</a></span></div>
@@ -52,31 +50,37 @@
                     </div>
                 </div>
             </div>
-
         </aside>
+
 
         <section class="content-dash">
             <div class="container">
-                <div class="parametros">
-                    <div class="card card-abaixo">
-                        <h3>ABAIXO</h3>
-                        <p> <20 Cº </p>
-                        <p> <60 % </p>
-                    </div>
-                    <div class="card card-ideal">
-                        <h3>IDEAL</h3> 
-                        <p> 23 Cº </p>     
-                        <p> 70 % </p>
-                    </div>
-                    <div class="card card-acima">
-                        <h3>ACIMA</h3>
-                        <p> >25 Cº </p>
-                        <p> >80 % </p>
+                <div class="area-parametros-alerta">
+                    <p class="titulo-legenda">
+                        Parâmetros para Alertas - Temperatura e Umidade do Solo
+                    </p>
+                    <div class="parametros-alerta">
+                        <div class="item-regua abaixo">
+                            <strong>Abaixo</strong>
+                            <span> 20 Cº <i class="fas fa-temperature-low"></i></span>
+                            <span> 60 % <i class="fas fa-tint"></i> </span>
+                        </div>
+                        <div class="item-regua ideal">
+                            <strong>Ideal</strong>
+                            <span> 23 Cº <i class="fas fa-temperature-low"></i></span>     
+                            <span> 70 % <i class="fas fa-tint"></i></span>
+                        </div>
+                        <div class="item-regua acima">
+                            <strong>Acima</strong>
+                            <span> 25 Cº <i class="fas fa-temperature-low"></i></span>
+                            <span> 80 % <i class="fas fa-tint"></i></span>
+                        </div>
                     </div>
                 </div>
                 <div class="kpi-container">
+                    <!-- Temperatura Atual -->
                     <div class="kpi atual_boa" id="temperaturaAtual">
-                        <i class="fas fa-temperature-high" style="color: #ff1900;"></i> 
+                        <i class="fas fa-temperature-high"></i> 
                         <div class="kpi_legenda">
                             <h3>Temperatura Atual</h3>
                         </div>
@@ -85,8 +89,9 @@
                         </div>
                     </div>
                     
+                    <!-- Tempo fora da condição ideal (Temperatura) -->
                     <div class="kpi" id="foraTemperatura">
-                        <i class="fas fa-sun" style="color: #FFD700;"></i>
+                        <i class="fas fa-cloud-sun"></i> 
                         <div class="kpi_legenda">
                             <h3>Tempo fora da condição ideal (Dia)</h3>
                         </div>
@@ -94,22 +99,27 @@
                             <span>10H</span>
                         </div>
                     </div>
+                    
+                    <!-- Umidade Atual -->
                     <div class="kpi atual_acima" id="umidadeAtual">
-                        <i class="fas fa-temperature-low" style="color: #1E90FF;"></i>
+                        <i class="fas fa-tint"></i> 
                         <div class="kpi_legenda">
                             <h3>Umidade Atual</h3>
                         </div>
                         <div><span>50%</span></div>
                     </div>
+                    
+                    <!-- Tempo fora da condição ideal (Umidade) -->
                     <div class="kpi" id="foraUmidade">
-                        <i class="fas fa-temperature-low" style="color: #1E90FF;"></i>
+                        <i class="fas fa-cloud-rain"></i> 
                         <div class="kpi_legenda">
                             <h3>Tempo fora da condição ideal (Dia)</h3>
                         </div>
                         <div><span>3H</span></div>
                     </div>
-        
                 </div>
+                
+                
                 <div class="chart-container">  
                     <div  class="grafico-temperatura-umidade">
                         <h2>Grafico de Umidade e Temperatura</h2>
