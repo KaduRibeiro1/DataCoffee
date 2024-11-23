@@ -128,6 +128,7 @@
         confirmButtonText: 'Ok',
         confirmButtonColor: '#4e3629',
       });
+      return;
     }
 
     if (cpfVar.length !== 11) {
@@ -143,6 +144,7 @@
         confirmButtonText: 'Ok',
         confirmButtonColor: '#4e3629',
       });
+      return;
     }
 
     if (emailVar.indexOf("@") === -1) {
@@ -158,6 +160,7 @@
         confirmButtonText: 'Ok',
         confirmButtonColor: '#4e3629',
       });
+      return;
     }
 
     if (containsInvalidCharacters(emailVar)) {
@@ -173,12 +176,13 @@
         confirmButtonText: 'Ok',
         confirmButtonColor: '#4e3629',
       });
+      return;
     }
 
     if (senhaVar.length > 45) {
       Swal.fire({
         title: "Ops!",
-        text: "O valor máximo de caracteres é 45.",
+        text: "O valor máximo de caracteres na senha é 45.",
         icon: "error",
         width: 350,
         padding: "2em",
@@ -188,6 +192,7 @@
         confirmButtonText: 'Ok',
         confirmButtonColor: '#4e3629',
       });
+      return;
     }
 
     if (senhaVar.length < 7) {
@@ -203,12 +208,13 @@
         confirmButtonText: 'Ok',
         confirmButtonColor: '#4e3629',
       });
+      return;
     }
 
     if (confirmarSenha !== senhaVar) {
       Swal.fire({
         title: "Ops!",
-        text: "O valor mínimo de caracteres na senha é 7.",
+        text: "As senhas devem ser iguais.",
         icon: "error",
         width: 350,
         padding: "2em",
@@ -218,6 +224,7 @@
         confirmButtonText: 'Ok',
         confirmButtonColor: '#4e3629',
       });
+      return;
     }
 
 
@@ -241,6 +248,7 @@
         confirmButtonText: 'Ok',
         confirmButtonColor: '#4e3629',
       });
+      return;
       }
     }
 
