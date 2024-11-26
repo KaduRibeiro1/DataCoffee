@@ -1,221 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - DataCoffee</title>
-    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <title>Dashboard - DataCoffee </title>
 </head>
-
 <body>
-    <div class="container">
-        <div class="parametros">
-            <div>
-                <p>abaixo</p>
-                <p> <20 Cº </p>
-                <p> <10 % </p>
-            </div>
-            <div>
-                <p>abaixo</p>
-                <p> <20 Cº </p>
-                <p> <10 % </p>
-            </div>
-            <div>
-                <p>abaixo</p>
-                <p> <20 Cº </p>
-                <p> <10 % </p>
-            </div>
-        </div>
-        <div class="kpi-container">
-            <div class="kpi" id="temperaturaAtual">
-                <i class="fas fa-temperature-high" style="color: #ff1900;"></i> 
-                <p id="maxTemperature"></p>
-                <h3>Temperatura Atual</h3>
-                <span>Temperatura Recomendada: 22,5°C</span>
-                <span></span>
-            </div>
-            
-            <div class="kpi" id="foraTemperatura">
-                <i class="fas fa-sun" style="color: #FFD700;"></i>
-                <p></p>
-                <h3>Tempo fora da condição ideal (Dia)</h3>
-                <span></span>
-                <span></span>
+    <div class="conteiner-main">
+        <aside>
+            <div id="nav-bar">
+                <input id="nav-toggle" type="checkbox" />
+                <div id="nav-header"><a id="nav-title" href="../frontend/index.html" target="_blank"><img
+                            src="../assets/img/logoSemFundo.png" alt="Logo DataCoffee"></a>
+                    <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+                </div>
+
+                <div id="nav-content">
+                    <div onclick="home()" class="nav-button"><i class="fas fa-home"></i><span><a
+                                href="../index.html">Home</a></span></div>
+                    <div onclick="plantacao()" class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span>
+                    </div>
+                    <div onclick="grafico()" class="nav-button"><i class="fas fa-chart-bar"></i><span>Avisos</span>
+                    </div>
+
+                    <div id="nav-content-highlight"></div>
+                </div>
+
+                <input id="nav-footer-toggle" type="checkbox" />
+
+                <div id="nav-footer">
+                    <div id="nav-footer-heading">
+                        <div id="nav-footer-avatar"><img src="../assets/img/icon.png" /></div>
+                        <div id="nav-footer-titlebox">DataCoffee<span id="nav-footer-subtitle">Administrador</span>
+                        </div>
+                        <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
+                    </div>
 
 
+                    <div id="nav-footer-content">
+                        <div class="nav-button"><i class="fas fa-user-circle"></i><span>Perfil</span></div>
+                        <div class="nav-button"><i class="fas fa-user-plus"></i><span>Logar com outro Usuário</span>
+                        </div>
+                        <div class="nav-button"><i class="fas fa-sign-out-alt"></i><span>Sair</span></div>
+                    </div>
+                </div>
             </div>
-            <div class="kpi" id="umidadeAtual">
-                <i class="fas fa-temperature-low" style="color: #1E90FF;"></i>
-                <p></p>
-                <h3>Umidade Atual</h3>
-                    <span></span>
-                    <span></span>
-            </div>
-            <div class="kpi" id="foraUmidade">
-                <i class="fas fa-temperature-low" style="color: #1E90FF;"></i>
-                <p></p>
-                <h3>Tempo fora da condição ideal (Dia)</h3>
-                    <span></span>
-                    <span></span>
-            </div>
+        </aside>
 
-        </div>
-        <div class="chart-container">
-            <div style="width: 50%;" class="h2Temperatura">
-                <h2>Grafico de Umidade e Temperatura</h2>
-                <canvas id="sensorAnalogico"></canvas>
-            </div>
-            <div style="width: 50%;" class="h2Umidade">
-                <h2>Temperatura e umidade media por dia</h2>
-                <canvas id="sensorDigital"></canvas>
-            </div>
-        </div>
+
+        <section class="content-dash">
+            <div class="container">
+                <div class="area-parametros-alerta">
+                    <p class="titulo-legenda">
+                        Parâmetros para Alertas - Temperatura e Umidade do Solo
+                    </p>
+                    <div class="parametros-alerta">
+                        <div class="item-regua abaixo">
+                            <strong>Abaixo</strong>
+                            <span> 20 Cº <i class="fas fa-temperature-low"></i></span>
+                            <span> 60 % <i class="fas fa-tint"></i> </span>
+                        </div>
+                        <div class="item-regua ideal">
+                            <strong>Ideal</strong>
+                            <span> 23 Cº <i class="fas fa-temperature-low"></i></span>
+                            <span> 70 % <i class="fas fa-tint"></i></span>
+                        </div>
+                        <div class="item-regua acima">
+                            <strong>Acima</strong>
+                            <span> 25 Cº <i class="fas fa-temperature-low"></i></span>
+                            <span> 80 % <i class="fas fa-tint"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="kpi-container">
+                    <!-- Temperatura Atual -->
+                    <div class="kpi atual_boa" id="temperaturaAtual">
+                        <i class="fas fa-temperature-high"></i>
+                        <div class="kpi_legenda">
+                            <h3>Temperatura Atual</h3>
+                        </div>
+                        <div>
+                            <span>15°</span>
+                        </div>
+                    </div>
+
+                    <!-- Tempo fora da condição ideal (Temperatura) -->
+                    <div class="kpi" id="foraTemperatura">
+                        <i class="fas fa-cloud-sun"></i>
+                        <div class="kpi_legenda">
+                            <h3>Tempo fora da condição ideal (Dia)</h3>
+                        </div>
+                        <div>
+                            <span>10H</span>
+                        </div>
+                    </div>
+
+                    <!-- Umidade Atual -->
+                    <div class="kpi atual_acima" id="umidadeAtual">
+                        <i class="fas fa-tint"></i>
+                        <div class="kpi_legenda">
+                            <h3>Umidade Atual</h3>
+                        </div>
+                        <div><span>50%</span></div>
+                    </div>
+
+                    <!-- Tempo fora da condição ideal (Umidade) -->
+                    <div class="kpi" id="foraUmidade">
+                        <i class="fas fa-cloud-rain"></i>
+                        <div class="kpi_legenda">
+                            <h3>Tempo fora da condição ideal (Dia)</h3>
+                        </div>
+                        <div><span>3H</span></div>
+                    </div>
+                </div>
+
+
+                <div class="chart-container">
+                    <div class="grafico-temperatura-umidade">
+                        <h2>Gráfico de Temperatura</h2>
+                        <canvas id="graficoTemperatura"></canvas>
+                    </div>
+                    <div class="grafico-temperatura-umidade">
+                        <h2>Gráfico de Umidade</h2>
+                        <canvas id="graficoUmidade"></canvas>
+                    </div>
+                </div>
+
+        </section>
+
     </div>
+</body>
+</html>
+<script>
+async function buscarDados() {
+    try {
+        const response = await fetch('/buscarRegistros');
+        
+        if (!response.ok) {
+            throw new Error(`Erro ao buscar dados: ${response.statusText}`);
+        }
 
+        const data = await response.json();
 
+        const temperatura = data.filter(item => item.fkSensor === 1).map(item => item.registro);
+        const umidade = data.filter(item => item.fkSensor === 2).map(item => item.registro);
+        const labels = data.filter(item => item.fkSensor === 1).map(item => item.dtRegistro);
 
+        console.log('Temperatura:', temperatura);
+        console.log('Umidade:', umidade);
+        console.log('Labels (datas):', labels);
 
-    <div id="nav-bar">
-        <input id="nav-toggle" type="checkbox" />
-        <div id="nav-header"><a id="nav-title" href="../frontend/index.html" target="_blank"><img
-                    src="../assets/img/logoSemFundo.png" alt="Logo DataCoffee"></a>
-            <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
-        </div>
-
-
-        <div id="nav-content">
-            <div onclick="home()" class="nav-button"><i class="fas fa-home"></i><span><a
-                        href="../index.html">Home</a></span></div>
-            <div onclick="plantacao()" class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span></div>
-            <div onclick="grafico()" class="nav-button"><i class="fas fa-chart-bar"></i><span>Avisos</span></div>
-
-
-
-            <div id="nav-content-highlight"></div>
-        </div>
-
-        <input id="nav-footer-toggle" type="checkbox" />
-
-        <div id="nav-footer">
-            <div id="nav-footer-heading">
-                <div id="nav-footer-avatar"><img src="../assets/img/icon.png" /></div>
-                <div id="nav-footer-titlebox">DataCoffee<span id="nav-footer-subtitle">Administrador</span></div>
-                <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
-            </div>
-
-
-            <div id="nav-footer-content">
-                <div class="nav-button"><i class="fas fa-user-circle"></i><span>Perfil</span></div>
-                <div class="nav-button"><i class="fas fa-user-plus"></i><span>Logar com outro Usuário</span></div>
-                <div class="nav-button"><i class="fas fa-sign-out-alt"></i><span>Sair</span></div>
-            </div>
-        </div>
-    </div>
-
-
-    <script>
-
-function obterDados(grafico, endpoint) {
-    fetch(`http://localhost:3300/sensores/${endpoint}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erro na resposta da API");
-            }
-            return response.json();
-        })
-        .then(valores => {
-            if (!paginacao[endpoint]) paginacao[endpoint] = 0;
-            if (!tempo[endpoint]) tempo[endpoint] = 0;
-
-            let ultimaPaginacao = paginacao[endpoint];
-            paginacao[endpoint] = valores.length;
-            let novosValores = valores.slice(ultimaPaginacao);
-
-            novosValores.forEach(valor => {
-                if (grafico.data.labels.length === 10 && grafico.data.datasets[0].data.length === 10) {
-                    grafico.data.labels.shift();
-                    grafico.data.datasets[0].data.shift();
-                }
-
-                grafico.data.labels.push(tempo[endpoint]++);
-                grafico.data.datasets[0].data.push(parseFloat(valor));
-
-                // Atualiza a temperatura máxima em tempo real no elemento HTML
-                if (endpoint === 'analogico' && valores.length > 0) {
-                    document.getElementById("maxTemperature").innerText = `${valores[0]}°C`;
-                }
-            });
-            grafico.update();
-        })
-        .catch(error => console.error('Erro ao obter dados:', error));
+        gerarGrafico(temperatura, umidade, labels);
+    } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+    }
 }
 
-setInterval(() => {
-    obterDados(sensorAnalogico, 'analogico');
-    obterDados(sensorDigital, 'digital');
-}, 1000);
+function gerarGrafico(temperatura, umidade, labels) {
+    const ctx = document.getElementById('graficoTemperatura').getContext('2d');
 
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Temperatura (°C)',
+                    data: temperatura,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    fill: true,
+                },
+                {
+                    label: 'Umidade (%)',
+                    data: umidade,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    fill: true,
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'hour',
+                        tooltipFormat: 'll HH:mm',
+                    },
+                },
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        },
+    });
+}
 
+window.onload = buscarDados;
+</script>
 
-        var paginacao = {};
-        var tempo = {};
-
-        function obterDados(grafico, endpoint) {
-            fetch('http://localhost:3300/sensores/' + endpoint)
-                .then(response => response.json())
-                .then(valores => {
-                    if (paginacao[endpoint] == null) {
-                        paginacao[endpoint] = 0;
-                    }
-                    if (tempo[endpoint] == null) {
-                        tempo[endpoint] = 0;
-                    }
-
-                    var ultimaPaginacao = paginacao[endpoint];
-                    paginacao[endpoint] = valores.length;
-                    valores = valores.slice(ultimaPaginacao);
-
-                    valores.forEach((valor) => {
-                        if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
-                            grafico.data.labels.shift();
-                            grafico.data.datasets[0].data.shift();
-                        }
-
-                        grafico.data.labels.push(tempo[endpoint]++);
-                        grafico.data.datasets[0].data.push(parseFloat(valor));
-                        grafico.update();
-                    });
-                })
-                .catch(error => console.error('Erro ao obter dados:', error));
-        }
-
-        setInterval(() => {
-            obterDados(sensorAnalogico, 'analogico');
-            obterDados(sensorDigital, 'digital');
-        }, 1000);
-
-        function plantacao() {
-            window.location.href = "../Backend/Plantacao.html"
-        }
-
-        function home() {
-            window.location.href = "../frontend/index.html"
-        }
-
-        function grafico() {
-            window.location.href = "../Backend/Grafico.html"
-        }
-
-        function kpi() {
-            window.location.href = "../Backend/Kpis.html"
-        }
-    </script>
-</body>
-
-</html>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script data-jsd-embedded data-key="022093e6-0b16-47f0-a2b8-ba3f7236c02f"
+    data-base-url="https://jsd-widget.atlassian.com" src="https:jsd-widget.atlassian.com/assets/embed.js"></script>
