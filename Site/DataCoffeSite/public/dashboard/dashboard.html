@@ -75,13 +75,13 @@
                 </div>
                 <div class="kpi-container">
                     <!-- Temperatura Atual -->
-                    <div class="kpi atual_boa" id="temperaturaAtual">
+                    <div class="kpi atual_acima" id="temperaturaAtual">
                         <i class="fas fa-temperature-high"></i>
                         <div class="kpi_legenda">
                             <h3>Temperatura Atual</h3>
                         </div>
                         <div>
-                            <span>15°</span>
+                            <span id="kpi_temp">15°</span>
                         </div>
                     </div>
 
@@ -102,7 +102,7 @@
                         <div class="kpi_legenda">
                             <h3>Umidade Atual</h3>
                         </div>
-                        <div><span>50%</span></div>
+                        <div><span id="kpi_umi">50%</span></div>
                     </div>
 
                     <!-- Tempo fora da condição ideal (Umidade) -->
@@ -133,54 +133,100 @@
 </body>
 </html>
 <script>
-async function buscarDados() {
-    try {
-        const response = await fetch('/buscarRegistros');
-        
-        if (!response.ok) {
-            throw new Error(`Erro ao buscar dados: ${response.statusText}`);
-        }
+function obterDadosGrafico(){
+    fetch(`/medidas/buscarRegistros/`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log(resposta.temp[0]['registro'])
+                    gerarGrafico(resposta)
 
-        const data = await response.json();
-
-        const temperatura = data.filter(item => item.fkSensor === 1).map(item => item.registro);
-        const umidade = data.filter(item => item.fkSensor === 2).map(item => item.registro);
-        const labels = data.filter(item => item.fkSensor === 1).map(item => item.dtRegistro);
-
-        console.log('Temperatura:', temperatura);
-        console.log('Umidade:', umidade);
-        console.log('Labels (datas):', labels);
-
-        gerarGrafico(temperatura, umidade, labels);
-    } catch (error) {
-        console.error('Erro ao buscar dados:', error);
-    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    
 }
 
-function gerarGrafico(temperatura, umidade, labels) {
-    const ctx = document.getElementById('graficoTemperatura').getContext('2d');
-
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
+function gerarGrafico(resposta) {
+    
+    let dados = {
+            labels: [],
             datasets: [
                 {
                     label: 'Temperatura (°C)',
-                    data: temperatura,
+                    data: [],
                     borderColor: 'rgba(255, 99, 132, 1)',
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     fill: true,
                 },
                 {
                     label: 'Umidade (%)',
-                    data: umidade,
+                    data: [],
                     borderColor: 'rgba(54, 162, 235, 1)',
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     fill: true,
                 },
-            ],
-        },
+                 ]
+        };
+
+        var kpiTempAtual = 0
+        var kpiUmiAtual = 0 
+    // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (let i = 0; i < resposta.temp.length; i++) {
+    
+       
+        let registrosTemp = resposta.temp
+    
+
+        let registrosUmi = resposta.umi
+        console.log(registrosTemp[i].dtRegistro)
+
+        dados.labels.push(registrosTemp[i].dtRegistro); 
+        
+        dados.datasets[0].data.push(registrosTemp[i].registro);  
+        
+        dados.datasets[1].data.push(registrosUmi[i].registro);  
+
+        // inserção de kpi de atual
+        if(i == 0){
+            kpiTempAtual = registrosTemp[i].registro
+            kpiUmiAtual = registrosUmi[i].registro
+            kpi_temp.innerHTML = kpiTempAtual
+            kpi_umi.innerHTML = kpiUmiAtual
+        } 
+    }
+
+    // mudança de cor do card-KPI
+    var cardTemperatura = document.getElementById('temperaturaAtual');
+
+    if(kpiTempAtual <= 20){
+        cardTemperatura.className = 'kpi atual_abaixo';
+    }else if(kpiTempAtual < 25){
+        cardTemperatura.className = 'kpi atual_boa';
+    }else{
+        cardTemperatura.className = 'kpi atual_acima';
+    }
+
+
+    var cardUmidade = document.getElementById('umidadeAtual');
+
+    if(kpiUmiAtual <= 60){
+        cardUmidade.className = 'kpi atual_abaixo';
+    }else if(kpiUmiAtual <= 80){
+        cardUmidade.className = 'kpi atual_boa';
+    }else{
+        cardUmidade.className = 'kpi atual_acima';
+    }
+    
+   
+    const config = {
+        type: 'line',
+        data: dados,
         options: {
             responsive: true,
             scales: {
@@ -196,14 +242,21 @@ function gerarGrafico(temperatura, umidade, labels) {
                 },
             },
         },
-    });
+    };
+
+
+    const graficoTemperaturaUmidade = new Chart(document.getElementById('graficoTemperatura'),config);
 }
 
-window.onload = buscarDados;
+obterDadosGrafico()
+
+
 </script>
 
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+
 <script data-jsd-embedded data-key="022093e6-0b16-47f0-a2b8-ba3f7236c02f"
     data-base-url="https://jsd-widget.atlassian.com" src="https:jsd-widget.atlassian.com/assets/embed.js"></script>

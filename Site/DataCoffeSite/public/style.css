@@ -368,7 +368,9 @@ label[for=nav-toggle] {
   display: flex;
   flex-direction: column;
   transition: opacity 1s;
+  white-space: nowrap;
 }
+
 
 #nav-footer-subtitle {
   color: var(--corSecundaria);
@@ -773,11 +775,12 @@ h1 {
 
 
 .chart-container {
-  margin-bottom: 190px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-around;
-  width: 100%;
   align-items: center;
+  width: 100%;
+  height: 50%;
 }
 
 .chart-container canvas {
@@ -787,7 +790,8 @@ h1 {
   background-color: var(--primario);
   border: 3px solid #000000;
   transition: transform 0.3s;
-  width: 80%;
+  width: 500px;
+  height: 100%;
 }
 
 .chart-container canvas:hover {

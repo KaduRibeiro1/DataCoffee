@@ -40,7 +40,7 @@
     <div id="nav-footer">
       <div id="nav-footer-heading">
         <div id="nav-footer-avatar"><img src="../assets/img/icon.png" /></div>
-        <div id="nav-footer-titlebox">DataCoffee<span id="nav-footer-subtitle">Administrador</span></div>
+        <div id="nav-footer-titlebox"><p id="b_usuario">usuário</p><span id="nav-footer-subtitle">Administrador</span></div>
         <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
       </div>
 
@@ -59,7 +59,9 @@
 
 
 <script>
-var Plantacoes  = sessionStorage.PLANTACOES;
+  var Plantacoes  = sessionStorage.PLANTACOES;
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
 
         // Exibe o valor de Plantacao no <h1> após a página carregar
         window.onload = function() {
@@ -97,10 +99,11 @@ function limparSessao() {
 
 
     function dashboard(){
-        window.location.href = "./dashboard2.html"
+        window.location.href = "./dashboard.html"
     }
 
     function home(){
             window.location.href = "../index.html"
     }
 </script>
+<script src="../js/sessao.js"></script>cr

@@ -28,9 +28,42 @@ function buscarMedidasEmTempoReal(idAquario) {
     return database.executar(instrucaoSql);
 }
 
+function buscarRegistrosTemp() {
+    const instrucaoSql1 = `
+        SELECT 
+            sensor.modelo, 
+            registro,
+            dtRegistro
+        FROM Registro 
+        JOIN sensor ON registro.fkSensor = sensor.idSensor
+        WHERE sensor.modelo = 'LM35' 
+        ORDER BY dtRegistro DESC
+        limit 7;
+    `;
+    return database.executar(instrucaoSql1);  // Retorna a Promise
+}
+
+
+function buscarRegistrosUmi() {
+    const instrucaoSql2 = `
+        SELECT 
+            sensor.modelo, 
+            registro,
+            dtRegistro
+        FROM Registro 
+        JOIN sensor ON registro.fkSensor = sensor.idSensor
+        WHERE sensor.modelo = 'Sensor de Umidade' 
+        ORDER BY dtRegistro DESC
+        limit 7;
+    `;
+    return database.executar(instrucaoSql2);  // Retorna a Promise
+}
 
 
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    buscarRegistrosUmi,
+    buscarRegistrosTemp
+
 }

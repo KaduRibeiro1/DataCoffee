@@ -41,8 +41,51 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
+
+
+function buscarRegistros(req, res) {
+   // Primeira busca: temperatura
+   medidaModel.buscarRegistrosTemp()
+   .then(function (resultadoTemp) {
+       // Verifica se a primeira busca retornou dados
+       if (resultadoTemp.length > 0) {
+           // Segunda busca: umidade
+           medidaModel.buscarRegistrosUmi()
+               .then(function (resultadoUmi) {
+                   // Verifica se a segunda busca também retornou dados
+                   if (resultadoUmi.length > 0) {
+                       // Se ambos os resultados tiverem dados, envia-os
+                       res.status(200).json({
+                           temp: resultadoTemp,
+                           umi: resultadoUmi
+                       });
+                   } else {
+                       res.status(204).send("Nenhum registro de umidade encontrado!");
+                   }
+               })
+               .catch(function (erro) {
+                   // Caso ocorra erro na segunda busca
+                   console.log("Erro ao buscar dados de umidade:", erro.sqlMessage || erro.message);
+                   res.status(500).json({ error: erro.sqlMessage || erro.message });
+               });
+       } else {
+           res.status(204).send("Nenhum registro de temperatura encontrado!");
+       }
+   })
+   .catch(function (erro) {
+       // Caso ocorra erro na primeira busca
+       console.log("Erro ao buscar dados de temperatura:", erro.sqlMessage || erro.message);
+       res.status(500).json({ error: erro.sqlMessage || erro.message });
+   });
+
+}
+
+
+
+
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    buscarRegistros
 
 }

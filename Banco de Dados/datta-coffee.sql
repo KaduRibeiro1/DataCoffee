@@ -3,6 +3,7 @@ create database datacoffe;
 
 use datacoffe;
 
+
 create table Empresa(
 idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
 razao_social VARCHAR(100)NOT NULL,
@@ -89,9 +90,18 @@ VALUES
 ('Sensor de Umidade', 'Setor Sul', '2024-02-01', 2);
 
 
+SELECT 
+        sensor.modelo, 
+        registro,
+        dtRegistro
+        FROM Registro join sensor
+        on registro.fkSensor = sensor.idSensor
+        where sensor.modelo = 'Sensor de Umidade' and DATE(dtRegistro) = CURDATE() 
+        ORDER BY  dtRegistro desc;
+
 
 create table registro(
-idRegistro INT,
+idRegistro INT ,
 fkSensor int,
 constraint pkRegistro primary key (idRegistro, fkSensor),
 registro decimal (4,2),
@@ -99,10 +109,14 @@ dtRegistro datetime,
 constraint fkSensorRegistro foreign key (fkSensor) references sensor(idSensor)
 );
 
-INSERT INTO Registro (idRegistro, fkSensor, registro, dtRegistro) 
+ALTER TABLE REGISTRO modify column idRegistro int auto_increment;
+select * from registro;
+INSERT INTO Registro (fkSensor, registro, dtRegistro) 
 VALUES 
-(1, 1, 25.3, '2024-06-02 15:00:00'),  -- Registro de temperatura
-(2, 2, 60.5, '2024-06-02 15:00:00'),  -- Registro de umidade
+( 1, 25, '2024-11-27 01:10:00');  -- Registro de temperatura
+
+select * from registro;
+
 (3, 1, 24.8, '2024-06-02 16:00:00'),  -- Registro de temperatura
 (4, 2, 62.0, '2024-06-02 16:00:00'),  -- Registro de umidade
 (5, 3, 26.5, '2024-06-02 17:00:00'),  -- Registro de temperatura
@@ -228,7 +242,7 @@ INSERT INTO Registro (idRegistro, fkSensor, registro, dtRegistro) VALUES
 
 -- Registros de Umidade para sensores de umidade
 INSERT INTO Registro (idRegistro, fkSensor, registro, dtRegistro) VALUES 
-(15, 2, 60.2, '2024-06-02 19:00:00'),
+(15, 2, 60.2, '2024-08-02 19:00:00'),
 (16, 2, 58.5, '2024-06-02 20:00:00'),
 (17, 4, 59.1, '2024-06-02 15:00:00'),
 (18, 4, 61.3, '2024-06-02 16:00:00'),
@@ -277,3 +291,17 @@ select * from usuario;
 SELECT idUsuario, nome, dtNascimento, cpf, genero, email, senha, fkEmpresa as empresaID, fkSupervisor FROM usuario;
 
         SELECT idUsuario, nome, email, senha, fkEmpresa as Empresa FROM usuario WHERE email = 'joao.silva@gmail.com' AND senha = 'cafeDoBom';
+        
+        
+SELECT 
+	sensor.modelo, 
+	registro,
+    dtRegistro
+	FROM Registro join sensor
+	on registro.fkSensor = sensor.idSensor
+	where sensor.modelo = 'LM35'
+	ORDER BY  dtRegistro desc
+    limit 7;
+	
+
+select * from usuario;
