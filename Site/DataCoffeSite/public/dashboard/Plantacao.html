@@ -59,6 +59,46 @@
 
 
 <script>
+
+
+  // para mudar a cor da plantação tem que pegar os dados da KPI dela
+function obterDadosGrafico(idPlantacao) {
+
+fetch(`/medidas/buscarRegistros/${idPlantacao}`, { cache: 'no-store' }).then(function (response) {
+  if (response.ok) {
+    response.json().then(function (resposta) {
+      console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+      console.log(resposta.temp[0]['registro'])
+      corPlantacao(resposta, idPlantacao)
+    });
+  } else {
+    console.error('Nenhum dado encontrado ou erro na API');
+  }
+})
+  .catch(function (error) {
+    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+  });
+
+}
+
+function corPlantacao(registros, idPlantacao){
+  // separando a resposta
+  let registrosTemp = registros.temp
+  let registrosUmi = registros.umi
+  let idCard = 'card'+ idPlantacao
+// pegando os ultimos registros
+  let kpiTempAtual = registrosTemp[0].registro
+  let kpiUmiAtual = registrosUmi[0].registro
+
+  if(kpiTempAtual <= 20 || kpiTempAtual > 25 || kpiUmiAtual <= 60 || kpiUmiAtual > 80){
+    var  plantacaoCard = document.getElementById(idCard);
+    plantacaoCard.className = 'plantacao nao-funcionando';
+  }
+
+}
+
+
+
   var Plantacoes  = sessionStorage.PLANTACOES;
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
@@ -75,16 +115,23 @@ if (sessionStorage.PLANTACOES) {
     JSON.parse(sessionStorage.PLANTACOES).forEach(item => {
         document.getElementById("container").innerHTML += `
             <div class="plantacao-container">
-                <div onclick="dashboard(${item.idPlantacao})" class="plantacao funcionando">
+                <div id="card${item.idPlantacao}" onclick="dashboard(${item.idPlantacao})" class="plantacao funcionando">
                     <i class="fas fa-seedling"></i>
-                    <span>Plantacao ${item.setor}</span>
-                    Sensor Instalado<br> <strong>Status: ${item.modelo}</strong>
+                    <span>Plantacao ${item.idPlantacao}</span>
+                    Sensor Instalado<br> <strong></strong>
                 </div>
             </div>`;
+
+          obterDadosGrafico(item.idPlantacao)
+
+
+
     });
 } else {
     console.warn("Nenhuma plantação encontrada no sessionStorage.");
 }
+
+
 
 
 
@@ -99,8 +146,8 @@ function limparSessao() {
 
 
     function dashboard(idPlantacao){
-        sessionStorage.setItem('idPlantacao',idPlantacao)
-        alert(sessionStorage.idPlantacao)
+
+
         window.location.href = "./indexD.html"
     }
 
