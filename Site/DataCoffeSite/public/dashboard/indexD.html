@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+  <title>Dashboard - DataCoffee </title>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+  <div class="grid-container">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <i data-feather="bell"></i>
+      </div>
+      <div class="header-right">
+        <img src="../assets/img/icon.png" />
+        <div class="header-info">
+          <p>Claudio Frizzarini</p>
+          <span>Administrador</span>
+        </div>
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div class="sidebar-brand">
+        <img src="../assets/img/logoSemFundo.png" id="logo" alt="Logo DataCoffee">
+      </div>
+      <ul class="sidebar-list">
+        <li class="sidebar-list-item">
+          <a onclick="home()" target="_blank">
+          <i data-feather="home"></i> Início
+          </a>
+        </li>
+        <li class="sidebar-list-item">
+          <a onclick="plantacao()" target="_blank">
+            <i data-feather="feather"></i> Plantações
+          </a>
+        </li>
+        <li class="sidebar-list-item">
+          <a onclick="aviso()" target="_blank">
+            <i data-feather="bar-chart"></i> Avisos
+          </a>
+        </li>
+        <li class="sidebar-list-item">
+          <a href="#" target="_blank">
+            <i data-feather="user"></i> Usuário
+          </a>
+        </li>
+        <li class="sidebar-list-item">
+          <a onclick="aviso()" target="_blank">
+            <i data-feather="log-out"></i> Sair
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- End Sidebar -->
+
+    <!-- Main -->
+    <main class="main-container">
+      <div class="main-title">
+        <h2>Informações Gerais</h2>
+      </div>
+
+
+      <div class="main-cards">
+
+        <!-- Temperatura Atual -->
+        <div class="card atual_acima cardTemperatura " id="temperaturaAtual">
+          <div class="card-inner">
+            <h3>Temperatura Atual</h3>
+            <i data-feather="thermometer"></i>
+          </div>
+          <h1 id="kpi_temp">15°</h1>
+        </div>
+
+
+        <!-- Tempo fora da condição ideal (Temperatura) -->
+        <div class="card">
+          <div class="card-inner">
+            <h3>Tempo fora da <br>condição ideal (Dia)</h3>
+            <i data-feather="sun"></i>
+          </div>
+          <h1>3 Horas</h1>
+        </div>
+
+
+        <!-- Umidade Atual -->
+        <div class="card cardUmidade atual_abaixo" id="umidadeAtual">
+          <div class="card-inner">
+            <h3>Umidade Atual</h3>
+            <i data-feather="droplet"></i>
+          </div>
+          <h1 id="kpi_umi">50%</h1>
+        </div>
+
+        <!-- Tempo fora da condição ideal (Umidade) -->
+        <div class="card">
+          <div class="card-inner">
+            <h3>Tempo fora da <br>condição ideal (Dia)</h3>
+            <i data-feather="cloud-lightning"></i>
+          </div>
+          <h1>3H</h1>
+        </div>
+      </div>
+
+      <div class="charts">
+        <div class="charts-card">
+          <h2 class="chart-title">Grafico de Temperatura</h2>
+          <div id="area-chart">
+            <canvas id="graficoTemperatura"></canvas>
+          </div>
+        </div>
+
+        <div class="charts-card">
+          <h2 class="chart-title">Grafico de Umidade</h2>
+          <div id="area-chart">
+            <canvas id="graficoUmidade"></canvas>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+
+
+  <script>
+    function plantacao() {
+      window.location.href = "Plantacao.html"
+    }
+
+    function home() {
+      window.location.href = "../index.html"
+    }
+
+    function aviso() {
+      window.location.href = "avisos.html"
+    }
+
+
+
+    function obterDadosGrafico() {
+      fetch(`/medidas/buscarRegistros/`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            console.log(resposta.temp[0]['registro'])
+            gerarGrafico(resposta)
+
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
+        .catch(function (error) {
+          console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
+    }
+
+    function gerarGrafico(resposta) {
+      let dados = {
+        labels: [],
+        datasets: [
+          {
+            label: 'Temperatura (°C)',
+            data: [],
+            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            fill: true,
+          },
+          {
+            label: 'Umidade (%)',
+            data: [],
+            borderColor: 'rgba(54, 162, 235, 1)',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            fill: true,
+          },
+        ]
+      };
+
+      var kpiTempAtual = 0
+      var kpiUmiAtual = 0
+      // Inserindo valores recebidos em estrutura para plotar o gráfico
+      for (let i = 0; i < resposta.temp.length; i++) {
+
+
+        let registrosTemp = resposta.temp
+
+
+        let registrosUmi = resposta.umi
+        console.log(registrosTemp[i].dtRegistro)
+
+        dados.labels.push(registrosTemp[i].dtRegistro);
+
+        dados.datasets[0].data.push(registrosTemp[i].registro);
+
+        dados.datasets[1].data.push(registrosUmi[i].registro);
+
+        // inserção de kpi de atual
+        if (i == 0) {
+          kpiTempAtual = registrosTemp[i].registro
+          kpiUmiAtual = registrosUmi[i].registro
+          kpi_temp.innerHTML = kpiTempAtual
+          kpi_umi.innerHTML = kpiUmiAtual
+        }
+      }
+
+      // mudança de cor do card-KPI
+      var cardTemperatura = document.getElementById('temperaturaAtual');
+
+      if (kpiTempAtual <= 20) {
+        cardTemperatura.className = 'card atual_abaixo';
+      } else if (kpiTempAtual < 25) {
+        cardTemperatura.className = 'card atual_boa';
+      } else {
+        cardTemperatura.className = 'card atual_acima';
+      }
+
+
+      var cardUmidade = document.getElementById('umidadeAtual');
+
+      if (kpiUmiAtual <= 60) {
+        cardUmidade.className = 'card atual_abaixo';
+      } else if (kpiUmiAtual <= 80) {
+        cardUmidade.className = 'card atual_boa';
+      } else {
+        cardUmidade.className = 'card atual_acima';
+      }
+
+
+      const config = {
+        type: 'line',
+        data: dados,
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              type: 'time',
+              time: {
+                unit: 'hour',
+                tooltipFormat: 'll HH:mm',
+              },
+            },
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      };
+
+
+      const graficoTemperaturaUmidade = new Chart(document.getElementById('graficoTemperatura'), config);
+    }
+
+    obterDadosGrafico()
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+
+  <script data-jsd-embedded data-key="022093e6-0b16-47f0-a2b8-ba3f7236c02f"
+    data-base-url="https://jsd-widget.atlassian.com" src="https:jsd-widget.atlassian.com/assets/embed.js"></script>
+
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+    feather.replace();
+  </script>
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+
+</body>
+
+</html>

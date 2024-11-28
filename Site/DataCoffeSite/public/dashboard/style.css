@@ -49,11 +49,11 @@ h1 {
   align-items: center;
   margin-top: 75px;
   margin-left: 20%;
-  width: 80%; /* Altere para 100% para garantir que ocupe toda a largura disponível */
+  width: 80%; 
   margin-bottom: 50px;
   gap: 20px;
   bottom: 90px;
-  flex-wrap: wrap; /* Isso permite que os itens se quebrem para a próxima linha */
+  flex-wrap: wrap; 
 }
 
 

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 
+
 :root {
   --background: radial-gradient(circle, #b78875 0%, #3e281f 100%);
   --navbar-width: 256px;
@@ -10,6 +11,8 @@
   --corPrimaria: #ffffff;
   --corSecundaria: #000000;
 }
+
+
 
 html,
 body {
@@ -94,6 +97,8 @@ section{
 
 #nav-bar {
   position: absolute;
+  left: 1vw;
+  top: 1vw;
   height: calc(100% - 2vw);
   background: var(--primario);
   border-radius: 16px;
@@ -102,6 +107,7 @@ section{
   color: var(--corPrimaria);
   overflow: hidden;
   user-select: none;
+
 }
 
 #nav-bar hr {
@@ -417,24 +423,6 @@ label[for=nav-footer-toggle] {
 }
 
 
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: black
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #533529;
-  border-radius: 20px;
-  border: 3px solid black
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: white;
-}
-
 
 .char_container {
   display: flex;
@@ -634,23 +622,24 @@ h1 {
   gap: 20px;
 }
 
+
 .kpi {
-  background-color: var(--primario);
+  background: var(--primario);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+
   height: 140px;
   width: 180px;
   border: 3px solid  #19130f;
   color: black;
   padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  transition: transform 0.3s;
   margin: 0 10px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .atual_boa{
@@ -685,10 +674,8 @@ h1 {
 
 .kpi:hover {
   transform: translateY(-5px);
-  transform: scale(0.98);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   color: #5d3f26;
-  transform: translateY(-2px);
-  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .kpi p {

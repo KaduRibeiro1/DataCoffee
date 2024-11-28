@@ -3,50 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../style.css">
     <title>Dashboard - DataCoffee </title>
 </head>
 <body>
     <div class="conteiner-main">
-        <aside>
-            <div id="nav-bar">
-                <input id="nav-toggle" type="checkbox" />
-                <div id="nav-header"><a id="nav-title" href="../frontend/index.html" target="_blank"><img
-                            src="../assets/img/logoSemFundo.png" alt="Logo DataCoffee"></a>
-                    <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+        <div id="nav-bar">
+            <input id="nav-toggle" type="checkbox" />
+            <div id="nav-header"><a id="nav-title" href="../frontend/index.html" target="_blank"><img
+                        src="../assets/img/logoSemFundo.png" alt="Logo DataCoffee"></a>
+                <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+            </div>
+    
+    
+            <div id="nav-content">
+                <div onclick="home()" class="nav-button"><i data-feather="home"></i><span><a
+                            href="../index.html">Home</a></span></div>
+                <div onclick="plantacao()" class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span></div>
+                <div onclick="grafico()" class="nav-button"><i class="fas fa-chart-bar"></i><span>Avisos</span></div>
+    
+    
+    
+                <div id="nav-content-highlight"></div>
+            </div>
+    
+            <input id="nav-footer-toggle" type="checkbox" />
+    
+            <div id="nav-footer">
+                <div id="nav-footer-heading">
+                    <div id="nav-footer-avatar"></div>
+                    <div id="nav-footer-titlebox">DataCoffee<span id="nav-footer-subtitle">Administrador</span></div>
+                    <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
                 </div>
-
-                <div id="nav-content">
-                    <div onclick="home()" class="nav-button"><i class="fas fa-home"></i><span><a
-                                href="../index.html">Home</a></span></div>
-                    <div onclick="plantacao()" class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span>
-                    </div>
-                    <div onclick="grafico()" class="nav-button"><i class="fas fa-chart-bar"></i><span>Avisos</span>
-                    </div>
-
-                    <div id="nav-content-highlight"></div>
-                </div>
-
-                <input id="nav-footer-toggle" type="checkbox" />
-
-                <div id="nav-footer">
-                    <div id="nav-footer-heading">
-                        <div id="nav-footer-avatar"><img src="../assets/img/icon.png" /></div>
-                        <div id="nav-footer-titlebox">DataCoffee<span id="nav-footer-subtitle">Administrador</span>
-                        </div>
-                        <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
-                    </div>
-
-
-                    <div id="nav-footer-content">
-                        <div class="nav-button"><i class="fas fa-user-circle"></i><span>Perfil</span></div>
-                        <div class="nav-button"><i class="fas fa-user-plus"></i><span>Logar com outro Usuário</span>
-                        </div>
-                        <div class="nav-button"><i class="fas fa-sign-out-alt"></i><span>Sair</span></div>
-                    </div>
+    
+    
+                <div id="nav-footer-content">
+                    <div class="nav-button"><i class="fas fa-user-circle"></i><span>Perfil</span></div>
+                    <div class="nav-button"><i class="fas fa-user-plus"></i><span>Logar com outro Usuário</span></div>
+                    <div class="nav-button"><i class="fas fa-sign-out-alt"></i><span>Sair</span></div>
                 </div>
             </div>
-        </aside>
+        </div>
+         
+
 
 
         <section class="content-dash">
@@ -132,6 +132,8 @@
     </div>
 </body>
 </html>
+
+
 <script>
 function obterDadosGrafico(){
     fetch(`/medidas/buscarRegistros/`, { cache: 'no-store' }).then(function (response) {
@@ -254,9 +256,15 @@ obterDadosGrafico()
 </script>
 
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+<script src="https://unpkg.com/feather-icons"></script>
 
+<script>
+    feather.replace();
+</script>
+  
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+
 
 <script data-jsd-embedded data-key="022093e6-0b16-47f0-a2b8-ba3f7236c02f"
     data-base-url="https://jsd-widget.atlassian.com" src="https:jsd-widget.atlassian.com/assets/embed.js"></script>

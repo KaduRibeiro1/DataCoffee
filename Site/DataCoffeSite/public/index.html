@@ -27,11 +27,7 @@
             </li>
             <li>
                 <a href="#company_contact">Contato</a>
-            </li>
-            <li>
-                <a href="BobIa.html">BobIA</a>
-            </li>
-
+            </li>   
             <div class="conteiner_login_and_register">
                 <button class="button" id="login" onclick="window.location.href='login.html'"
                     target="_blank">Entre</button>
@@ -453,7 +449,7 @@
     }
 
 
-     // Inicialize o EmailJS
+    
      (function () {
         emailjs.init("A0fkIFmmYLPz1L3J2"); 
     })();
@@ -463,7 +459,6 @@
         event.preventDefault();
 
         const form = event.target;
-
         
         const name = form.querySelector('input[name="name"]');
         const email = form.querySelector('input[name="email"]');
