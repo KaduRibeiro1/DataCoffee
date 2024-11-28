@@ -75,7 +75,7 @@ if (sessionStorage.PLANTACOES) {
     JSON.parse(sessionStorage.PLANTACOES).forEach(item => {
         document.getElementById("container").innerHTML += `
             <div class="plantacao-container">
-                <div onclick="dashboard()" class="plantacao funcionando">
+                <div onclick="dashboard(${item.idPlantacao})" class="plantacao funcionando">
                     <i class="fas fa-seedling"></i>
                     <span>Plantacao ${item.setor}</span>
                     Sensor Instalado<br> <strong>Status: ${item.modelo}</strong>
@@ -98,8 +98,10 @@ function limparSessao() {
 };
 
 
-    function dashboard(){
-        window.location.href = "./dashboard.html"
+    function dashboard(idPlantacao){
+        sessionStorage.setItem('idPlantacao',idPlantacao)
+        alert(sessionStorage.idPlantacao)
+        window.location.href = "./indexD.html"
     }
 
     function home(){

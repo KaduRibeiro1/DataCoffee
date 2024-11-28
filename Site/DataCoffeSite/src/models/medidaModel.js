@@ -28,23 +28,25 @@ function buscarMedidasEmTempoReal(idAquario) {
     return database.executar(instrucaoSql);
 }
 
-function buscarRegistrosTemp() {
+function buscarRegistrosTemp(idPlantacao) {
     const instrucaoSql1 = `
-        SELECT 
-            sensor.modelo, 
-            registro,
-            dtRegistro
-        FROM Registro 
-        JOIN sensor ON registro.fkSensor = sensor.idSensor
-        WHERE sensor.modelo = 'LM35' 
-        ORDER BY dtRegistro DESC
-        limit 7;
+    SELECT 
+    sensor.modelo, 
+    registro,
+    dtRegistro
+        FROM Registro join sensor
+        on registro.fkSensor = sensor.idSensor
+        join plantacao 
+        on fkPlantacao = idPlantacao
+        where sensor.modelo = 'LM35' and fkPlantacao = ${idPlantacao}
+        ORDER BY  dtRegistro desc
+    limit 7;
     `;
     return database.executar(instrucaoSql1);  // Retorna a Promise
 }
 
 
-function buscarRegistrosUmi() {
+function buscarRegistrosUmi(idPlantacao) {
     const instrucaoSql2 = `
         SELECT 
             sensor.modelo, 
@@ -52,7 +54,7 @@ function buscarRegistrosUmi() {
             dtRegistro
         FROM Registro 
         JOIN sensor ON registro.fkSensor = sensor.idSensor
-        WHERE sensor.modelo = 'Sensor de Umidade' 
+        WHERE sensor.modelo = 'Sensor de Umidade' and fkPlantacao = ${idPlantacao}
         ORDER BY dtRegistro DESC
         limit 7;
     `;

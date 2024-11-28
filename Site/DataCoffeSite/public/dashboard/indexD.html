@@ -146,10 +146,15 @@
       window.location.href = "avisos.html"
     }
 
-
+    window.onload = function() {
+    obterDadosGrafico();
+    };
 
     function obterDadosGrafico() {
-      fetch(`/medidas/buscarRegistros/`, { cache: 'no-store' }).then(function (response) {
+
+      var idPlantacao = sessionStorage.idPlantacao
+
+      fetch(`/medidas/buscarRegistros/${idPlantacao}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
           response.json().then(function (resposta) {
             console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -262,7 +267,6 @@
       const graficoTemperaturaUmidade = new Chart(document.getElementById('graficoTemperatura'), config);
     }
 
-    obterDadosGrafico()
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

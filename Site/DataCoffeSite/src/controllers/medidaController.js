@@ -44,13 +44,16 @@ function buscarMedidasEmTempoReal(req, res) {
 
 
 function buscarRegistros(req, res) {
+
+    var idPlantacao = req.params.idPlantacao;
+  
    // Primeira busca: temperatura
-   medidaModel.buscarRegistrosTemp()
+   medidaModel.buscarRegistrosTemp(idPlantacao)
    .then(function (resultadoTemp) {
        // Verifica se a primeira busca retornou dados
        if (resultadoTemp.length > 0) {
            // Segunda busca: umidade
-           medidaModel.buscarRegistrosUmi()
+           medidaModel.buscarRegistrosUmi(idPlantacao)
                .then(function (resultadoUmi) {
                    // Verifica se a segunda busca também retornou dados
                    if (resultadoUmi.length > 0) {
@@ -87,5 +90,4 @@ module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     buscarRegistros
-
 }

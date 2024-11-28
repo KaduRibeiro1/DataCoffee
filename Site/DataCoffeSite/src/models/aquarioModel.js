@@ -12,7 +12,7 @@ function buscarAquariosPorEmpresa(empresaId) {
 
 function buscarPlantacoesPorEmpresa(empresaId) {
 
-  var instrucaoSql = `SELECT idPlantacao,razao_social,setor,modelo FROM plantacao JOIN empresa ON idEmpresa=fkEmpresa JOIN sensor ON fkPlantacao=idPlantacao WHERE fkEmpresa = ${empresaId};`;
+  var instrucaoSql = `SELECT idPlantacao,razao_social FROM plantacao JOIN empresa ON idEmpresa=fkEmpresa WHERE fkEmpresa = ${empresaId};`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
