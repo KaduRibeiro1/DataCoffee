@@ -66,42 +66,23 @@ VALUES
 
 
 
-select * from plantacao;
-
 
 create table sensor(
 idSensor INT PRIMARY KEY AUTO_INCREMENT,
 modelo VARCHAR(45) NOT NULL,
-setor VARCHAR(45),
 dtInstalacao DATE NOT NULL,
 fkPlantacao INT NOT NULL,
 constraint fkPlantacaoSensor foreign key (fkPlantacao) references plantacao(idPlantacao)
 );
 
-INSERT INTO Sensor (modelo, setor, dtInstalacao, fkPlantacao) 
+INSERT INTO Sensor (modelo,  dtInstalacao, fkPlantacao) 
 VALUES 
-('LM35', 'Setor Norte', '2024-01-01', 1),
-('Sensor de Umidade', 'Setor Norte', '2024-02-01', 1),
-('LM35', 'Setor Sul', '2024-01-01', 1),
-('Sensor de Umidade', 'Setor Sul', '2024-02-01', 1),
-('LM35', 'Setor Norte', '2024-01-01', 2),
-('Sensor de Umidade', 'Setor Norte', '2024-02-01', 2),
-('LM35', 'Setor Sul', '2024-01-01', 2),
-('Sensor de Umidade', 'Setor Sul', '2024-02-01', 2);
-
-
-SELECT 
-        sensor.modelo, 
-        registro,
-        dtRegistro
-        FROM Registro join sensor
-        on registro.fkSensor = sensor.idSensor
-        where sensor.modelo = 'Sensor de Umidade' and DATE(dtRegistro) = CURDATE() 
-        ORDER BY  dtRegistro desc;
+('LM35','2024-01-01', 1),
+('Sensor de Umidade', '2024-02-01', 1);
 
 
 create table registro(
-idRegistro INT ,
+idRegistro INT  auto_increment,
 fkSensor int,
 constraint pkRegistro primary key (idRegistro, fkSensor),
 registro decimal (4,2),
@@ -109,199 +90,13 @@ dtRegistro datetime,
 constraint fkSensorRegistro foreign key (fkSensor) references sensor(idSensor)
 );
 
-ALTER TABLE REGISTRO modify column idRegistro int auto_increment;
-select * from registro;
+
 INSERT INTO Registro (fkSensor, registro, dtRegistro) 
 VALUES 
-( 1, 25, '2024-11-27 01:10:00');  -- Registro de temperatura
-
-select * from registro;
-
-(3, 1, 24.8, '2024-06-02 16:00:00'),  -- Registro de temperatura
-(4, 2, 62.0, '2024-06-02 16:00:00'),  -- Registro de umidade
-(5, 3, 26.5, '2024-06-02 17:00:00'),  -- Registro de temperatura
-(6, 4, 59.3, '2024-06-02 17:00:00'),  -- Registro de umidade
-(7, 3, 27.1, '2024-06-02 18:00:00'),  -- Registro de temperatura
-(8, 4, 61.8, '2024-06-02 18:00:00');  -- Registro de umidade
+( 1, 25, '2024-11-27 01:10:00'),
+(2,70,'2024-11-27 01:10:00'),
+(1,40,'2024-11-27 03:10:00'),
+(2,50,'2024-11-27 03:10:00');
 
 
-SELECT 
-    e.razao_social AS Empresa,
-    p.hectares,
-    p.qtdPes
-FROM 
-    Empresa e
-JOIN 
-    Plantacao p ON e.idEmpresa = p.fkEmpresa;
     
-    
-SELECT 
-    e.razao_social AS Empresa,
-    p.hectares AS Hectares,
-    s.modelo AS ModeloSensor,
-    s.setor AS Setor,
-    s.dtInstalacao AS DataInstalacao
-FROM 
-    Empresa e
-JOIN 
-    Plantacao p ON e.idEmpresa = p.fkEmpresa
-JOIN 
-    Sensor s ON p.idPlantacao = s.fkPlantacao;
-    
-    
-    
-SELECT 
-    e.razao_social AS Empresa,
-    p.hectares AS Hectares,
-    s.modelo AS ModeloSensor,
-    r.registro AS ValorMedido,
-    r.dtRegistro AS DataRegistro
-FROM 
-    Empresa e
-JOIN 
-    Plantacao p ON e.idEmpresa = p.fkEmpresa
-JOIN 
-    Sensor s ON p.idPlantacao = s.fkPlantacao
-JOIN 
-    Registro r ON s.idSensor = r.fkSensor;
-    
-    
-SELECT 
-    e.razao_social AS Empresa,
-    p.hectares AS Hectares,
-    COUNT(s.idSensor) AS QuantidadeSensores
-FROM 
-    Empresa e
-JOIN 
-    Plantacao p ON e.idEmpresa = p.fkEmpresa
-LEFT JOIN 
-    Sensor s ON p.idPlantacao = s.fkPlantacao
-GROUP BY 
-    e.razao_social, p.hectares;
-
-
-SELECT 
-    e.razao_social AS Empresa,
-    p.hectares AS Hectares,
-    s.modelo AS ModeloSensor,
-    r.registro AS ValorMedido,
-    r.dtRegistro AS DataRegistro
-FROM 
-    Empresa e
-JOIN 
-    Plantacao p ON e.idEmpresa = p.fkEmpresa
-JOIN 
-    Sensor s ON p.idPlantacao = s.fkPlantacao
-JOIN 
-    Registro r ON s.idSensor = r.fkSensor
-WHERE 
-    r.dtRegistro = (
-        SELECT MAX(r2.dtRegistro) 
-        FROM Registro r2 
-        WHERE r2.fkSensor = s.idSensor
-    );
-
-
-SELECT 
-    s.idSensor,
-    s.modelo AS ModeloSensor,
-    MAX(r.registro) AS TemperaturaMaxima,
-    MIN(r.registro) AS TemperaturaMinima
-FROM 
-    Sensor s
-JOIN 
-    Registro r ON s.idSensor = r.fkSensor
-WHERE 
-    s.modelo = 'LM35'
-GROUP BY 
-    s.idSensor;
-    
-
-SELECT 
-    s.idSensor,
-    s.modelo AS ModeloSensor,
-    MAX(r.registro) AS TemperaturaMaxima,
-    MIN(r.registro) AS TemperaturaMinima
-FROM 
-    Sensor s
-JOIN 
-    Registro r ON s.idSensor = r.fkSensor
-WHERE 
-    s.modelo = 'Sensor de Umidade'
-GROUP BY 
-    s.idSensor;
-    
--- Registros de Temperatura para sensores LM35
-INSERT INTO Registro (idRegistro, fkSensor, registro, dtRegistro) VALUES 
-(9, 1, 24.5, '2024-06-02 19:00:00'),
-(10, 1, 25.2, '2024-06-02 20:00:00'),
-(11, 3, 26.1, '2024-06-02 15:00:00'),
-(12, 3, 24.8, '2024-06-02 16:00:00'),
-(13, 5, 23.9, '2024-06-02 17:00:00'),
-(14, 5, 25.5, '2024-06-02 18:00:00');
-
--- Registros de Umidade para sensores de umidade
-INSERT INTO Registro (idRegistro, fkSensor, registro, dtRegistro) VALUES 
-(15, 2, 60.2, '2024-08-02 19:00:00'),
-(16, 2, 58.5, '2024-06-02 20:00:00'),
-(17, 4, 59.1, '2024-06-02 15:00:00'),
-(18, 4, 61.3, '2024-06-02 16:00:00'),
-(19, 6, 60.7, '2024-06-02 17:00:00'),
-(20, 6, 59.9, '2024-06-02 18:00:00');
-
-
-
-SELECT 
-    r.idRegistro,
-    r.fkSensor,
-    MAX(r.registro) AS TemperaturaMaxima,
-    MIN(r.registro) AS TemperaturaMinima,
-    dtRegistro
-FROM 
-    Registro r
-JOIN 
-    Sensor s ON r.fkSensor = s.idSensor
-WHERE 
-    s.modelo = 'LM35'
-GROUP BY 
-    r.idRegistro, r.fkSensor
-ORDER BY dtRegistro;
-
-SELECT 
-    r.idRegistro,
-    r.fkSensor,
-    MAX(r.registro) AS TemperaturaMaxima,
-    MIN(r.registro) AS TemperaturaMinima,
-    dtRegistro
-FROM 
-    Registro r
-JOIN 
-    Sensor s ON r.fkSensor = s.idSensor
-WHERE 
-    s.modelo = 'Sensor de umidade'
-GROUP BY 
-    r.idRegistro, r.fkSensor
-ORDER BY dtRegistro;
-
-
-SELECT * FROM plantacao whERE fkempresa = idEmpresa;
-
-select * from usuario;
-
-SELECT idUsuario, nome, dtNascimento, cpf, genero, email, senha, fkEmpresa as empresaID, fkSupervisor FROM usuario;
-
-        SELECT idUsuario, nome, email, senha, fkEmpresa as Empresa FROM usuario WHERE email = 'joao.silva@gmail.com' AND senha = 'cafeDoBom';
-        
-        
-SELECT 
-	sensor.modelo, 
-	registro,
-    dtRegistro
-	FROM Registro join sensor
-	on registro.fkSensor = sensor.idSensor
-	where sensor.modelo = 'LM35'
-	ORDER BY  dtRegistro desc
-    limit 7;
-	
-
-select * from usuario;
