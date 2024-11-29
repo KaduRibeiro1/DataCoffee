@@ -1,111 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard - DataCoffee</title>
-    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
-</head>
-<body>
-    <h1 id="titulo"> <br>
-      Plantação de Café</h1>
-  
-  
-    <div id="container" class="container">
-      
-    </div>
+    <link rel="shortcut icon" href="../../assets/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/plantacao.css" />
+  </head>
+      <body>
+        <div class="grid-container">
+          <header class="header">
+            <div class="header-left">
+              <i id="bell" data-feather="bell"></i>
+            </div>
+            <div class="header-right">
+              <img src="../assets/img/icon.png" />
+              <div class="header-info">
+                <p id="nome_usuario">usuário</p>
+                <span>Administrador</span>
+              </div>
+            </div>
+          </header>
     
+          <aside id="sidebar">
+            <div class="sidebar-brand">
+              <img src="../assets/img/logoSemFundo.png" id="logo" alt="Logo DataCoffee"/>
+            </div>
+            <ul class="sidebar-list">
+              <li class="sidebar-list-item">
+                <a onclick="window.location.href='../index.html'" target="_blank">
+                  <i data-feather="home"></i> Início
+                </a>
+              </li>
+              <li class="sidebar-list-item">
+                <a onclick="window.location.href='avisos.html'" target="_blank">
+                  <i data-feather="bar-chart"></i> Avisos
+                </a>
+              </li>
+              <li class="sidebar-list-item">
+                <a href="#" target="_blank">
+                  <i data-feather="user"></i> Mudar Conta 
+                </a>
+              </li>
+              <li class="sidebar-list-item">
+                <a onclick="aviso()" target="_blank">
+                  <i data-feather="log-out"></i> Sair
+                </a>
+              </li>
+            </ul>
+          </aside>
+    
+          <main class="main-container">
+            <div class="main-title">
+              <h2>Suas Plantações</h2>
+            </div>
+
+            <div id="container" class="container"></div>
 
     
-  <div id="nav-bar"> 
-    <input id="nav-toggle" type="checkbox" />
-    <div id="nav-header"><a id="nav-title" onclick="home()" target="_blank"><img src="../../assets/img/logoSemFundo.png" alt="Logo DataCoffee"></a>
-      <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
-    </div>
-
-
-    <div id="nav-content">
-        <div onclick="home()" class="nav-button"><i class="fas fa-home"></i><span>Home</span></div>
-        
-        
-
-      <div id="nav-content-highlight"></div>
-    </div>
-
-    <input id="nav-footer-toggle" type="checkbox" />
-
-    <div id="nav-footer">
-      <div id="nav-footer-heading">
-        <div id="nav-footer-avatar"><img src="../assets/img/icon.png" /></div>
-        <div id="nav-footer-titlebox"><p id="b_usuario">usuário</p><span id="nav-footer-subtitle">Administrador</span></div>
-        <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
-      </div>
-
-
-      <div id="nav-footer-content">
-          <div class="nav-button"><i class="fas fa-user-circle"></i><span>Perfil</span></div>
-        <div class="nav-button"><i class="fas fa-user-plus"></i><span>Logar com outro Usuário</span></div>
-        <div onclick="limparSessao()" class="nav-button"><i class="fas fa-sign-out-alt"></i><span >Sair</span></div>
-      </div>
-    </div>
-  </div>
-</body>
-
+          </main>
+    
+      </body>
 </html>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
-
 
 <script>
-  var Plantacoes  = sessionStorage.PLANTACOES;
-  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  // para mudar a cor da plantação tem que pegar os dados da KPI dela
+  function obterDadosGrafico(idPlantacao) {
+    fetch(`/medidas/buscarRegistros/${idPlantacao}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            console.log(resposta.temp[0]["registro"]);
+            corPlantacao(resposta, idPlantacao);
+          });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
+  }
 
+  function corPlantacao(registros, idPlantacao) {
+    // separando a resposta
+    let registrosTemp = registros.temp;
+    let registrosUmi = registros.umi;
+    let idCard = "card" + idPlantacao;
+    // pegando os ultimos registros
+    let kpiTempAtual = registrosTemp[0].registro;
+    let kpiUmiAtual = registrosUmi[0].registro;
 
-        // Exibe o valor de Plantacao no <h1> após a página carregar
-        window.onload = function() {
-          var plantacoesArray = JSON.parse(Plantacoes);
-            const titulo = document.getElementById("titulo");
-            titulo.innerHTML = `${plantacoesArray[0].razao_social} <br>Plantação de Café`;
-        };
-console.log(sessionStorage.PLANTACOES);
+    if (
+      kpiTempAtual <= 20 ||
+      kpiTempAtual > 25 ||
+      kpiUmiAtual <= 60 ||
+      kpiUmiAtual > 80
+    ) {
+      var plantacaoCard = document.getElementById(idCard);
+      plantacaoCard.className = "plantacao nao-funcionando";
+    }
+  }
 
-if (sessionStorage.PLANTACOES) {
-    JSON.parse(sessionStorage.PLANTACOES).forEach(item => {
-        document.getElementById("container").innerHTML += `
+  var Plantacoes = sessionStorage.PLANTACOES;
+  nome_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+  // Exibe o valor de Plantacao no <h1> após a página carregar
+  window.onload = function () {
+    var plantacoesArray = JSON.parse(Plantacoes);
+    const titulo = document.getElementById("titulo");
+    titulo.innerHTML = `${plantacoesArray[0].razao_social} <br>Plantação de Café`;
+  };
+  console.log(sessionStorage.PLANTACOES);
+
+  if (sessionStorage.PLANTACOES) {
+    JSON.parse(sessionStorage.PLANTACOES).forEach((item) => {
+      document.getElementById("container").innerHTML += `
             <div class="plantacao-container">
-                <div onclick="dashboard(${item.idPlantacao})" class="plantacao funcionando">
-                    <i class="fas fa-seedling"></i>
-                    <span>Plantacao ${item.setor}</span>
-                    Sensor Instalado<br> <strong>Status: ${item.modelo}</strong>
+                <div id="card${item.idPlantacao}" onclick="dashboard(${item.idPlantacao})" class="plantacao funcionando">
+                     <i data-feather="feather"></i>
+                    <span>Plantacao ${item.idPlantacao}</span>
+                    Sensor Instalado<br> <strong></strong>
                 </div>
             </div>`;
+
+      obterDadosGrafico(item.idPlantacao);
     });
-} else {
+  } else {
     console.warn("Nenhuma plantação encontrada no sessionStorage.");
-}
+  }
 
-
-
-
-function limparSessao() {
-    // Limpa todos os dados da sessionStorage
+  function limparSessao() {
     sessionStorage.clear();
-
-    // Redireciona para a página de logout ou a página de destino
     window.location = "../index.html";
-};
+  }
 
-
-    function dashboard(idPlantacao){
-        sessionStorage.setItem('idPlantacao',idPlantacao)
-        alert(sessionStorage.idPlantacao)
-        window.location.href = "./indexD.html"
-    }
-
-    function home(){
-            window.location.href = "../index.html"
-    }
+  function dashboard(idPlantacao) {
+    sessionStorage.setItem("idPlantacao", idPlantacao);
+    window.location.href = "./indexD.html";
+  }
 </script>
-<script src="../js/sessao.js"></script>cr
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+<script src="../js/sessao.js"></script>
+
+<script src="https://unpkg.com/feather-icons"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
+
+<script>
+  feather.replace();
+</script>

@@ -15,4 +15,7 @@ router.get("/buscarRegistros/:idPlantacao", function (req, res) {
     medidaController.buscarRegistros(req, res);
 });
 
+router.get("/buscarMedia/:idPlantacao", function (req, res) {
+    medidaController.buscaMedia(req, res);
+});
 module.exports = router;
