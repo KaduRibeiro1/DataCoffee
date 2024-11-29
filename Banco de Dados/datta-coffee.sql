@@ -1,4 +1,3 @@
-
 create database datacoffe;
 
 use datacoffe;
@@ -18,8 +17,6 @@ complemento varchar(100),
 Email varchar(100) NOT NULL,
 codigo_de_ativacao varchar(50) NOT NULL
 );
-
-select * from usuario;
 
 INSERT INTO Empresa (razao_social, cnpj, cep, uf, cidade, logradouro, bairro, numero, complemento, Email, codigo_de_ativacao) 
 VALUES 
