@@ -105,8 +105,11 @@ function buscaMedia(req, res){
                            MediaUmi: resultadoUmi
                        });
                    } else {
-                       res.status(204).send("Nenhum registro de umidade encontrado!");
-                   }
+                    res.status(200).json({
+                        message: "Nenhum registro encontrado!",
+                        MediaTemp: resultadoTemp,
+                        MediaUmi: resultadoUmi
+                    });                   }
                })
                .catch(function (erro) {
                    // Caso ocorra erro na segunda busca
@@ -123,6 +126,7 @@ function buscaMedia(req, res){
        res.status(500).json({ error: erro.sqlMessage || erro.message });
    });
 }
+
 
 function buscarHorasForas(req, res) {
     const idPlantacao = req.params.idPlantacao;
@@ -159,8 +163,6 @@ function buscarHorasForas(req, res) {
             res.status(500).json({ mensagem: "Erro ao buscar dados de temperatura", error: error.message });
         });
 }
-
-
 
 
 function filtrarOcorrenciasPorHora() {
