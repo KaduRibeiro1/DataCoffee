@@ -7,7 +7,7 @@ router.get("/ultimas/:idAquario", function (req, res) {
     medidaController.buscarUltimasMedidas(req, res);
 });
 
-router.get("/tempo-real/:idAquario", function (req, res) {
+router.get("/tempo-real/:idPlantacao", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 })
 
@@ -18,4 +18,10 @@ router.get("/buscarRegistros/:idPlantacao", function (req, res) {
 router.get("/buscarMedia/:idPlantacao", function (req, res) {
     medidaController.buscaMedia(req, res);
 });
+
+router.get("/buscarHorasForas/:idPlantacao", function (req, res) {
+    medidaController.buscarHorasForas(req, res);
+});
+
+
 module.exports = router;

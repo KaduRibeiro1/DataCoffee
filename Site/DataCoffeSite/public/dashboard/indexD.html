@@ -3,16 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon"/>
+    <link
+      rel="shortcut icon"
+      href="../assets/favicon.ico"
+      type="image/x-icon"
+    />
     <title>Dashboard - DataCoffee</title>
     <link rel="stylesheet" href="../css/dashboard.css" />
   </head>
 
-  <body>
+  <body >
     <div class="grid-container">
       <header class="header">
         <div class="header-left">
-        <i id="bell" data-feather="bell"></i>
+          <i id="bell" data-feather="bell"></i>
         </div>
         <div class="header-center">
           <h1>Dashboard</h1>
@@ -25,11 +29,14 @@
           </div>
         </div>
       </header>
-      
 
       <aside id="sidebar">
         <div class="sidebar-brand">
-          <img src="../assets/img/logoSemFundo.png" id="logo" alt="Logo DataCoffee"/>
+          <img
+            src="../assets/img/logoSemFundo.png"
+            id="logo"
+            alt="Logo DataCoffee"
+          />
         </div>
         <ul class="sidebar-list">
           <li class="sidebar-list-item">
@@ -81,7 +88,7 @@
               <h3>Tempo fora da <br />condição ideal (Dia)</h3>
               <i data-feather="sun"></i>
             </div>
-            <h1>3 Horas</h1>
+            <h1 id="kpiTempoForaTemp"></h1>
           </div>
 
           <!-- Umidade Atual -->
@@ -97,9 +104,9 @@
           <div class="card">
             <div class="card-inner">
               <h3>Tempo fora da <br />condição ideal (Dia)</h3>
-              <i data-feather="cloud-lightning"></i>
+              <i data-feather="cloud-lightning" id="kpiTempoForaTemp"></i>
             </div>
-            <h1>3H</h1>
+            <h1 id="kpiTempoForaUmi"></h1>
           </div>
         </div>
 
@@ -127,6 +134,8 @@
       window.onload = function () {
         obterDadosGraficoLinha();
         obterDadosGraficoBarra();
+        buscarHorasForas(); // Chama a função ao carregar a página
+
       };
 
       function obterDadosGraficoLinha() {
@@ -139,7 +148,7 @@
               response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                 console.log(resposta.temp[0]["registro"]);
-                gerarGraficoTempUmi(resposta);
+                gerarGraficoTempUmi(resposta, idPlantacao);
               });
             } else {
               console.error("Nenhum dado encontrado ou erro na API");
@@ -152,7 +161,7 @@
           });
       }
 
-      function gerarGraficoTempUmi(resposta) {
+      function gerarGraficoTempUmi(resposta, idPlantacao) {
         let dados = {
           labels: [],
           datasets: [
@@ -162,7 +171,7 @@
               borderColor: "rgba(222, 49, 99, 1)",
               backgroundColor: "rgba(222, 49, 99, 0.6)",
               fill: true,
-              borderWidth: 2
+              borderWidth: 2,
             },
             {
               label: "Umidade (%)",
@@ -170,18 +179,18 @@
               backgroundColor: "rgba(0, 138, 144, 0.4)",
               borderColor: "rgba(0, 138, 144, 1)",
               fill: true,
-              borderWidth: 2
+              borderWidth: 2,
             },
           ],
         };
 
         var kpiTempAtual = 0;
         var kpiUmiAtual = 0;
+        let registrosTemp = resposta.temp.reverse();
+        let registrosUmi = resposta.umi.reverse();
         // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (let i = 0; i < resposta.temp.length; i++) {
-          let registrosTemp = resposta.temp;
-          let registrosUmi = resposta.umi;
 
+        for (let i = 0; i < resposta.temp.length; i++) {
           console.log(registrosTemp[i].dtRegistro);
 
           dados.labels.push(registrosTemp[i].dtRegistro);
@@ -191,10 +200,10 @@
           dados.datasets[1].data.push(registrosUmi[i].registro);
 
           // inserção de kpi de atual
-          if (i == 0) {
+          if (i == resposta.temp.length - 1) {
             kpiTempAtual = registrosTemp[i].registro;
             kpiUmiAtual = registrosUmi[i].registro;
-            kpi_temp.innerHTML = kpiTempAtual + ' Cº';
+            kpi_temp.innerHTML = kpiTempAtual + " Cº";
             kpi_umi.innerHTML = kpiUmiAtual + " %";
           }
         }
@@ -251,6 +260,16 @@
         const graficoTemperaturaUmidadeLinha = new Chart(
           document.getElementById("graficoTemperaturaUmidadeLinha"),
           config
+        );
+
+        setTimeout(
+          () =>
+            atualizarGrafico(
+              idPlantacao,
+              dados,
+              graficoTemperaturaUmidadeLinha
+            ),
+          2000
         );
       }
 
@@ -349,6 +368,194 @@
           window.location = "../index.html";
         }
       }
+
+      // aqui eu atualizo o grafico toda hora:
+
+      function atualizarGrafico(idPlantacao, dados, myChart) {
+        fetch(`/medidas/tempo-real/${idPlantacao}`, { cache: "no-store" })
+          .then(function (response) {
+            if (response.ok) {
+              response.json().then(function (novoRegistro) {
+                let registrosTemp = novoRegistro.temp;
+                let registrosUmi = novoRegistro.umi;
+
+                // obterdados(idAquario);
+
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico:`);
+                console.log(dados);
+
+                // let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
+                // avisoCaptura.innerHTML = ""
+
+                if (
+                  registrosTemp[0].dtRegistro ==
+                  dados.labels[dados.labels.length - 1]
+                ) {
+                  console.log(
+                    "---------------------------------------------------------------"
+                  );
+                  console.log(
+                    "Como não há dados novos para captura, o gráfico não atualizará."
+                  );
+                  console.log("Horário do novo dado capturado:");
+                  console.log(registrosTemp[0].dtRegistro);
+                  console.log("Horário do último dado capturado:");
+                  console.log(dados.labels[dados.labels.length - 1]);
+                  console.log(
+                    "---------------------------------------------------------------"
+                  );
+
+                  console.log("Todos Labels: ", dados.labels);
+                  console.log("Primeiro Label: ", dados.labels[0]);
+                  console.log(
+                    "Ultimo label: ",
+                    dados.labels[dados.labels.length - 1]
+                  );
+                } else {
+                  // tirando e colocando valores no gráfico
+                  dados.labels.shift(); // apagar o primeiro
+                  dados.labels.push(registrosTemp[0].dtRegistro); // incluir um novo momento
+
+                  dados.datasets[0].data.shift(); // apagar o primeiro de umidade
+                  dados.datasets[0].data.push(registrosTemp[0].registro); // incluir uma nova medida de umidade
+
+                  dados.datasets[1].data.shift(); // apagar o primeiro de temperatura
+                  dados.datasets[1].data.push(registrosUmi[0].registro); // incluir uma nova medida de temperatura
+
+                  myChart.update();
+
+                  /// KPI
+
+                  kpiTempAtual = registrosTemp[0].registro;
+
+                  kpiUmiAtual = registrosUmi[0].registro;
+                  console.log(kpiUmiAtual, "amigoooooooooooooooooo estou aqui");
+                  console.log(
+                    kpiTempAtual,
+                    "----------------------------------------------------------"
+                  );
+                  kpi_temp.innerHTML = kpiTempAtual + " Cº";
+                  kpi_umi.innerHTML = kpiUmiAtual + " %";
+
+                  // mudança de cor do card-KPI
+                  var cardTemperatura =
+                    document.getElementById("temperaturaAtual");
+
+                  if (kpiTempAtual <= 20) {
+                    cardTemperatura.className = "card atual_abaixo";
+                  } else if (kpiTempAtual < 25) {
+                    cardTemperatura.className = "card atual_boa";
+                  } else {
+                    cardTemperatura.className = "card atual_acima";
+                  }
+
+                  var cardUmidade = document.getElementById("umidadeAtual");
+
+                  if (kpiUmiAtual <= 60) {
+                    cardUmidade.className = "card atual_abaixo";
+                  } else if (kpiUmiAtual <= 80) {
+                    cardUmidade.className = "card atual_boa";
+                  } else {
+                    cardUmidade.className = "card atual_acima";
+                  }
+                }
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(
+                  () => atualizarGrafico(idPlantacao, dados, myChart),
+                  2000
+                );
+              });
+            } else {
+              console.error("Nenhum dado encontrado ou erro na API");
+              // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+              proximaAtualizacao = setTimeout(
+                () => atualizarGrafico(idPlantacao, dados, myChart),
+                2000
+              );
+            }
+          })
+          .catch(function (error) {
+            console.error(
+              `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+            );
+          });
+      }
+
+      // Função para buscar os dados de horas fora da condição ideal
+      function buscarHorasForas() {
+        var idPlantacao = sessionStorage.idPlantacao;
+
+      // Faz a requisição GET para o backend
+      fetch(`/medidas/buscarHorasForas/${idPlantacao}`, {
+          method: "GET", // Certifique-se de que o método é GET
+          headers: {
+            "Content-Type": "application/json", // Cabeçalho necessário para APIs REST
+         },
+      })
+      .then((response) => {
+          if (!response.ok) {
+            throw new Error("Erro na resposta do servidor");
+          }
+          return response.json();
+      })
+      .then((data) => {
+        console.log('Resposta da API: ', data);  // Verifique se os dados chegam corretamente aqui
+
+
+        // Verifica se a resposta contém a mensagem de erro
+        if (data.mensagem) {
+            // Caso o servidor retorne uma mensagem (sem dados)
+           console.error(data.mensagem);
+            document.getElementById("kpiTempoForaTemp").innerText =
+           "Erro: Nenhum dado encontrado";
+            document.getElementById("kpiTempoForaUmi").innerText =
+           "Erro: Nenhum dado encontrado";
+        } else {
+            // Obtém a hora atual (em formato de 24h)
+            const horaAtual = new Date().getHours(); // Hora atual (0 a 23)
+            console.log("Hora atual:", horaAtual);
+            console.log('Resposta da API: ', data);
+
+            // Filtra as ocorrências para a hora atual
+            const ocorrenciasTempAtual = data.horaForasTemp.filter(item => item.hora === horaAtual);
+            const ocorrenciasUmiAtual = data.horasForasUmi.filter(item => item.hora === horaAtual);
+
+            // Se houver ocorrências no horário atual, exibe
+            const horasForasTemp = ocorrenciasTempAtual.length > 0 ? ocorrenciasTempAtual[0].hora : 0;
+            const ocorrenciasForasTemp = ocorrenciasTempAtual.length > 0 ? ocorrenciasTempAtual[0].ocorrencias_fora_intervalo : 0;
+
+            const horasForasUmi = ocorrenciasUmiAtual.length > 0 ? ocorrenciasUmiAtual[0].hora : 0;
+            const ocorrenciasForasUmi = ocorrenciasUmiAtual.length > 0 ? ocorrenciasUmiAtual[0].ocorrencias_fora_intervalo : 0;
+
+            // Atualiza os textos nos cards com os valores filtrados pela hora atual
+            document.getElementById("kpiTempoForaTemp").innerText = `${horasForasTemp} horas | ${ocorrenciasForasTemp} ocorrências`;
+            document.getElementById("kpiTempoForaUmi").innerText = `${horasForasUmi} horas | ${ocorrenciasForasUmi} ocorrências`;
+
+            // Caso não haja ocorrências no horário atual
+            if (ocorrenciasTempAtual.length === 0) {
+                document.getElementById("kpiTempoForaTemp").innerText = "Nenhuma ocorrência no horário atual";
+            }
+            if (ocorrenciasUmiAtual.length === 0) {
+                document.getElementById("kpiTempoForaUmi").innerText = "Nenhuma ocorrência no horário atual";
+            }
+        }
+    })
+    .catch((error) => {
+        // Caso ocorra algum erro na requisição
+        console.error("Erro ao buscar dados:", error);
+        document.getElementById("kpiTempoForaTemp").innerText =
+            "Erro de conexão";
+        document.getElementById("kpiTempoForaUmi").innerText =
+            "Erro de conexão";
+    });
+}
+setInterval(buscarHorasForas, 2000);
+
+
+
+
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
