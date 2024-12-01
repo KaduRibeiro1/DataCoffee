@@ -40,11 +40,11 @@ create table usuario(
     constraint chkGenero check (genero in ('Masculino', 'Feminino', 'Não Binario'))
     );
     
- INSERT INTO Usuario (nome, dtNascimento, cpf, genero, email, senha, fkEmpresa, fkSupervisor) 
+ INSERT INTO Usuario (nome, dtNascimento, cpf, genero, email, senha, tipo, fkEmpresa, fkSupervisor) 
 VALUES 
-('João Silva', '1990-01-01', '12345678901', 'Masculino', 'joao.silva@gmail.com', 'cafeDoBom', 1, NULL),
-('Maria Souza', '1992-05-15', '23456789012', 'Feminino', 'maria.souza@outlook.com', 'cafeDosDeuses', 1, 1),
-('Ana Pereira', '1988-08-22', '34567890123', 'Não Binario', 'ana.pereira@yahoo.com', 'cafeSaboroso', 1, 1);
+('João Silva', '1990-01-01', '12345678901', 'Masculino', 'joao.silva@gmail.com', 'cafeDoBom', 'cliente', 1, NULL),
+('Maria Souza', '1992-05-15', '23456789012', 'Feminino', 'maria.souza@outlook.com', 'cafeDosDeuses', 'cliente', 1, 1),
+('Ana Pereira', '1988-08-22', '34567890123', 'Não Binario', 'ana.pereira@yahoo.com', 'cafeSaboroso', 'master', 1, 1);
 
 
 create table plantacao(
@@ -91,8 +91,10 @@ constraint fkSensorRegistro foreign key (fkSensor) references sensor(idSensor)
 
 -- insert dos ultimos 7 dias de hora em hora kkkkkkkk
 INSERT INTO Registro (fkSensor, registro, dtRegistro) VALUES
-(1, 25, '2024-11-21 00:00:00'),
-(2, 87, '2024-11-21 00:00:00'),
+(1, 25, now()),
+(2, 87, now());
+
+
 (1, 17, '2024-11-21 01:00:00'),
 (2, 56, '2024-11-21 01:00:00'),
 (1, 25, '2024-11-21 02:00:00'),
@@ -474,3 +476,19 @@ select * from usuario;
 
 use datacoffe;
     
+    
+SELECT 
+	idPlantacao,
+    s.modelo,
+    r.dtRegistro,
+    r.registro AS valor_registro
+FROM 
+    registro r
+JOIN sensor s ON r.fkSensor = s.idSensor
+JOIN plantacao p ON s.fkPlantacao = p.idPlantacao
+WHERE  
+    ( (s.modelo = 'LM35' AND (r.registro < 20 OR r.registro > 25)) 
+    OR 
+    (s.modelo = 'Sensor de Umidade' AND (r.registro < 10 OR r.registro > 13)) )
+ORDER BY r.dtRegistro DESC;
+

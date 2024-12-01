@@ -59,7 +59,9 @@
         <div class="main-title">
           <h2>Painel de Avisos</h2>
         </div>
-
+        <div id="div_situacao" class="main-cards">
+    
+        </div>
       </main>
 
   </body>
@@ -67,6 +69,106 @@
 
 <script>
     nome_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    function obterDados(idPlantacao) {
+    fetch(`/medidas/buscarRegistros/${idPlantacao}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            console.log(resposta.temp[0]["registro"]);
+            alerta(resposta, idPlantacao);
+          });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
+  }
+
+  function alerta(registros, idPlantacao) {
+    // separando a resposta
+    let registrosTemp = registros.temp;
+    let registrosUmi = registros.umi;
+  
+    let kpiTempAtual = registrosTemp[0].registro;
+    let kpiUmiAtual = registrosUmi[0].registro;
+    
+
+    if(kpiTempAtual <= 20){
+      div_situacao.innerHTML += `
+       <div  onclick="dashboard(${idPlantacao})" class="card aviso">
+            <div  class="card_situacao">
+              <h1>Alerta - Temperatura</h1>
+              <div class="azul"></div>
+            </div>
+            <p id="plantacao">Plantação ${idPlantacao}</p>
+            <p id="descricaoAlerta">A temperatura está Abaixo do ideal</p>
+          </div>`
+    }else if(kpiTempAtual > 25){
+      div_situacao.innerHTML += `
+       <div  onclick="dashboard(${idPlantacao})" class="card aviso">
+            <div  class="card_situacao">
+              <h1>Alerta - Temperatura</h1>
+              <div class="vermelho"></div>
+            </div>
+            <p id="plantacao">Plantação ${idPlantacao}</p>
+            <p id="descricaoAlerta">A temperatura está acima do ideal</p>
+          </div>`
+    }
+
+    if(kpiUmiAtual <= 60){
+      div_situacao.innerHTML += `
+       <div onclick="dashboard(${idPlantacao})" class="card aviso">
+            <div  class="card_situacao">
+              <h1>Alerta - Umidade</h1>
+              <div class="azul"></div>
+            </div>
+            <p id="plantacao">Plantação ${idPlantacao}</p>
+            <p id="descricaoAlerta">A Umidade está abaixo do ideal</p>
+          </div>`
+    }else if(kpiUmiAtual > 80){
+      div_situacao.innerHTML += `
+       <div  onclick="dashboard(${idPlantacao})" class="card aviso">
+            <div  class="card_situacao">
+              <h1>Alerta - Umidade</h1>
+              <div class="vermelho"></div>
+            </div>
+            <p id="plantacao">Plantação ${idPlantacao}</p>
+            <p id="descricaoAlerta">A Umidade está acima do ideal</p>
+          </div>`
+    }
+  }
+
+  var Plantacoes = sessionStorage.PLANTACOES;
+
+  console.log(sessionStorage.PLANTACOES);
+
+  if (sessionStorage.PLANTACOES) {
+  
+    JSON.parse(sessionStorage.PLANTACOES).forEach((item) => {
+      obterDados(item.idPlantacao)
+    });
+  } else {
+    console.warn("Nenhuma plantação encontrada no sessionStorage.");
+  }
+
+  
+
+  function limparSessao() {
+    sessionStorage.clear();
+    window.location = "../index.html";
+  }
+
+  function dashboard(idPlantacao) {
+    sessionStorage.setItem("idPlantacao", idPlantacao);
+    window.location.href = "./indexD.html";
+  }
+
 </script>
 
 <script src="https://unpkg.com/feather-icons"></script>

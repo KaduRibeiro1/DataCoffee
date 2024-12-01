@@ -224,6 +224,51 @@ body {
   text-shadow: 1px 1px 1px black;
 }
 
+#div_situacao{
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.card_situacao{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.aviso p{
+  margin: 0;
+}
+.aviso h1{
+  font-size: 18px;
+}
+.aviso{
+  padding: 15px;
+  padding-top: 5px;
+  height: auto;
+  width: 85%;
+  background-color: #f5e7c3;
+}
+
+.vermelho{
+  width: 40px;
+  height: 40px;
+  background-color: red;
+  border-radius: 100%;
+}
+
+.azul{
+  width: 40px;
+  height: 40px;
+  background-color: blue;
+  border-radius: 100%;
+}
+
+.verde{
+  width: 40px;
+  height: 40px;
+  background-color: green;
+  border-radius: 100%;
+}
 
 .card:nth-child(2) {
   background-color: #f5e7c3;
