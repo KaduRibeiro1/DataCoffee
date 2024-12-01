@@ -1,12 +1,14 @@
 # 🪴 Gestão de Temperatura e Umidade do Solo na Produção de Café Gourmet
 
+## 🛠️ Introdução
+
+Este projeto consiste em um sistema de monitoramento de temperatura e umidade do solo, desenvolvido para otimizar a produção de café gourmet. Com sensores integrados, os agricultores podem acompanhar as condições do cultivo em tempo real. Além disso, criamos uma dashboard intuitiva que facilita a visualização dos dados e auxilia na tomada de decisões, garantindo a qualidade dos grãos e maior eficiência produtiva.
+
 <img src=".github/1.png" alt="Imagem Principal">
 
 > Imagem da Página Principal 
 
-## 🛠️ Introdução
 
-Este projeto consiste em um sistema de monitoramento de temperatura e umidade do solo, desenvolvido para otimizar a produção de café gourmet. Com sensores integrados, os agricultores podem acompanhar as condições do cultivo em tempo real. Além disso, criamos uma dashboard intuitiva que facilita a visualização dos dados e auxilia na tomada de decisões, garantindo a qualidade dos grãos e maior eficiência produtiva.
 
 <img src=".github/2.png" alt="Imagem Login">
 
