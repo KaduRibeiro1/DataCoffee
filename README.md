@@ -1,12 +1,12 @@
 # 🪴 Gestão de Temperatura e Umidade do Solo na Produção de Café Gourmet
 
-## 🛠️ Introdução
-
-Este projeto consiste em um sistema de monitoramento de temperatura e umidade do solo, desenvolvido para otimizar a produção de café gourmet. Com sensores integrados, os agricultores podem acompanhar as condições do cultivo em tempo real. Além disso, criamos uma dashboard intuitiva que facilita a visualização dos dados e auxilia na tomada de decisões, garantindo a qualidade dos grãos e maior eficiência produtiva.
-
 <img src=".github/1.png" alt="Imagem Principal">
 
 > Imagem da Página Principal 
+
+## 🛠️ Introdução
+
+Este projeto consiste em um sistema de monitoramento de temperatura e umidade do solo, desenvolvido para otimizar a produção de café gourmet. Com sensores integrados, os agricultores podem acompanhar as condições do cultivo em tempo real. Além disso, criamos uma dashboard intuitiva que facilita a visualização dos dados e auxilia na tomada de decisões, garantindo a qualidade dos grãos e maior eficiência produtiva.
 
 <img src=".github/2.png" alt="Imagem Login">
 
@@ -28,12 +28,13 @@ Este projeto consiste em um sistema de monitoramento de temperatura e umidade do
 
 ## 📚 Objetivos
 
-- **Monitoramento em Tempo Real:** Coletar dados de umidade e temperatura do solo em tempo real para melhorar a qualidade do café.
-- **Otimização da Irrigação:** Usar os dados coletados para determinar o momento e a quantidade exata de irrigação, evitando desperdício de água e maximizando a produtividade.
-- **Mitigação dos Efeitos Climáticos:** Ajudar os produtores a enfrentar os desafios trazidos pelas mudanças climáticas, fornecendo informações precisas sobre as condições do solo.
-- **Produção Sustentável de Café Gourmet:** Melhorar a eficiência produtiva, reduzindo perdas de safra e custos, além de melhorar a qualidade dos grãos.
+- **Monitoramento em Tempo Real:** Fornecer dados precisos e atualizados de umidade e temperatura do solo, permitindo aos agricultores acompanhar as condições do cultivo de forma contínua e eficiente.  
+- **Otimização da Irrigação:** Analisar as informações coletadas para identificar o momento ideal e a quantidade exata de irrigação, promovendo o uso sustentável da água e maximização da produtividade.  
+- **Adaptação às Mudanças Climáticas:** Auxiliar os produtores a lidar com os impactos das alterações climáticas, oferecendo dados detalhados para ajustar estratégias de cultivo de forma proativa.  
+- **Produção Sustentável de Café Gourmet:** Garantir uma produção mais eficiente e ecológica, reduzindo perdas, otimizando custos e aprimorando a qualidade dos grãos para atender aos padrões do mercado gourmet.  
 
 ---
+
 
 ## 💻 Tecnologias Utilizadas
 
