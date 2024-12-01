@@ -19,7 +19,7 @@
           <i id="bell" data-feather="bell"></i>
         </div>
         <div class="header-center">
-          <h1>Dashboard</h1>
+          <h1></h1>
         </div>
         <div class="header-right">
           <img src="../assets/img/icon.png" />
@@ -68,9 +68,24 @@
       </aside>
 
       <main class="main-container">
-        <!-- <div class="main-title">
-          <h2>Informações Gerais</h2>
-        </div> -->
+        <div class="parametros-alerta-container">
+          <h2 class="parametros-titulo">Parâmetros para Alertas</h2>
+          <div class="parametros-row">
+            <div class="parametro-item abaixo">
+              <strong>Abaixo:</strong> 20°C <i class="fas fa-temperature-low"></i> | 60% <i class="fas fa-tint"></i>
+            </div>
+            <div class="parametro-item ideal">
+              <strong>Ideal:</strong> 23°C <i class="fas fa-temperature-low"></i> | 70% <i class="fas fa-tint"></i>
+            </div>
+            <div class="parametro-item acima">
+              <strong>Acima:</strong> 25°C <i class="fas fa-temperature-low"></i> | 80% <i class="fas fa-tint"></i>
+            </div>
+          </div>
+        </div>
+
+
+        
+        
 
         <div class="main-cards">
           <!-- Temperatura Atual -->
@@ -119,7 +134,7 @@
           </div>
 
           <div class="charts-card">
-            <h2 class="chart-title">Grafico de Temperaturas Umidades Médias</h2>
+            <h2 class="chart-title">Grafico de Temperaturas e Umidades Médias</h2>
             <div id="area-chart">
               <canvas id="graficoTemperaturaUmidadeBarra"></canvas>
             </div>
