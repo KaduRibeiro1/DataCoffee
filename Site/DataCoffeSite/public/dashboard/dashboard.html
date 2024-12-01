@@ -1,274 +1,600 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../style.css">
-    <title>Dashboard - DataCoffee </title>
-</head>
-<body>
-    <div class="conteiner-main">
-        <div id="nav-bar">
-            <input id="nav-toggle" type="checkbox" />
-            <div id="nav-header"><a id="nav-title" href="../frontend/index.html" target="_blank"><img
-                        src="../assets/img/logoSemFundo.png" alt="Logo DataCoffee"></a>
-                <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
-            </div>
-    
-    
-            <div id="nav-content">
-                <div onclick="home()" class="nav-button"><i data-feather="home"></i><span><a
-                            href="../index.html">Home</a></span></div>
-                <div onclick="plantacao()" class="nav-button"><i class="fas fa-seedling"></i><span>Plantações</span></div>
-                <div onclick="grafico()" class="nav-button"><i class="fas fa-chart-bar"></i><span>Avisos</span></div>
-    
-    
-    
-                <div id="nav-content-highlight"></div>
-            </div>
-    
-            <input id="nav-footer-toggle" type="checkbox" />
-    
-            <div id="nav-footer">
-                <div id="nav-footer-heading">
-                    <div id="nav-footer-avatar"></div>
-                    <div id="nav-footer-titlebox">DataCoffee<span id="nav-footer-subtitle">Administrador</span></div>
-                    <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
-                </div>
-    
-    
-                <div id="nav-footer-content">
-                    <div class="nav-button"><i class="fas fa-user-circle"></i><span>Perfil</span></div>
-                    <div class="nav-button"><i class="fas fa-user-plus"></i><span>Logar com outro Usuário</span></div>
-                    <div class="nav-button"><i class="fas fa-sign-out-alt"></i><span>Sair</span></div>
-                </div>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="../assets/favicon.ico"
+      type="image/x-icon"
+    />
+    <title>Dashboard - DataCoffee</title>
+    <link rel="stylesheet" href="../css/dashboard.css" />
+  </head>
+
+  <body >
+    <div class="grid-container">
+      <header class="header">
+        <div class="header-left">
+          <i id="bell" data-feather="bell"></i>
         </div>
-         
+        <div class="header-center">
+          <h1></h1>
+        </div>
+        <div class="header-right">
+          <img src="../assets/img/icon.png" />
+          <div class="header-info">
+            <p id="nome_usuario">usuário</p>
+            <span>Administrador</span>
+          </div>
+        </div>
+      </header>
+
+      <aside id="sidebar">
+        <div class="sidebar-brand">
+          <img
+            src="../assets/img/logoSemFundo.png"
+            id="logo"
+            alt="Logo DataCoffee"
+          />
+        </div>
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item">
+            <a onclick="window.location.href='dashboard.html'" target="_blank">
+              <i data-feather="home"></i> Início
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a onclick="window.location.href='plantacao.html'" target="_blank">
+              <i data-feather="feather"></i> Plantações
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a onclick="window.location.href='avisos.html'" target="_blank">
+              <i data-feather="bar-chart"></i> Avisos
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a onclick="window.location.href='../login.html'" target="_blank">
+              <i data-feather="user"></i>Mudar Conta
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a onclick="limparSessao()" target="_blank">
+              <i data-feather="log-out"></i> Sair
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+      <main class="main-container">
+        <div class="parametros-alerta-container">
+          <h2 class="parametros-titulo">Parâmetros para Alertas</h2>
+          <div class="parametros-row">
+            <div class="parametro-item abaixo">
+              <strong>Abaixo:</strong> 20°C <i class="fas fa-temperature-low"></i> | 60% <i class="fas fa-tint"></i>
+            </div>
+            <div class="parametro-item ideal">
+              <strong>Ideal:</strong> 23°C <i class="fas fa-temperature-low"></i> | 70% <i class="fas fa-tint"></i>
+            </div>
+            <div class="parametro-item acima">
+              <strong>Acima:</strong> 25°C <i class="fas fa-temperature-low"></i> | 80% <i class="fas fa-tint"></i>
+            </div>
+          </div>
+        </div>
 
 
+        
+        
 
-        <section class="content-dash">
-            <div class="container">
-                <div class="area-parametros-alerta">
-                    <p class="titulo-legenda">
-                        Parâmetros para Alertas - Temperatura e Umidade do Solo
-                    </p>
-                    <div class="parametros-alerta">
-                        <div class="item-regua abaixo">
-                            <strong>Abaixo</strong>
-                            <span> 20 Cº <i class="fas fa-temperature-low"></i></span>
-                            <span> 60 % <i class="fas fa-tint"></i> </span>
-                        </div>
-                        <div class="item-regua ideal">
-                            <strong>Ideal</strong>
-                            <span> 23 Cº <i class="fas fa-temperature-low"></i></span>
-                            <span> 70 % <i class="fas fa-tint"></i></span>
-                        </div>
-                        <div class="item-regua acima">
-                            <strong>Acima</strong>
-                            <span> 25 Cº <i class="fas fa-temperature-low"></i></span>
-                            <span> 80 % <i class="fas fa-tint"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="kpi-container">
-                    <!-- Temperatura Atual -->
-                    <div class="kpi atual_acima" id="temperaturaAtual">
-                        <i class="fas fa-temperature-high"></i>
-                        <div class="kpi_legenda">
-                            <h3>Temperatura Atual</h3>
-                        </div>
-                        <div>
-                            <span id="kpi_temp">15°</span>
-                        </div>
-                    </div>
+        <div class="main-cards">
+          <!-- Temperatura Atual -->
+          <div class="card atual_acima cardTemperatura" id="temperaturaAtual">
+            <div class="card-inner">
+              <h3>Temperatura Atual</h3>
+              <i data-feather="thermometer"></i>
+            </div>
+            <h1 id="kpi_temp"></h1>
+          </div>
 
-                    <!-- Tempo fora da condição ideal (Temperatura) -->
-                    <div class="kpi" id="foraTemperatura">
-                        <i class="fas fa-cloud-sun"></i>
-                        <div class="kpi_legenda">
-                            <h3>Tempo fora da condição ideal (Dia)</h3>
-                        </div>
-                        <div>
-                            <span>10H</span>
-                        </div>
-                    </div>
+          <!-- Tempo fora da condição ideal (Temperatura) -->
+          <div class="card">
+            <div class="card-inner">
+              <h3>Tempo fora da <br />condição ideal (Dia)</h3>
+              <i data-feather="sun"></i>
+            </div>
+            <h1 id="kpiTempoForaTemp"></h1>
+          </div>
 
-                    <!-- Umidade Atual -->
-                    <div class="kpi atual_acima" id="umidadeAtual">
-                        <i class="fas fa-tint"></i>
-                        <div class="kpi_legenda">
-                            <h3>Umidade Atual</h3>
-                        </div>
-                        <div><span id="kpi_umi">50%</span></div>
-                    </div>
+          <!-- Umidade Atual -->
+          <div class="card cardUmidade atual_abaixo" id="umidadeAtual">
+            <div class="card-inner">
+              <h3>Umidade Atual</h3>
+              <i data-feather="droplet"></i>
+            </div>
+            <h1 id="kpi_umi"></h1>
+          </div>
 
-                    <!-- Tempo fora da condição ideal (Umidade) -->
-                    <div class="kpi" id="foraUmidade">
-                        <i class="fas fa-cloud-rain"></i>
-                        <div class="kpi_legenda">
-                            <h3>Tempo fora da condição ideal (Dia)</h3>
-                        </div>
-                        <div><span>3H</span></div>
-                    </div>
-                </div>
+          <!-- Tempo fora da condição ideal (Umidade) -->
+          <div class="card">
+            <div class="card-inner">
+              <h3>Tempo fora da <br />condição ideal (Dia)</h3>
+              <i data-feather="cloud-lightning" id="kpiTempoForaTemp"></i>
+            </div>
+            <h1 id="kpiTempoForaUmi"></h1>
+          </div>
+        </div>
 
+        <div class="charts">
+          <div class="charts-card">
+            <h2 class="chart-title">Grafico de Temperatura e Umidade</h2>
+            <div id="area-chart">
+              <canvas id="graficoTemperaturaUmidadeLinha"></canvas>
+            </div>
+          </div>
 
-                <div class="chart-container">
-                    <div class="grafico-temperatura-umidade">
-                        <h2>Gráfico de Temperatura</h2>
-                        <canvas id="graficoTemperatura"></canvas>
-                    </div>
-                    <div class="grafico-temperatura-umidade">
-                        <h2>Gráfico de Umidade</h2>
-                        <canvas id="graficoUmidade"></canvas>
-                    </div>
-                </div>
-
-        </section>
-
+          <div class="charts-card">
+            <h2 class="chart-title">Grafico de Temperaturas e Umidades Médias</h2>
+            <div id="area-chart">
+              <canvas id="graficoTemperaturaUmidadeBarra"></canvas>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
-</body>
-</html>
 
+    <script>
+      nome_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-<script>
-window.onload = function() {
-    obterDadosGrafico();
-};
+      window.onload = function () {
+        obterDadosGraficoLinha();
+        obterDadosGraficoBarra();
+        buscarHorasForas(); // Chama a função ao carregar a página
 
-function obterDadosGrafico(){
-    var idPlantacao = sessionStorage.idPlantacao
+      };
 
-    fetch(`/medidas/buscarRegistros/${idPlantacao}`, { cache: 'no-store' }).then(function (response) {
+      function obterDadosGraficoLinha() {
+        var idPlantacao = sessionStorage.idPlantacao;
+        console.log("ID da plantação:", idPlantacao);
+
+        fetch(`/medidas/buscarRegistros/${idPlantacao}`, { cache: "no-store" })
+          .then(function (response) {
             if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    console.log(resposta.temp[0]['registro'])
-                    gerarGrafico(resposta)
-
-                });
+              response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                console.log(resposta.temp[0]["registro"]);
+                gerarGraficoTempUmi(resposta, idPlantacao);
+              });
             } else {
-                console.error('Nenhum dado encontrado ou erro na API');
+              console.error("Nenhum dado encontrado ou erro na API");
             }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    
-}
+          })
+          .catch(function (error) {
+            console.error(
+              `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+            );
+          });
+      }
 
-function gerarGrafico(resposta) {
-    
-    let dados = {
-            labels: [],
-            datasets: [
-                {
-                    label: 'Temperatura (°C)',
-                    data: [],
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    fill: true,
-                },
-                {
-                    label: 'Umidade (%)',
-                    data: [],
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    fill: true,
-                },
-                 ]
+      function gerarGraficoTempUmi(resposta, idPlantacao) {
+        let dados = {
+          labels: [],
+          datasets: [
+            {
+              label: "Temperatura (°C)",
+              data: [],
+              borderColor: "rgba(222, 49, 99, 1)",
+              backgroundColor: "rgba(222, 49, 99, 0.6)",
+              fill: true,
+              borderWidth: 2,
+            },
+            {
+              label: "Umidade (%)",
+              data: [],
+              backgroundColor: "rgba(0, 138, 144, 0.4)",
+              borderColor: "rgba(0, 138, 144, 1)",
+              fill: true,
+              borderWidth: 2,
+            },
+          ],
         };
 
-        var kpiTempAtual = 0
-        var kpiUmiAtual = 0 
-    // Inserindo valores recebidos em estrutura para plotar o gráfico
+        var kpiTempAtual = 0;
+        var kpiUmiAtual = 0;
+        let registrosTemp = resposta.temp.reverse();
+        let registrosUmi = resposta.umi.reverse();
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+
         for (let i = 0; i < resposta.temp.length; i++) {
-    
-       
-        let registrosTemp = resposta.temp
-    
+          console.log(registrosTemp[i].dtRegistro);
 
-        let registrosUmi = resposta.umi
-        console.log(registrosTemp[i].dtRegistro)
+          dados.labels.push(registrosTemp[i].dtRegistro);
 
-        dados.labels.push(registrosTemp[i].dtRegistro); 
-        
-        dados.datasets[0].data.push(registrosTemp[i].registro);  
-        
-        dados.datasets[1].data.push(registrosUmi[i].registro);  
+          dados.datasets[0].data.push(registrosTemp[i].registro);
 
-        // inserção de kpi de atual
-        if(i == 0){
-            kpiTempAtual = registrosTemp[i].registro
-            kpiUmiAtual = registrosUmi[i].registro
-            kpi_temp.innerHTML = kpiTempAtual
-            kpi_umi.innerHTML = kpiUmiAtual
-        } 
-    }
+          dados.datasets[1].data.push(registrosUmi[i].registro);
 
-    // mudança de cor do card-KPI
-    var cardTemperatura = document.getElementById('temperaturaAtual');
+          // inserção de kpi de atual
+          if (i == resposta.temp.length - 1) {
+            kpiTempAtual = registrosTemp[i].registro;
+            kpiUmiAtual = registrosUmi[i].registro;
+            kpi_temp.innerHTML = kpiTempAtual + " Cº";
+            kpi_umi.innerHTML = kpiUmiAtual + " %";
+          }
+        }
 
-    if(kpiTempAtual <= 20){
-        cardTemperatura.className = 'kpi atual_abaixo';
-    }else if(kpiTempAtual < 25){
-        cardTemperatura.className = 'kpi atual_boa';
-    }else{
-        cardTemperatura.className = 'kpi atual_acima';
-    }
+        // mudança de cor do card-KPI
+        var cardTemperatura = document.getElementById("temperaturaAtual");
 
+        if (kpiTempAtual <= 20) {
+          cardTemperatura.className = "card atual_abaixo";
+        } else if (kpiTempAtual < 25) {
+          cardTemperatura.className = "card atual_boa";
+        } else {
+          cardTemperatura.className = "card atual_acima";
+        }
 
-    var cardUmidade = document.getElementById('umidadeAtual');
+        var cardUmidade = document.getElementById("umidadeAtual");
 
-    if(kpiUmiAtual <= 60){
-        cardUmidade.className = 'kpi atual_abaixo';
-    }else if(kpiUmiAtual <= 80){
-        cardUmidade.className = 'kpi atual_boa';
-    }else{
-        cardUmidade.className = 'kpi atual_acima';
-    }
-    
-   
-    const config = {
-        type: 'line',
-        data: dados,
-        options: {
+        if (kpiUmiAtual <= 60) {
+          cardUmidade.className = "card atual_abaixo";
+        } else if (kpiUmiAtual <= 80) {
+          cardUmidade.className = "card atual_boa";
+        } else {
+          cardUmidade.className = "card atual_acima";
+        }
+
+        const config = {
+          type: "line",
+          data: dados,
+          options: {
             responsive: true,
             scales: {
-                x: {
-                    type: 'time',
-                    time: {
-                        unit: 'hour',
-                        tooltipFormat: 'll HH:mm',
-                    },
+              x: {
+                type: "time",
+                time: {
+                  unit: "hour",
+                  tooltipFormat: "ll HH:mm",
                 },
-                y: {
-                    beginAtZero: true,
+                title: {
+                  display: true,
+                  text: "Horario",
                 },
+              },
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: "% e Cº",
+                },
+              },
             },
-        },
-    };
+          },
+        };
+
+        const graficoTemperaturaUmidadeLinha = new Chart(
+          document.getElementById("graficoTemperaturaUmidadeLinha"),
+          config
+        );
+
+        setTimeout(
+          () =>
+            atualizarGrafico(
+              idPlantacao,
+              dados,
+              graficoTemperaturaUmidadeLinha
+            ),
+          2000
+        );
+      }
+
+      function obterDadosGraficoBarra() {
+        var idPlantacao = sessionStorage.idPlantacao;
+
+        fetch(`/medidas/buscarMedia/${idPlantacao}`, { cache: "no-store" })
+          .then(function (response) {
+            if (response.ok) {
+              response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                gerarGraficoBarra(resposta);
+              });
+            } else {
+              console.error("Nenhum dado encontrado ou erro na API");
+            }
+          })
+          .catch(function (error) {
+            console.error(
+              `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+            );
+          });
+      }
+
+      function gerarGraficoBarra(resposta) {
+        let registrosTemp = resposta.MediaTemp;
+        let registrosUmi = resposta.MediaUmi;
+
+        const dados = {
+          labels: [],
+          datasets: [
+            {
+              label: "Temperatura (°C)",
+              data: [],
+              backgroundColor: "rgba(222, 49, 99, 0.6)",
+              borderColor: "rgba(222, 49, 99, 1.0)",
+              borderWidth: 2,
+            },
+            {
+              label: "Umidade (%)",
+              data: [],
+              backgroundColor: "rgba(0, 138, 144, 0.4)",
+              borderColor: "rgba(0, 138, 144, 1)",
+              borderWidth: 2,
+            },
+          ],
+        };
+
+        for (let i = 0; i < resposta.MediaTemp.length; i++) {
+          console.log(registrosTemp[i].data_registro);
+
+          dados.labels.push(registrosTemp[i].data_registro);
+
+          dados.datasets[0].data.push(registrosTemp[i].media_registro);
+
+          dados.datasets[1].data.push(registrosUmi[i].media_registro);
+        }
+
+        const config = {
+          type: "bar",
+          data: dados,
+          options: {
+            scales: {
+              x: {
+                type: "time", // Usar o tipo 'time' para trabalhar com datas no eixo X
+                time: {
+                  unit: "day", // Define a unidade principal como dia
+                  tooltipFormat: "ll", // Formato de exibição no tooltip (pode ser alterado para "DD/MM/YYYY", por exemplo)
+                  displayFormats: {
+                    day: "dd/MM/yyyy", // Formato da data no eixo X
+                  },
+                },
+                title: {
+                  display: true,
+                  text: "Data",
+                },
+              },
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: "% e Cº",
+                },
+              },
+            },
+          },
+        };
+
+        const graficoTemperaturaUmidadeLinha = new Chart(
+          document.getElementById("graficoTemperaturaUmidadeBarra"),
+          config
+        );
+
+        function limparSessao() {
+          sessionStorage.clear();
+          window.location = "../index.html";
+        }
+      }
+
+      // aqui eu atualizo o grafico toda hora:
+
+      function atualizarGrafico(idPlantacao, dados, myChart) {
+        fetch(`/medidas/tempo-real/${idPlantacao}`, { cache: "no-store" })
+          .then(function (response) {
+            if (response.ok) {
+              response.json().then(function (novoRegistro) {
+                let registrosTemp = novoRegistro.temp;
+                let registrosUmi = novoRegistro.umi;
+
+                // obterdados(idAquario);
+
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico:`);
+                console.log(dados);
+
+                // let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
+                // avisoCaptura.innerHTML = ""
+
+                if (
+                  registrosTemp[0].dtRegistro ==
+                  dados.labels[dados.labels.length - 1]
+                ) {
+                  console.log(
+                    "---------------------------------------------------------------"
+                  );
+                  console.log(
+                    "Como não há dados novos para captura, o gráfico não atualizará."
+                  );
+                  console.log("Horário do novo dado capturado:");
+                  console.log(registrosTemp[0].dtRegistro);
+                  console.log("Horário do último dado capturado:");
+                  console.log(dados.labels[dados.labels.length - 1]);
+                  console.log(
+                    "---------------------------------------------------------------"
+                  );
+
+                  console.log("Todos Labels: ", dados.labels);
+                  console.log("Primeiro Label: ", dados.labels[0]);
+                  console.log(
+                    "Ultimo label: ",
+                    dados.labels[dados.labels.length - 1]
+                  );
+                } else {
+                  // tirando e colocando valores no gráfico
+                  dados.labels.shift(); // apagar o primeiro
+                  dados.labels.push(registrosTemp[0].dtRegistro); // incluir um novo momento
+
+                  dados.datasets[0].data.shift(); // apagar o primeiro de umidade
+                  dados.datasets[0].data.push(registrosTemp[0].registro); // incluir uma nova medida de umidade
+
+                  dados.datasets[1].data.shift(); // apagar o primeiro de temperatura
+                  dados.datasets[1].data.push(registrosUmi[0].registro); // incluir uma nova medida de temperatura
+
+                  myChart.update();
+
+                  /// KPI
+
+                  kpiTempAtual = registrosTemp[0].registro;
+
+                  kpiUmiAtual = registrosUmi[0].registro;
+                  console.log(kpiUmiAtual, "amigoooooooooooooooooo estou aqui");
+                  console.log(
+                    kpiTempAtual,
+                    "----------------------------------------------------------"
+                  );
+                  kpi_temp.innerHTML = kpiTempAtual + " Cº";
+                  kpi_umi.innerHTML = kpiUmiAtual + " %";
+
+                  // mudança de cor do card-KPI
+                  var cardTemperatura =
+                    document.getElementById("temperaturaAtual");
+
+                  if (kpiTempAtual <= 20) {
+                    cardTemperatura.className = "card atual_abaixo";
+                  } else if (kpiTempAtual < 25) {
+                    cardTemperatura.className = "card atual_boa";
+                  } else {
+                    cardTemperatura.className = "card atual_acima";
+                  }
+
+                  var cardUmidade = document.getElementById("umidadeAtual");
+
+                  if (kpiUmiAtual <= 60) {
+                    cardUmidade.className = "card atual_abaixo";
+                  } else if (kpiUmiAtual <= 80) {
+                    cardUmidade.className = "card atual_boa";
+                  } else {
+                    cardUmidade.className = "card atual_acima";
+                  }
+                }
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(
+                  () => atualizarGrafico(idPlantacao, dados, myChart),
+                  2000
+                );
+              });
+            } else {
+              console.error("Nenhum dado encontrado ou erro na API");
+              // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+              proximaAtualizacao = setTimeout(
+                () => atualizarGrafico(idPlantacao, dados, myChart),
+                2000
+              );
+            }
+          })
+          .catch(function (error) {
+            console.error(
+              `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+            );
+          });
+      }
+
+      // Função para buscar os dados de horas fora da condição ideal
+      function buscarHorasForas() {
+        var idPlantacao = sessionStorage.idPlantacao;
+
+      // Faz a requisição GET para o backend
+      fetch(`/medidas/buscarHorasForas/${idPlantacao}`, {
+          method: "GET", // Certifique-se de que o método é GET
+          headers: {
+            "Content-Type": "application/json", // Cabeçalho necessário para APIs REST
+         },
+      })
+      .then((response) => {
+          if (!response.ok) {
+            throw new Error("Erro na resposta do servidor");
+          }
+          return response.json();
+      })
+      .then((data) => {
+        console.log('Resposta da API: ', data);  // Verifique se os dados chegam corretamente aqui
 
 
-    const graficoTemperaturaUmidade = new Chart(document.getElementById('graficoTemperatura'),config);
+        // Verifica se a resposta contém a mensagem de erro
+        if (data.mensagem) {
+            // Caso o servidor retorne uma mensagem (sem dados)
+           console.error(data.mensagem);
+            document.getElementById("kpiTempoForaTemp").innerText =
+           "Erro: Nenhum dado encontrado";
+            document.getElementById("kpiTempoForaUmi").innerText =
+           "Erro: Nenhum dado encontrado";
+        } else {
+            // Obtém a hora atual (em formato de 24h)
+            const horaAtual = new Date().getHours(); // Hora atual (0 a 23)
+            console.log("Hora atual:", horaAtual);
+            console.log('Resposta da API: ', data);
+
+            // Filtra as ocorrências para a hora atual
+            const ocorrenciasTempAtual = data.horaForasTemp.filter(item => item.hora === horaAtual);
+            const ocorrenciasUmiAtual = data.horasForasUmi.filter(item => item.hora === horaAtual);
+
+            // Se houver ocorrências no horário atual, exibe
+            const horasForasTemp = ocorrenciasTempAtual.length > 0 ? ocorrenciasTempAtual[0].hora : 0;
+            const ocorrenciasForasTemp = ocorrenciasTempAtual.length > 0 ? ocorrenciasTempAtual[0].ocorrencias_fora_intervalo : 0;
+
+            const horasForasUmi = ocorrenciasUmiAtual.length > 0 ? ocorrenciasUmiAtual[0].hora : 0;
+            const ocorrenciasForasUmi = ocorrenciasUmiAtual.length > 0 ? ocorrenciasUmiAtual[0].ocorrencias_fora_intervalo : 0;
+
+            // Atualiza os textos nos cards com os valores filtrados pela hora atual
+            document.getElementById("kpiTempoForaTemp").innerText = `${horasForasTemp} horas | ${ocorrenciasForasTemp} ocorrências`;
+            document.getElementById("kpiTempoForaUmi").innerText = `${horasForasUmi} horas | ${ocorrenciasForasUmi} ocorrências`;
+
+            // Caso não haja ocorrências no horário atual
+            if (ocorrenciasTempAtual.length === 0) {
+                document.getElementById("kpiTempoForaTemp").innerText = "Nenhuma ocorrência no horário atual";
+            }
+            if (ocorrenciasUmiAtual.length === 0) {
+                document.getElementById("kpiTempoForaUmi").innerText = "Nenhuma ocorrência no horário atual";
+            }
+        }
+    })
+    .catch((error) => {
+        // Caso ocorra algum erro na requisição
+        console.error("Erro ao buscar dados:", error);
+        document.getElementById("kpiTempoForaTemp").innerText =
+            "Erro de conexão";
+        document.getElementById("kpiTempoForaUmi").innerText =
+            "Erro de conexão";
+    });
 }
+setInterval(buscarHorasForas, 2000);
 
 
-</script>
-
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
-<script src="https://unpkg.com/feather-icons"></script>
-
-<script>
-    feather.replace();
-</script>
-  
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 
 
-<script data-jsd-embedded data-key="022093e6-0b16-47f0-a2b8-ba3f7236c02f"
-    data-base-url="https://jsd-widget.atlassian.com" src="https:jsd-widget.atlassian.com/assets/embed.js"></script>
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+
+    <script
+      data-jsd-embedded
+      data-key="022093e6-0b16-47f0-a2b8-ba3f7236c02f"
+      data-base-url="https://jsd-widget.atlassian.com"
+      src="https:jsd-widget.atlassian.com/assets/embed.js"
+    ></script>
+
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+      feather.replace();
+    </script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </body>
+</html>
