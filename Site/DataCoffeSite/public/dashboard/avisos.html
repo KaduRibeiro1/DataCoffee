@@ -152,6 +152,7 @@
   
     JSON.parse(sessionStorage.PLANTACOES).forEach((item) => {
       obterDados(item.idPlantacao)
+      
     });
   } else {
     console.warn("Nenhuma plantação encontrada no sessionStorage.");
@@ -166,7 +167,7 @@
 
   function dashboard(idPlantacao) {
     sessionStorage.setItem("idPlantacao", idPlantacao);
-    window.location.href = "./indexD.html";
+    window.location.href = "./dashboard.html";
   }
 
 </script>
