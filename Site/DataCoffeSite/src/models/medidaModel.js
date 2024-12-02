@@ -133,6 +133,58 @@ function buscarMediaEmTempoRealUmi(idPlantacao) {
 }
 
 
+
+// function buscarMediaDiasEmTempoRealTemp(idPlantacao){
+//     const instrucaoSql1 = `
+//     SELECT 
+//     sensor.modelo, 
+//     registro,
+//     dtRegistro
+//         FROM Registro join sensor
+//         on registro.fkSensor = sensor.idSensor
+//         join plantacao 
+//         on fkPlantacao = idPlantacao
+//         where sensor.modelo = 'LM35' and fkPlantacao = ${idPlantacao}
+//         ORDER BY  dtRegistro desc
+//     limit 1;
+//     `;
+
+//     console.log("Executando a instrução SQL: \n" + instrucaoSql1);
+//     return database.executar(instrucaoSql1);  // Retorna a Promise
+// }
+
+
+// function buscarMediaDEmTempoRealUmi(idPlantacao) {
+//     const instrucaoSql2 = `
+//     SELECT 
+//     sensor.modelo, 
+//     registro,
+//     dtRegistro
+//         FROM 
+//     registro
+//         JOIN 
+//     sensor ON registro.fkSensor = sensor.idSensor
+//         JOIN 
+//     plantacao ON fkPlantacao = idPlantacao
+//         WHERE 
+//     sensor.modelo = 'LM35' 
+//     AND fkPlantacao = ${idPlantacao}
+//         ORDER BY 
+//     dtRegistro DESC
+//         LIMIT 1;
+
+//     `;
+
+//     console.log("Executando a instrução SQL: \n" + instrucaoSql2);
+//     return database.executar(instrucaoSql2);  // Retorna a Promise
+// }
+
+
+
+
+
+
+
     function bucasHorasForasTemp(idPlantacao){
         const instrucaoSql = `
         SELECT HOUR(r.dtRegistro) AS hora, 
