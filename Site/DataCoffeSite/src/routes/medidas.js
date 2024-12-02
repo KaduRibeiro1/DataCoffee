@@ -23,5 +23,8 @@ router.get("/buscarHorasForas/:idPlantacao", function (req, res) {
     medidaController.buscarHorasForas(req, res);
 });
 
+router.get("/tempo-real-grafico-barras/:idPlantacao", function (req, res) {
+    medidaController.buscarMedidasEmTempoRealGraficoBarras(req, res);
+})
 
 module.exports = router;
