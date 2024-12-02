@@ -3,12 +3,12 @@ var medidaModel = require("../models/medidaModel");
 function buscarMedidasEmTempoReal(req, res) {
     var idPlantacao = req.params.idPlantacao;
       // Primeira busca: temperatura
-   medidaModel.buscarMediaEmTempoRealTemp(idPlantacao)
+   medidaModel.buscarMedidaEmTempoRealTemp(idPlantacao)
    .then(function (resultadoTemp) {
        // Verifica se a primeira busca retornou dados
        if (resultadoTemp.length > 0) {
            // Segunda busca: umidade
-           medidaModel.buscarMediaEmTempoRealUmi(idPlantacao)
+           medidaModel.buscarMedidaEmTempoRealUmi(idPlantacao)
                .then(function (resultadoUmi) {
                    // Verifica se a segunda busca também retornou dados
                    if (resultadoUmi.length > 0) {
@@ -47,7 +47,7 @@ function buscarMedidasEmTempoRealGraficoBarras(req, res) {
        // Verifica se a primeira busca retornou dados
        if (resultadoTemp.length > 0) {
            // Segunda busca: umidade
-           medidaModel.buscarMediaDEmTempoRealUmi(idPlantacao)
+           medidaModel.buscarMediaDiasEmTempoRealUmi(idPlantacao)
                .then(function (resultadoUmi) {
                    // Verifica se a segunda busca também retornou dados
                    if (resultadoUmi.length > 0) {

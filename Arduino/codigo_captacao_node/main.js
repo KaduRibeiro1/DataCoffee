@@ -42,7 +42,7 @@ const serial = async () => {
         const valores = data.split(';');
 
         // Adicione ou remova para o seu caso
-        const lm35 = parseInt(valores[0]);  
+        const lm35 = parseFloat(valores[0]);  
         const sensorDeUmidade = parseFloat(valores[1]); 
 
         try {

@@ -95,7 +95,7 @@ function buscaMediaUmi(idPlantacao){
 
 
 
-function buscarMediaEmTempoRealTemp(idPlantacao){
+function buscarMedidaEmTempoRealTemp(idPlantacao){
     const instrucaoSql1 = `
     SELECT 
     sensor.modelo, 
@@ -115,7 +115,7 @@ function buscarMediaEmTempoRealTemp(idPlantacao){
 }
 
 
-function buscarMediaEmTempoRealUmi(idPlantacao) {
+function buscarMedidaEmTempoRealUmi(idPlantacao) {
     const instrucaoSql2 = `
         SELECT 
             sensor.modelo, 
@@ -136,42 +136,50 @@ function buscarMediaEmTempoRealUmi(idPlantacao) {
 
  function buscarMediaDiasEmTempoRealTemp(idPlantacao){
      const instrucaoSql1 = `
-     SELECT 
-     sensor.modelo, 
-     registro,
-     dtRegistro
-         FROM Registro join sensor
-         on registro.fkSensor = sensor.idSensor
-         join plantacao 
-         on fkPlantacao = idPlantacao
-         where sensor.modelo = 'LM35' and fkPlantacao = ${idPlantacao}
-         ORDER BY  dtRegistro desc
-     limit 1;
-     `;
+      SELECT 
+            sensor.modelo, 
+            ROUND (AVG(registro), 2) AS media_registro, 
+            DATE(dtRegistro) AS data_registro
+        FROM    
+            registro
+        JOIN 
+            sensor ON registro.fkSensor = sensor.idSensor
+        JOIN 
+            plantacao ON fkPlantacao = idPlantacao
+        WHERE 
+            sensor.modelo = 'lm35' 
+            AND fkPlantacao = ${idPlantacao}
+        GROUP BY 
+            data_registro, sensor.modelo
+        ORDER BY 
+            data_registro DESC
+        LIMIT 1;`
 
      console.log("Executando a instrução SQL: \n" + instrucaoSql1);
      return database.executar(instrucaoSql1);  // Retorna a Promise
  }
 
 
- function buscarMediaDEmTempoRealUmi(idPlantacao) {
+ function buscarMediaDiasEmTempoRealUmi(idPlantacao) {
      const instrucaoSql2 = `
-     SELECT 
-     sensor.modelo, 
-     registro,
-     dtRegistro
-         FROM 
-     registro
-         JOIN 
-     sensor ON registro.fkSensor = sensor.idSensor
-         JOIN 
-     plantacao ON fkPlantacao = idPlantacao
-         WHERE 
-     sensor.modelo = 'LM35' 
-     AND fkPlantacao = ${idPlantacao}
-         ORDER BY 
-     dtRegistro DESC
-         LIMIT 1;
+    SELECT 
+            sensor.modelo, 
+            ROUND (AVG(registro), 2) AS media_registro, 
+            DATE(dtRegistro) AS data_registro
+        FROM    
+            registro
+        JOIN 
+            sensor ON registro.fkSensor = sensor.idSensor
+        JOIN 
+            plantacao ON fkPlantacao = idPlantacao
+        WHERE 
+            sensor.modelo = 'Sensor de Umidade' 
+            AND fkPlantacao = ${idPlantacao}
+        GROUP BY 
+            data_registro, sensor.modelo
+        ORDER BY 
+            data_registro DESC
+        LIMIT 1;
 
      `;
 
@@ -231,10 +239,10 @@ module.exports = {
     buscarRegistrosTemp,
     buscaMediaTemp,
     buscaMediaUmi,
-    buscarMediaEmTempoRealTemp,
-    buscarMediaEmTempoRealUmi,
+    buscarMedidaEmTempoRealTemp,
+    buscarMedidaEmTempoRealUmi,
     buscarMediaDiasEmTempoRealTemp,
-    buscarMediaDEmTempoRealUmi
+    buscarMediaDiasEmTempoRealUmi
     
 }
 
@@ -246,23 +254,3 @@ module.exports = {
 
 
 
-/*
-function buscarMedidasEmTempoReal(idPlantacao) {
-
-    var instrucaoSql = `SELECT 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
-                        fk_aquario 
-                        FROM medida WHERE fk_aquario = ${idAquario} 
-                    ORDER BY id DESC LIMIT 1`;
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-*/
-
-
-
-// [11,12,13]
-// [11,12,13]
