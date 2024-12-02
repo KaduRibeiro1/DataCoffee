@@ -310,8 +310,8 @@
       }
 
       function gerarGraficoBarra(resposta) {
-        let registrosTemp = resposta.MediaTemp;
-        let registrosUmi = resposta.MediaUmi;
+        let registrosTemp = resposta.MediaTemp.reverse();
+        let registrosUmi = resposta.MediaUmi.reverse();
 
         const dados = {
           labels: [],
@@ -373,7 +373,7 @@
           },
         };
 
-        const graficoTemperaturaUmidadeLinha = new Chart(
+        const graficoTemperaturaUmidadeBarra = new Chart(
           document.getElementById("graficoTemperaturaUmidadeBarra"),
           config
         );
@@ -403,7 +403,11 @@
                 // let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
                 // avisoCaptura.innerHTML = ""
 
-                if (
+
+                // if(myChart == graficoTemperaturaUmidadeLinha){
+                  // atualização grafico de linha e kpi atual
+
+                  if (
                   registrosTemp[0].dtRegistro ==
                   dados.labels[dados.labels.length - 1]
                 ) {
@@ -445,11 +449,8 @@
                   kpiTempAtual = registrosTemp[0].registro;
 
                   kpiUmiAtual = registrosUmi[0].registro;
-                  console.log(kpiUmiAtual, "amigoooooooooooooooooo estou aqui");
-                  console.log(
-                    kpiTempAtual,
-                    "----------------------------------------------------------"
-                  );
+                 
+              
                   kpi_temp.innerHTML = kpiTempAtual + " Cº";
                   kpi_umi.innerHTML = kpiUmiAtual + " %";
 
@@ -474,6 +475,45 @@
                   } else {
                     cardUmidade.className = "card atual_acima";
                   }
+                //}
+                
+                // }else if(myChart == graficoTemperaturaUmidadeBarra){
+
+                //     if(registrosTemp[0].data_registro == dados.labels[dados.labels.length - 1]){
+                //       console.log(
+                //         "---------------------------------------------------------------"
+                //       );
+                //       console.log(
+                //         "Como não há dados novos para captura, o gráfico não atualizará."
+                //       );
+                //       console.log("Horário do novo dado capturado:");
+                //       console.log(registrosTemp[0].dtRegistro);
+                //       console.log("Horário do último dado capturado:");
+                //       console.log(dados.labels[dados.labels.length - 1]);
+                //       console.log(
+                //         "---------------------------------------------------------------"
+                //       );
+
+                //       console.log("Todos Labels: ", dados.labels);
+                //       console.log("Primeiro Label: ", dados.labels[0]);
+                //       console.log(
+                //         "Ultimo label: ",
+                //         dados.labels[dados.labels.length - 1]
+                //       );
+                //     } else {
+                //       // tirando e colocando valores no gráfico
+                //       dados.labels.shift(); // apagar o primeiro
+                //       dados.labels.push(registrosTemp[0].data_registro); // incluir um novo momento
+
+                //       dados.datasets[0].data.shift(); // apagar o primeiro de umidade
+                //       dados.datasets[0].data.push(registrosTemp[0].media_registro); // incluir uma nova medida de umidade
+
+                //       dados.datasets[1].data.shift(); // apagar o primeiro de temperatura
+                //       dados.datasets[1].data.push(registrosUmi[0].media_registro); // incluir uma nova medida de temperatura
+
+                //       myChart.update();
+                //     }
+                     
                 }
 
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
