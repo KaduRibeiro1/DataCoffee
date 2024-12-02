@@ -134,24 +134,24 @@ function buscarMediaEmTempoRealUmi(idPlantacao) {
 
 
 
-// function buscarMediaDiasEmTempoRealTemp(idPlantacao){
-//     const instrucaoSql1 = `
-//     SELECT 
-//     sensor.modelo, 
-//     registro,
-//     dtRegistro
-//         FROM Registro join sensor
-//         on registro.fkSensor = sensor.idSensor
-//         join plantacao 
-//         on fkPlantacao = idPlantacao
-//         where sensor.modelo = 'LM35' and fkPlantacao = ${idPlantacao}
-//         ORDER BY  dtRegistro desc
-//     limit 1;
-//     `;
+ function buscarMediaDiasEmTempoRealTemp(idPlantacao){
+     const instrucaoSql1 = `
+     SELECT 
+     sensor.modelo, 
+     registro,
+     dtRegistro
+         FROM Registro join sensor
+         on registro.fkSensor = sensor.idSensor
+         join plantacao 
+         on fkPlantacao = idPlantacao
+         where sensor.modelo = 'LM35' and fkPlantacao = ${idPlantacao}
+         ORDER BY  dtRegistro desc
+     limit 1;
+     `;
 
-//     console.log("Executando a instrução SQL: \n" + instrucaoSql1);
-//     return database.executar(instrucaoSql1);  // Retorna a Promise
-// }
+     console.log("Executando a instrução SQL: \n" + instrucaoSql1);
+     return database.executar(instrucaoSql1);  // Retorna a Promise
+ }
 
 
 // function buscarMediaDEmTempoRealUmi(idPlantacao) {
@@ -233,6 +233,7 @@ module.exports = {
     buscaMediaUmi,
     buscarMediaEmTempoRealTemp,
     buscarMediaEmTempoRealUmi,
+    buscarMediaDiasEmTempoRealTemp
     
 }
 
