@@ -39,7 +39,44 @@ function buscarMedidasEmTempoReal(req, res) {
     
 }
 
+function buscarMedidasEmTempoRealGraficoBarras(req, res) {
+    var idPlantacao = req.params.idPlantacao;
+      // Primeira busca: temperatura
+   medidaModel.buscarMediaDiasEmTempoRealTemp(idPlantacao)
+   .then(function (resultadoTemp) {
+       // Verifica se a primeira busca retornou dados
+       if (resultadoTemp.length > 0) {
+           // Segunda busca: umidade
+           medidaModel.buscarMediaDEmTempoRealUmi(idPlantacao)
+               .then(function (resultadoUmi) {
+                   // Verifica se a segunda busca também retornou dados
+                   if (resultadoUmi.length > 0) {
+                       // Se ambos os resultados tiverem dados, envia-os
+                       res.status(200).json({
+                           temp: resultadoTemp,
+                           umi: resultadoUmi
+                       });
+                   } else {
+                       res.status(204).send("Nenhum registro de umidade encontrado!");
+                   }
+               })
+               .catch(function (erro) {
+                   // Caso ocorra erro na segunda busca
+                   console.log("Erro ao buscar dados de umidade:", erro.sqlMessage || erro.message);
+                   res.status(500).json({ error: erro.sqlMessage || erro.message });
+               });
+       } else {
+           res.status(204).send("Nenhum registro de temperatura encontrado!");
+       }
 
+
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+    
+}
 
 
 
