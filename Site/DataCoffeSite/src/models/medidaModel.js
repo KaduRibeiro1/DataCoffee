@@ -154,30 +154,7 @@ function buscarMediaEmTempoRealUmi(idPlantacao) {
 // }
 
 
-// function buscarMediaDEmTempoRealUmi(idPlantacao) {
-//     const instrucaoSql2 = `
-//     SELECT 
-//     sensor.modelo, 
-//     registro,
-//     dtRegistro
-//         FROM 
-//     registro
-//         JOIN 
-//     sensor ON registro.fkSensor = sensor.idSensor
-//         JOIN 
-//     plantacao ON fkPlantacao = idPlantacao
-//         WHERE 
-//     sensor.modelo = 'LM35' 
-//     AND fkPlantacao = ${idPlantacao}
-//         ORDER BY 
-//     dtRegistro DESC
-//         LIMIT 1;
 
-//     `;
-
-//     console.log("Executando a instrução SQL: \n" + instrucaoSql2);
-//     return database.executar(instrucaoSql2);  // Retorna a Promise
-// }
 
 
 
