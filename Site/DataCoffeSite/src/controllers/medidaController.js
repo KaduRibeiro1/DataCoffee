@@ -221,5 +221,6 @@ module.exports = {
     buscarHorasForas,
     buscarMedidasEmTempoReal,
     buscarRegistros,
-    buscaMedia
+    buscaMedia,
+    buscarMedidasEmTempoRealGraficoBarras
 }
