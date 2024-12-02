@@ -558,7 +558,7 @@
                 }
                
                proximaAtualizacao = setTimeout(
-                  () => atualizarGrafico(idPlantacao, dados, myChart),
+                  () => atualizarGraficoBarra(idPlantacao, dados, myChart),
                   2000
                 );
               });
@@ -566,7 +566,7 @@
               console.error("Nenhum dado encontrado ou erro na API");
               // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
               proximaAtualizacao = setTimeout(
-                () => atualizarGrafico(idPlantacao, dados, myChart),
+                () => atualizarGraficoBarra(idPlantacao, dados, myChart),
                 2000
               );
             }
