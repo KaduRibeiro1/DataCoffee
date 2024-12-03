@@ -19,7 +19,6 @@
             <button class="btn_calculator" onclick="pontuacaoDesejada()">Não</button>
         </div>
     </div>
-
 </body>
 
 </html>
@@ -52,7 +51,6 @@
         retorno.innerHTML = ''
 
 
-        // Umidade
         if (umidade >= 80) {
             retorno.innerHTML += `
             <img class="logo" src="assets/logoSemFundo.png" alt="">
@@ -73,7 +71,6 @@
             <br><br> <h1 class="mensagemResposta">Até 60% de umidade, o café consegue se desenvolver, mas isso pode afetar a qualidade</h1>
             `
         }
-        // Temperatura
         if (temperatura <= 17) {
             retorno.innerHTML += `
             <h1 class="mensagemResposta">A temperatura está abaixo da média, o que compromete a qualidade do seu grão</h1>
@@ -86,10 +83,9 @@
         }
         else {
             retorno.innerHTML += `
-            <h1 class="mensagemResposta">Com temperaturas acima de 26°C, o crescimento do café não terá boa produtividade devido ao ressecamento das raízes e dos grãos</h1>
+            <h1 class="mensagemResposta">Com temperaturas acima de 25°C, o crescimento do café não terá boa produtividade devido ao ressecamento das raízes e dos grãos</h1>
             `
         }
-        // pontuacao
         if (pontuacaoCafe <= 72) {
             precoAtual = 650.00
             retorno.innerHTML += `
@@ -139,8 +135,8 @@
             precoAlvo = 650.00;
             retorno.innerHTML += `
             <img class="logo" src="assets/logoSemFundo.png" alt="">
-            <br> <h1 class="mensagemResposta">Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 60% a 80%.
-            <br>E a temperatura deve estar entre 21° a 26° graus</h1>`
+            <br> <h1 class="mensagemResposta">Para seu café atingir a pontuação desejada, a umidade do solo deve se manter entre 60% a 80%.
+            <br>E a temperatura deve se manter entre 18° a 25° graus</h1>`
             retorno.innerHTML += `
             <br><img src="https://wm.agripoint.com.br/imagens/banco/27265.gif"  width = "600">
             `;
@@ -150,7 +146,7 @@
             precoAlvo = 860.00;
             retorno.innerHTML += `
             <img class="logo" src="assets/logoSemFundo.png" alt="">
-            <br> <h1 class="mensagemResposta">Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 60% a 75%  <br> E a temperatura deve estar entre 23° a 26° graus</h1>`
+            <br> <h1 class="mensagemResposta">Para seu café atingir a pontuação desejada, a umidade do solo deve se manter entre 60% a 75%  <br> E a temperatura deve se manter entre 19° a 23° graus</h1>`
             retorno.innerHTML += `<br><img src="https://wm.agripoint.com.br/imagens/banco/27265.gif" width = "600">`;
 
 
@@ -158,14 +154,14 @@
             precoAlvo = 1500.00;
             retorno.innerHTML += `
             <img class="logo" src="assets/logoSemFundo.png" alt="">
-            <br> <h1 class="mensagemResposta">Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 65% a 75%  <br> E a temperatura deve estar entre 24° a 26° graus</h1>`
+            <br> <h1 class="mensagemResposta">Para seu café atingir a pontuação desejada, a umidade do solo deve se manter entre 65% a 75%  <br> E a temperatura deve se manter entre 20° a 23° graus</h1>`
             retorno.innerHTML += `<br><img src="https://wm.agripoint.com.br/imagens/banco/27265.gif" width = "600">`;
 
         } else {
             precoAlvo = 3200.00;
             retorno.innerHTML += `
             <img class="logo" src="assets/logoSemFundo.png" alt="">
-            <br> <h1 class="mensagemResposta">Para seu café atingir a pontuação desejada, a umidade do solo deve estar entre 65% a 75%  <br> E a temperatura deve estar entre 24° a 26° graus</h1>`
+            <br> <h1 class="mensagemResposta">Para seu café atingir a pontuação desejada, a umidade do solo deve se manter entre 65% a 75%  <br> E a temperatura deve se manter entre 20° a 23° graus</h1>`
             retorno.innerHTML += `
             <br><img src="https://wm.agripoint.com.br/imagens/banco/27265.gif" width = "600">`;
         }
