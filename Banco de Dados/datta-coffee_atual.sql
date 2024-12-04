@@ -1,5 +1,6 @@
 create database datacoffe;
 
+
 use datacoffe;
 
 
@@ -88,7 +89,7 @@ registro decimal (4,2),
 dtRegistro datetime,
 constraint fkSensorRegistro foreign key (fkSensor) references sensor(idSensor)
 );
-
+select * from registro;
 INSERT INTO Registro (fkSensor, registro, dtRegistro) VALUES
 -- Dia 2024-11-27
 (1, 22, '2024-11-27 08:00:00'), (2, 70, '2024-11-27 08:00:00'),
