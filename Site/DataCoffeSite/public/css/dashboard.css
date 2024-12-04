@@ -28,11 +28,10 @@ body {
 
 .header {
   grid-area: header;
-  height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 50px 0 30px;
+  padding: 10px 50px 0 30px;
   color: black;
 }
 
@@ -86,9 +85,6 @@ body {
   color: white;
 }
 
-#bell:hover {
-  color: white;
-}
 
 
 /* ---------- SIDEBAR ---------- */
@@ -188,7 +184,8 @@ body {
 .main-container {
   grid-area: main;
   overflow-y: auto;
-  padding: 20px 20px;
+  padding: 0px 20px;
+
 }
 
 .main-title {
@@ -253,13 +250,6 @@ body {
   width: 40px;
   height: 40px;
   background-color: red;
-  border-radius: 100%;
-}
-
-.azul{
-  width: 40px;
-  height: 40px;
-  background-color: blue;
   border-radius: 100%;
 }
 
@@ -342,6 +332,7 @@ body {
 
 /* Contêiner Geral */
 .parametros-alerta-container {
+  margin-top: 0px;
   margin: 10px auto;
   padding: 5px;
   max-width: 600px;
@@ -351,7 +342,6 @@ body {
 
 .parametros-titulo {
   font-size: 14px;
-  margin-bottom: 8px;
   color: black;
   font-weight: bold;
 }
@@ -385,7 +375,7 @@ body {
 }
 
 .parametro-item.acima {
-  background-color: #dc3545; 
+  background-color: rgba(255, 0, 0, 0.601); 
 }
 
 
