@@ -9,6 +9,12 @@
   user-select: none;
 }
 
+body,
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
 
 body {
   background: #221518;
@@ -17,7 +23,6 @@ body {
   display: flex;
   overflow-x: hidden;
   color: white;
-  scroll-behavior: smooth;
 }
 
 .logo {
