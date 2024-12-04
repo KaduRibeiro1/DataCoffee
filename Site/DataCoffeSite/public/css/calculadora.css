@@ -106,3 +106,53 @@ input:focus {
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.1);
 }
+
+#btn-voltar {
+  display: flex;
+  height: 3em;
+  width: 120px;
+  align-items: center;
+  justify-content: center;
+  background-color: #8e5a3d;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  border: none;
+  background: #8e5a3d; 
+  color: white; 
+  font-weight: bold; 
+  font-size: 16px; 
+}
+
+#btn-voltar > svg {
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 20px;
+  transition: all 0.4s ease-in;
+}
+
+#btn-voltar:hover > svg {
+  font-size: 1.2em;
+  transform: translateX(-5px);
+}
+
+#btn-voltar:hover {
+  box-shadow: 9px 9px 33px rgba(0, 0, 0, 0.2), -9px -9px 33px rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+#btn-voltar {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #000;
+}
+
+#btn-voltar svg {
+  vertical-align: middle;
+  margin-right: 8px;
+}
