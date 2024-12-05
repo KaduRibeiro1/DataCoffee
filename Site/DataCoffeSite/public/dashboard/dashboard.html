@@ -89,7 +89,7 @@
           <!-- Tempo fora da condição ideal (Temperatura) -->
           <div class="card">
             <div class="card-inner">
-              <h3>Tempo fora da <br />condição ideal (Dia)</h3>
+              <h3>Temperatura fora da <br />condição ideal (Hora atual)</h3>
               <i data-feather="sun"></i>
             </div>
             <h1 id="kpiTempoForaTemp"></h1>
@@ -107,7 +107,7 @@
           <!-- Tempo fora da condição ideal (Umidade) -->
           <div class="card">
             <div class="card-inner">
-              <h3>Tempo fora da <br />condição ideal (Dia)</h3>
+              <h3>Umidade fora da <br />condição ideal (Hora atual)</h3>
               <i data-feather="cloud-lightning" id="kpiTempoForaTemp"></i>
             </div>
             <h1 id="kpiTempoForaUmi"></h1>
@@ -207,7 +207,7 @@
           if (i == resposta.temp.length - 1) {
             kpiTempAtual = registrosTemp[i].registro;
             kpiUmiAtual = registrosUmi[i].registro;
-            kpi_temp.innerHTML = kpiTempAtual + " Cº";
+            kpi_temp.innerHTML = kpiTempAtual + " °C";
             kpi_umi.innerHTML = kpiUmiAtual + " %";
           }
         }
@@ -242,8 +242,11 @@
               x: {
                 type: "time",
                 time: {
-                  unit: "minute",
-                  tooltipFormat: "ll HH:mm",
+                  unit: "second",
+                  displayFormats: {
+                  second: "HH:mm:ss", // Formato de exibição no eixo
+                  },
+                  tooltipFormat: "HH:mm:ss", // Exibe horas, minutos e segundos no tooltip
                 },
                 title: {
                   display: true,
@@ -254,7 +257,7 @@
                 beginAtZero: true,
                 title: {
                   display: true,
-                  text: "% e Cº",
+                  text: "% e °C",
                 },
               },
             },
@@ -355,7 +358,7 @@
                 beginAtZero: true,
                 title: {
                   display: true,
-                  text: "% e Cº",
+                  text: "% e °C",
                 },
               },
             },
@@ -444,7 +447,7 @@
                   kpiUmiAtual = registrosUmi[0].registro;
                  
               
-                  kpi_temp.innerHTML = kpiTempAtual + " Cº";
+                  kpi_temp.innerHTML = kpiTempAtual + " °C";
                   kpi_umi.innerHTML = kpiUmiAtual + " %";
 
                   // mudança de cor do card-KPI
@@ -625,8 +628,8 @@
             const ocorrenciasForasUmi = ocorrenciasUmiAtual.length > 0 ? ocorrenciasUmiAtual[0].ocorrencias_fora_intervalo : 0;
 
             // Atualiza os textos nos cards com os valores filtrados pela hora atual
-            document.getElementById("kpiTempoForaTemp").innerText = `${horasForasTemp} horas | ${ocorrenciasForasTemp} ocorrências`;
-            document.getElementById("kpiTempoForaUmi").innerText = `${horasForasUmi} horas | ${ocorrenciasForasUmi} ocorrências`;
+            document.getElementById("kpiTempoForaTemp").innerText = `${horasForasTemp}:00 | ${ocorrenciasForasTemp} ocorrências`;
+            document.getElementById("kpiTempoForaUmi").innerText = `${horasForasUmi}:00 | ${ocorrenciasForasUmi} ocorrências`;
 
             // Caso não haja ocorrências no horário atual
             if (ocorrenciasTempAtual.length === 0) {
