@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+  <script data-jsd-embedded data-key="022093e6-0b16-47f0-a2b8-ba3f7236c02f" data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +13,6 @@
         <div class="grid-container">
           <header class="header">
             <div class="header-left">
-              <i id="bell" data-feather="bell"></i>
             </div>
             <div class="header-right">
               <img src="../assets/img/icon.png" />
@@ -28,22 +29,12 @@
             </div>
             <ul class="sidebar-list">
               <li class="sidebar-list-item">
-                <a onclick="window.location.href='../index.html'" target="_blank">
-                  <i data-feather="home"></i> Início
-                </a>
-              </li>
-              <li class="sidebar-list-item">
                 <a onclick="window.location.href='avisos.html'" target="_blank">
                   <i data-feather="bar-chart"></i> Avisos
                 </a>
               </li>
               <li class="sidebar-list-item">
-                <a href="#" target="_blank">
-                  <i data-feather="user"></i> Mudar Conta 
-                </a>
-              </li>
-              <li class="sidebar-list-item">
-                <a onclick="aviso()" target="_blank">
+                <a onclick="limparSessao()" target="_blank">
                   <i data-feather="log-out"></i> Sair
                 </a>
               </li>

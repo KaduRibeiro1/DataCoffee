@@ -20,7 +20,7 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
 
-                        aquarioModel.buscarPlantacoesPorEmpresa(resultadoAutenticar[0].Empresa)
+                        aquarioModel.buscarPlantacoesPorEmpresa(resultadoAutenticar[0].empresa)
                             .then((resultadoPlantacao) => {
                                 if (resultadoPlantacao.length > 0) {
                                     res.json({

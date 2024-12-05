@@ -18,7 +18,7 @@ function cadastrar(nome, email, cpf, dtNasc, genero, senha, fkEmpresa) {
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
         INSERT INTO usuario (nome, email, cpf, dtNascimento, genero, senha, tipo, fkEmpresa)
-VALUES ('${nome}', '${email}', '${cpf}', '${dtNasc}', '${genero}', '${senha}', 'cliente', (SELECT idEmpresa FROM Empresa WHERE codigo_de_ativacao = '${fkEmpresa}')
+VALUES ('${nome}', '${email}', '${cpf}', '${dtNasc}', '${genero}', '${senha}', 'cliente', (SELECT idEmpresa FROM empresa WHERE codigo_de_ativacao = '${fkEmpresa}')
 );
 ;
     `;

@@ -16,7 +16,6 @@
     <div class="grid-container">
       <header class="header">
         <div class="header-left">
-          <i id="bell" data-feather="bell"></i>
         </div>
         <div class="header-center">
           <h1></h1>
@@ -40,23 +39,13 @@
         </div>
         <ul class="sidebar-list">
           <li class="sidebar-list-item">
-            <a onclick="window.location.href='dashboard.html'" target="_blank">
-              <i data-feather="home"></i> Início
-            </a>
-          </li>
-          <li class="sidebar-list-item">
-            <a onclick="window.location.href='plantacao.html'" target="_blank">
+            <a onclick="window.location.href='Plantacao.html'" target="_blank">
               <i data-feather="feather"></i> Plantações
             </a>
           </li>
           <li class="sidebar-list-item">
             <a onclick="window.location.href='avisos.html'" target="_blank">
               <i data-feather="bar-chart"></i> Avisos
-            </a>
-          </li>
-          <li class="sidebar-list-item">
-            <a onclick="window.location.href='../login.html'" target="_blank">
-              <i data-feather="user"></i>Mudar Conta
             </a>
           </li>
           <li class="sidebar-list-item">
@@ -71,7 +60,7 @@
         <div class="parametros-alerta-container">
           <h2 class="parametros-titulo">Parâmetros para Alertas</h2>
           <div class="parametros-row">
-            <div class="parametro-item abaixo">
+            <div class="parametro-item acima">
               <strong>Abaixo:</strong> 20°C <i class="fas fa-temperature-low"></i> | 60% <i class="fas fa-tint"></i>
             </div>
             <div class="parametro-item ideal">
@@ -107,7 +96,7 @@
           </div>
 
           <!-- Umidade Atual -->
-          <div class="card cardUmidade atual_abaixo" id="umidadeAtual">
+          <div class="card cardUmidade atual_acima" id="umidadeAtual">
             <div class="card-inner">
               <h3>Umidade Atual</h3>
               <i data-feather="droplet"></i>
@@ -183,16 +172,16 @@
             {
               label: "Temperatura (°C)",
               data: [],
-              borderColor: "rgba(222, 49, 99, 1)",
-              backgroundColor: "rgba(222, 49, 99, 0.6)",
+              borderColor: "rgba(34, 186, 187, 1)",
+              backgroundColor: "rgba(34, 186, 187, 0.5)",
               fill: true,
               borderWidth: 2,
             },
             {
               label: "Umidade (%)",
               data: [],
-              backgroundColor: "rgba(0, 138, 144, 0.4)",
-              borderColor: "rgba(0, 138, 144, 1)",
+              backgroundColor: "rgba(250, 127, 8, 0.5)",
+              borderColor: "rgba(250, 127, 8, 1)",
               fill: true,
               borderWidth: 2,
             },
@@ -227,7 +216,7 @@
         var cardTemperatura = document.getElementById("temperaturaAtual");
 
         if (kpiTempAtual <= 20) {
-          cardTemperatura.className = "card atual_abaixo";
+          cardTemperatura.className = "card card atual_acima";
         } else if (kpiTempAtual <= 25) {
           cardTemperatura.className = "card atual_boa";
         } else {
@@ -319,15 +308,15 @@
             {
               label: "Temperatura (°C)",
               data: [],
-              backgroundColor: "rgba(222, 49, 99, 0.6)",
-              borderColor: "rgba(222, 49, 99, 1.0)",
+              borderColor: "rgba(34, 186, 187, 1)",
+              backgroundColor: "rgba(34, 186, 187, 0.5)",
               borderWidth: 2,
             },
             {
               label: "Umidade (%)",
               data: [],
-              backgroundColor: "rgba(0, 138, 144, 0.4)",
-              borderColor: "rgba(0, 138, 144, 1)",
+              backgroundColor: "rgba(250, 127, 8, 0.5)",
+              borderColor: "rgba(250, 127, 8, 1)",
               borderWidth: 2,
             },
           ],
@@ -463,7 +452,7 @@
                     document.getElementById("temperaturaAtual");
 
                   if (kpiTempAtual <= 20) {
-                    cardTemperatura.className = "card atual_abaixo";
+                    cardTemperatura.className = "card atual_acima";
                   } else if (kpiTempAtual < 25) {
                     cardTemperatura.className = "card atual_boa";
                   } else {
@@ -473,7 +462,7 @@
                   var cardUmidade = document.getElementById("umidadeAtual");
 
                   if (kpiUmiAtual <= 60) {
-                    cardUmidade.className = "card atual_abaixo";
+                    cardUmidade.className = "card atual_acima";
                   } else if (kpiUmiAtual <= 80) {
                     cardUmidade.className = "card atual_boa";
                   } else {
@@ -683,9 +672,7 @@ setInterval(buscarHorasForas, 2000);
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
+
+    <link rel="stylesheet" href="../js/sessao.js">
   </body>
 </html>
