@@ -69,24 +69,24 @@
 
 
         // Umidade
-        if (umidade >= 13) {
+        if (umidade >= 80) {
             retorno.innerHTML += `
             <img class="logo" src="assets/logoSemFundo.png" alt="">
             <h1 class="title_calculator">Calculadora DataCoffee</h1>
-            <h1 class="mensagemResposta">Acima de 13% de umidade, a qualidade do produto será comprometida. Com o excesso de umidade no solo, o café começará a produzir enzimas que aceleram o crescimento do grão, fazendo-o perder qualidade.</h1>
+            <h1 class="mensagemResposta">Acima de 80% de umidade, a qualidade do produto será comprometida. Com o excesso de umidade no solo, o café começará a produzir enzimas que aceleram o crescimento do grão, fazendo-o perder qualidade.</h1>
             `
         }
-        else if (umidade < 12) {
+        else if (umidade < 60) {
             retorno.innerHTML += `
             <img class="logo" src="assets/logoSemFundo.png" alt="">
             <h1 class="title_calculator">Calculadora DataCoffee</h1>
-            <h1 class="mensagemResposta">O mínimo para manter uma boa qualidade é 9%. Com 12% de umidade, o café está dentro de um parâmetro de ótima qualidade.</h1>
+            <h1 class="mensagemResposta">O mínimo para manter uma boa qualidade é 60%. Com 75% de umidade, o café está dentro de um parâmetro de ótima qualidade.</h1>
             `
         }
         else {
             retorno.innerHTML += `
             <img class="logo" src="assets/logoSemFundo.png" alt="">
-            <br><br> <h1 class="mensagemResposta">Até 8% de umidade, o café consegue se desenvolver, mas isso pode afetar a qualidade</h1>
+            <br><br> <h1 class="mensagemResposta">Até 60% de umidade, o café consegue se desenvolver, mas isso pode afetar a qualidade</h1>
             `
         }
         // Temperatura
