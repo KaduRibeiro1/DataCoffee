@@ -226,7 +226,7 @@
         var cardUmidade = document.getElementById("umidadeAtual");
 
         if (kpiUmiAtual <= 60) {
-          cardUmidade.className = "card atual_abaixo";
+          cardUmidade.className = "card atual_acima";
         } else if (kpiUmiAtual <= 80) {
           cardUmidade.className = "card atual_boa";
         } else {
@@ -242,7 +242,7 @@
               x: {
                 type: "time",
                 time: {
-                  unit: "hour",
+                  unit: "minute",
                   tooltipFormat: "ll HH:mm",
                 },
                 title: {
