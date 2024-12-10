@@ -11,7 +11,6 @@
     <div class="grid-container">
       <header class="header">
         <div class="header-left">
-          <i data-feather="bell"></i>
         </div>
         <div class="header-right">
           <img src="../assets/img/icon.png" />
@@ -28,27 +27,12 @@
         </div>
         <ul class="sidebar-list">
           <li class="sidebar-list-item">
-            <a onclick="window.location.href='dashboard.html'" target="_blank">
-              <i data-feather="home"></i> Início
-            </a>
-          </li>
-          <li class="sidebar-list-item">
-            <a onclick="window.location.href='plantacao.html'" target="_blank">
+            <a onclick="window.location.href='Plantacao.html'" target="_blank">
               <i data-feather="feather"></i> Plantações
             </a>
           </li>
           <li class="sidebar-list-item">
-            <a onclick="window.location.href='avisos.html'" target="_blank">
-              <i data-feather="bar-chart"></i> Avisos
-            </a>
-          </li>
-          <li class="sidebar-list-item">
-            <a href="#" target="_blank">
-              <i data-feather="user"></i> Mudar Conta
-            </a>
-          </li>
-          <li class="sidebar-list-item">
-            <a onclick="aviso()" target="_blank">
+            <a onclick="limparSessao()" target="_blank">
               <i data-feather="log-out"></i> Sair
             </a>
           </li>
@@ -104,7 +88,7 @@
        <div  onclick="dashboard(${idPlantacao})" class="card aviso">
             <div  class="card_situacao">
               <h1>Alerta - Temperatura</h1>
-              <div class="azul"></div>
+              <div class="vermelho"></div>
             </div>
             <p id="plantacao">Plantação ${idPlantacao}</p>
             <p id="descricaoAlerta">A temperatura está Abaixo do ideal</p>
@@ -126,7 +110,7 @@
        <div onclick="dashboard(${idPlantacao})" class="card aviso">
             <div  class="card_situacao">
               <h1>Alerta - Umidade</h1>
-              <div class="azul"></div>
+              <div class="vermelho"></div>
             </div>
             <p id="plantacao">Plantação ${idPlantacao}</p>
             <p id="descricaoAlerta">A Umidade está abaixo do ideal</p>
@@ -176,3 +160,4 @@
 <script>
   feather.replace();
 </script>
+<link rel="stylesheet" href="../js/sessao.js">

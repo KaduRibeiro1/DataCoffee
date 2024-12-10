@@ -18,19 +18,6 @@ function cadastrar(empresaId, descricao) {
 }
 
 
-function buscarSensorDeUmimidadeInadequados(){
-  var instrucaoSql=``
-
-  return database.executar(instrucaoSql);
-
-}
-
-function buscarSensorDeTemeperaturaInadequados(){
-  var instrucaoSql=``
-
-  return database.executar(instrucaoSql);
-}
-
 module.exports = {
   buscarPlantacoesPorEmpresa,
   cadastrar

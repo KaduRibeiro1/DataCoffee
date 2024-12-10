@@ -6,7 +6,7 @@ function buscarRegistrosTemp(idPlantacao) {
     sensor.modelo, 
     registro,
     dtRegistro
-        FROM Registro join sensor
+        FROM registro join sensor
         on registro.fkSensor = sensor.idSensor
         join plantacao 
         on fkPlantacao = idPlantacao
@@ -27,7 +27,7 @@ function buscarRegistrosUmi(idPlantacao) {
             sensor.modelo, 
             registro,
             dtRegistro
-        FROM Registro 
+        FROM registro 
         JOIN sensor ON registro.fkSensor = sensor.idSensor
         WHERE sensor.modelo = 'Sensor de Umidade' and fkPlantacao = ${idPlantacao}
         ORDER BY dtRegistro DESC
@@ -101,7 +101,7 @@ function buscarMedidaEmTempoRealTemp(idPlantacao){
     sensor.modelo, 
     registro,
     dtRegistro
-        FROM Registro join sensor
+        FROM registro join sensor
         on registro.fkSensor = sensor.idSensor
         join plantacao 
         on fkPlantacao = idPlantacao
@@ -121,7 +121,7 @@ function buscarMedidaEmTempoRealUmi(idPlantacao) {
             sensor.modelo, 
             registro,
             dtRegistro
-        FROM Registro 
+        FROM registro 
         JOIN sensor ON registro.fkSensor = sensor.idSensor
         WHERE sensor.modelo = 'Sensor de Umidade' and fkPlantacao = ${idPlantacao}
         ORDER BY dtRegistro DESC
